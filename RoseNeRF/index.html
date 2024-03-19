@@ -33,71 +33,81 @@
     <div class="container">
         <div class="row">
             <h1 class="col-md-12 text-center">
-              Sampling Neural Radiance Fields
-              <br> for Refractive Objects
-              <br><small>SIGGRAPH Asia 2022 Technical Communications</small>
+                Refracting Once is Enough: Neural Radiance Fields for
+              <br>Novel-View Synthesis of Real Refractive Objects
+              <!-- <br><small>SIGGRAPH Asia 2022 Technical Communications</small> -->
             </h1>
         </div>
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-13 text-center">
                 <ul class="list-inline">
                     <li>
-                        <a href="https://alexkeroro86.github.io/">
-                            Jen-I Pan
+                        <a href="https://github.com/Yubel426">
+                            Xiaoqian Liang
                         </a>
-                        <br>National Tsing Hua University
+                        <!-- <br>Xi'an Jiaotong University -->
                     </li>
                     <li>
-                        <a href="https://github.com/ericsujw">
-                            Jheng-Wei Su
+                        <a href="https://gr.xjtu.edu.cn/en/web/wangjianji">
+                            Jianji Wang
                         </a>
-                        <br>National Tsing Hua University
+                        <!-- <br>Xi'an Jiaotong University -->
                     </li>
                     <li>
                         <a href="">
-                            Kai-Wen Hsiao
+                            Yuanliang Lu
                         </a>
-                        <br>National Tsing Hua University
+                        <!-- <br>Xi'an Jiaotong University -->
+                    </li>
+                    <!-- <br> -->
+                    <li>
+                        <a href="">
+                            Xubin Duan
+                        </a>
+                        <!-- <br>Xi'an Jiaotong University -->
+                    </li>
+                    <li>
+                        <a href="">
+                            Xichun Liu
+                        </a>
+                        <!-- <br>Xi'an Jiaotong University -->
+                    </li>
+                    <li>
+                        <a href="https://gr.xjtu.edu.cn/en/web/nnzheng">
+                            Nanning Zheng
+                        </a>
+                        <!-- <br>Xi'an Jiaotong University -->
                     </li>
                     <br>
-                    <li>
-                        <a href="">
-                            Ting-Yu Yen
-                        </a>
-                        <br>National Tsing Hua University
-                    </li>
-                    <li>
-                        <a href="https://cgv.cs.nthu.edu.tw/hkchu/">
-                            Hung-Kuo Chu
-                        </a>
-                        <br>National Tsing Hua University
-                    </li>
+                    Xi'an Jiaotong University
+                <!-- </br> -->
+
                 </ul>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 col-md-offset-4 text-center">
+            <div class="col-md-6 col-md-offset-3 text-center">
                 <ul class="nav nav-pills nav-justified">
                     <li>
-                        <a href="https://arxiv.org/abs/2211.14799" target="_blank">
+                        <a href="" target="_blank">
                         <img src="assets/pdf.png" height="50px">
-                            <h5><b>Paper</b></h5>
+                            <h5><b>Paper(Coming soon)</b></h5>
                         </a>
                     </li>
                     <li>
-                        <a href="https://dl.acm.org/doi/abs/10.1145/3550340.3564234" target="_blank">
-                        <img src="assets/youtube.png" height="50px">
-                            <h5><b>Video</b></h5>
+                        <a href="https://vistec-my.sharepoint.com/:f:/g/personal/pakkapon_p_s19_vistec_ac_th/EnIUhsRVJOdNsZ_4smdhye0B8z0VlxqOR35IR3bp0uGupQ?e=TsaQgM" target="_blank">
+                        <img src="assets/database.png" height="50px">
+                            <h5><b>Shiny Dataset</b></h5>
                         </a>
                     </li>
                     <li>
                         <a href="https://drive.google.com/drive/folders/1Ys393lwzZ1feXnMMHG7FS-f_1aqDpx6l?usp=share_link" target="_blank">
                         <img src="assets/database.png" height="50px">
-                            <h5><b>Data</b></h5>
+                            <h5><b>Eikonal Field Dataset</b></h5>
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/alexkeroro86/SampleNeRFRO" target="_blank">
+                        <a href="https://github.com/Yubel426/RoseNeRF" target="_blank">
                         <img src="assets/github.png" height="50px">
                             <h5><b>Code</b></h5>
                         </a>
@@ -105,13 +115,13 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <figure class="col-md-8 col-md-offset-2">
             <img src="assets/teaser.png" class="img-responsive" alt="overview">
                 <figcaption>
                 </figcaption>
             </figure>
-        </div>
+        </div> -->
         <!-- <div class="row"> -->
         <!--     <div class="col&#45;md&#45;8 col&#45;md&#45;offset&#45;2 text&#45;center last"> -->
         <!--         <iframe align="center" width="560" height="315" src="https://www.youtube.com/embed/GAe0qKKQY_I" frameborder="0" allowfullscreen></iframe> -->
@@ -123,18 +133,16 @@
                     Abstract
                 </h3>
                 <p class="text-justify">
-Recently, differentiable volume rendering in neural radiance fields (NeRF) has gained a lot of popularity,
-and its variants have attained many impressive results.
-However, existing methods usually assume the scene is a homogeneous volume so that a ray is cast along the straight path.
-In this work, the scene is instead a heterogeneous volume with a piecewise-constant refractive index, where
-the path will be curved if it intersects the different refractive indices. For novel view synthesis of refractive objects,
-our NeRF-based framework aims to optimize the radiance fields of bounded volume and boundary from multi-view posed images with
-refractive object silhouettes. To tackle this challenging problem,
-the refractive index of a scene is reconstructed from silhouettes. Given the refractive index,
-we extend the stratified and hierarchical sampling techniques in NeRF to allow drawing samples along a curved path tracked
-by the Eikonal equation. The results indicate that our framework outperforms the state-of-the-art method
-both quantitatively and qualitatively, demonstrating better performance on the perceptual similarity metric and
-an apparent improvement in the rendering quality on several synthetic and real scenes.
+                    Neural Radiance Fields (NeRF) have shown promise in novel view synthesis, but it still face challenges when applied to refractive objects.
+                    The presence of refraction disrupts multiview consistency, often resulting in renderings that are either blurred or distorted.   
+                    Recent methods alleviate this challenge by introducing external supervision, such as mask images and Index of Refraction.
+                    However,acquiring such information is often impractical,limiting the application of NeRF-like models to complex scenes with refracting elementsand yielding unsatisfactory results.
+                    To address these limitations, we introduce <b>RoseNeRF</b> (<b>R</b>efracting <b>o</b>nce i<b>s</b> <b>e</b>nough for <b>NeRF</b>),
+                    a novel method that simplifies the complex  interaction of rays within objects to a single refraction event. 
+                    We design the refraction network that efficiently maps a ray in the 4D light field to its refracted counterpart, better modeling curved ray paths.
+                    Furthermore, we introduce a regularization strategy to ensure the reversibility of optical paths, which is anchored in physical world theorems.
+                    To help it easier for the network to learn the highly view-dependent appearance of refractive objects, we also propose novel density decoding strategies.
+                    Our method is designed for seamless integration into most NeRF-like frameworks and has demonstrated state-of-the-art performance without any additional information on both the Eikonal Fields' dataset and Shiny dataset.
                 </p>
             </div>
         </div>
@@ -145,58 +153,43 @@ an apparent improvement in the rendering quality on several synthetic and real s
                     Results
                 </h3>
                 <h4>
-                    Synthetic Scenes
+                    Shiny Dataset
                 </h4>
                 <figure>
-                    <img src="assets/torus.png" class="img-responsive" alt="overview" style="margin-bottom: 0.25em;">
-                    <video class="centered" autoplay="" muted="" loop="" playsinline="" width="100%">
-                        <source src="assets/torus_skydome-bkgd_no-partial-reflect_cycles_test_preds_default.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <img src="assets/res_shiny.jpg" class="img-responsive" alt="overview" style="margin-bottom: 0.25em;">
                     <figcaption>
-                        Torus.
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="assets/ship.png" class="img-responsive" alt="overview" style="margin-bottom: 0.25em;">
-                    <video class="centered" autoplay="" muted="" loop="" playsinline="" width="100%">
-                        <source src="assets/ship_skydome-bkgd_no-partial-reflect_cycles_test_preds_default.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <figcaption>
-                        Ship.
+                        Qualitative results of RoseNeRF and comparison methods on CD, Seasoning and Lab.
                         <br>
-                        Ship model ©<a href="https://skfb.ly/6DV9G" target="_blank">Loïc Norgeot</a>
+                        Data provided by <a href="https://nex-mpi.github.io/" target="_blank"><i>NeX: Real-time View Synthesis with Neural Basis Expansion, CVPR 2021</i></a>
                     </figcaption>
                 </figure>
                 <h4>
-                    Real Scenes
+                    Eikonal Field Dataset
                 </h4>
                 <figure>
-                    <img src="assets/dolphin.png" class="img-responsive" alt="overview" style="margin-bottom: 0.25em;">
-                    <video class="centered" autoplay="" muted="" loop="" playsinline="" width="100%">
-                        <source src="assets/dolphin_test_preds_default.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <img src="assets/res_eik.jpg" class="img-responsive" alt="overview" style="margin-bottom: 0.25em;">
                     <figcaption>
-                        Dolphin.
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="assets/pen.png" class="img-responsive" alt="overview" style="margin-bottom: 0.25em;">
-                    <video class="centered" autoplay="" muted="" loop="" playsinline="" width="100%">
-                        <source src="assets/pen_test_preds_video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <figcaption>
-                        Pen.
+                        Qualitative results of RoseNeRF and comparison methods on Pen and WineGlass.
                         <br>
                         Data provided by <a href="https://eikonalfield.mpi-inf.mpg.de/" target="_blank"><i>Eikonal Fields for Refractive Novel-View Synthesis, SIGGRAPH 2022 (Conference Proceedings)</i></a>
                     </figcaption>
                 </figure>
+                <h4>
+                    Ablation
+                </h4>
+                <figure>
+                    <img src="assets/ablation.jpg" class="img-responsive" alt="overview" style="margin-bottom: 0.25em;">
+                    <figcaption>
+                        Qualitative results of <a href="https://zx-yin.github.io/msnerf/" target="_blank">MS-NeRF</a> 
+                        and MS-NeRF with our decoder strategy on test set images from Ball, Glass, WineGlass and Lab.
+                        <br>
+                        <!-- Data provided by <a href="https://eikonalfield.mpi-inf.mpg.de/" target="_blank"><i>Eikonal Fields for Refractive Novel-View Synthesis, SIGGRAPH 2022 (Conference Proceedings)</i></a> -->
+                    </figcaption>
+                </figure>
+
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
                     BibTeX
@@ -221,7 +214,7 @@ an apparent improvement in the rendering quality on several synthetic and real s
 </textarea>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
