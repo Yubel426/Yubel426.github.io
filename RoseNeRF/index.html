@@ -21,6 +21,14 @@
 
     <link rel="stylesheet" href="files/bootstrap.min_002.css">
 
+    <link href="dist/image-compare-viewer.min.css" rel="stylesheet">
+    <!-- <style>
+        .container {
+
+            width: 100%;
+        }
+    </style> -->
+
     <script src="files/jquery.min.js"></script>
     <script src="files/bootstrap.min.js"></script>
     <script src="files/codemirror.min.js"></script>
@@ -28,6 +36,8 @@
     
     <script src="files/app.js"></script>
 </head>
+
+
 
 <body data-new-gr-c-s-check-loaded="8.904.0" data-gr-ext-installed="">
     <div class="container">
@@ -152,6 +162,61 @@
                 </p>
             </div>
         </div>
+        
+ 
+        <div class="container" id="custom-container">
+            <div id="image-compare1">
+                <img src="assets/nerfacto.jpg" alt="" />
+                <img src="assets/rosenerf.png" alt="" />
+            </div>
+            <div id="image-compare2">
+                <img src="assets/eikonalfield_glass.png" alt="" />
+                <img src="assets/logs_mynerf_glass.png" alt="" />
+            </div>
+        </div>
+        <script src="dist/image-compare-viewer.min.js"></script>
+        <script>
+            const element = document.getElementById("image-compare1");
+    
+            const viewer = new ImageCompare(element, { addCircle: true }).mount();
+            const element2 = document.getElementById("image-compare2");
+    
+            const viewer2 = new ImageCompare(element2, { addCircle: true }).mount();
+            // const element2 = document.getElementById("image-compare2");
+    
+            // const viewer2 = new ImageCompare(element2, {
+            //     verticalMode: true,
+            //     addCircle: true
+            // }).mount();
+        </script>
+        <div class="container" id="custom-container">
+            <div id="image-compare3">
+                <img src="assets/logs_msnerf_256_cd.png" alt="" />
+                <img src="assets/logs_mynerf_cd.png" alt="" />
+            </div>
+            <div id="image-compare4">
+                <img src="assets/logs_msnerf_256_lab.png" alt="" />
+                <img src="assets/logs_mynerf_lab.png" alt="" />
+            </div>
+        </div>
+        <script src="dist/image-compare-viewer.min.js"></script>
+        <script>
+            const element3 = document.getElementById("image-compare3");
+    
+            const viewer3 = new ImageCompare(element3, { addCircle: true }).mount();
+            const element4 = document.getElementById("image-compare4");
+    
+            const viewer4 = new ImageCompare(element4, { addCircle: true }).mount();
+            // const element2 = document.getElementById("image-compare2");
+    
+            // const viewer2 = new ImageCompare(element2, {
+            //     verticalMode: true,
+            //     addCircle: true
+            // }).mount();
+        </script>
+        
+
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
