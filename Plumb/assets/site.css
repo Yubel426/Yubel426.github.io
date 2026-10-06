@@ -135,6 +135,10 @@ h1 .name { font-weight: 600; }
 .btn[disabled] { opacity: .5; cursor: default; }
 .hero-text { max-width: var(--wide); }
 .tldr { margin: 28px 0 0; padding: 14px 20px; background: var(--surface); border-left: 3px solid var(--sim); font-size: 19px; line-height: 1.55; }
+.takeaways { margin: 18px 0 0; padding: 0 20px 0 23px; }
+.takeaways-label { margin: 0 0 8px; font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.takeaways ol { margin: 0; padding-left: 1.3em; font-size: 17px; line-height: 1.55; }
+.takeaways li + li { margin-top: 4px; }
 
 /* ---------- featured comparison ---------- */
 .featured { margin-top: 36px; }
@@ -165,6 +169,21 @@ h1 .name { font-weight: 600; }
 .failure .n { display: block; font: 600 12px/1 var(--mono); letter-spacing: .1em; color: var(--bad); margin-bottom: 8px; }
 .failure p.stmt { margin: 0; font-size: 16px; line-height: 1.5; color: var(--ink); }
 .failure p.stmt b { display: block; margin-bottom: 2px; font-size: 17px; }
+/* Motivation 05: Codex's saved fits, one dot each */
+.search-chart { margin: 18px 0 0; padding: 14px 16px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.search-chart figcaption { font-size: 13.5px; color: var(--muted); }
+.search-chart figcaption b { margin-right: 8px; color: var(--ink); font-weight: 600; }
+.search-plot { margin-top: 6px; min-height: 230px; }
+.search-plot svg { display: block; max-width: 100%; height: auto; overflow: visible; }
+.search-plot text { fill: var(--muted); font: 500 11px var(--mono); }
+.search-plot text.note { fill: var(--ink); font-weight: 600; }
+.search-plot .grid { stroke: var(--line); stroke-width: 1; }
+.search-plot .best { stroke: var(--sim); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.search-plot .dot { fill: var(--surface); stroke: var(--muted); stroke-width: 2; }
+.search-plot .dot.best-dot { fill: var(--sim); stroke: var(--surface); }
+.search-plot .dot.delivered { fill: var(--bad); stroke: var(--surface); }
+/* numbers for the problems told in the text, in the same style as the cards above */
+.prob-n { margin-right: 10px; font: 600 12px/1 var(--mono); letter-spacing: .1em; color: var(--bad); vertical-align: 1px; }
 .principles { list-style: none; padding: 0; display: grid; gap: 14px; margin: 22px 0 26px; }
 .principles li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 12px; margin: 0; }
 .principles .k { font: 600 13px/1.9 var(--mono); color: var(--sim); }
@@ -445,13 +464,13 @@ table.data td.num .sub { text-align: right; }
 
 /* showcase: input and simulation side by side, interactive scene below */
 .pair { --aspect: 1.7778; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.pair[data-n="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pair[data-n="2"], .pair[data-n="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .pair figure { margin: 0; min-width: 0; }
 .pair .label, .replay-bar .label { display: block; margin-bottom: 6px; font: 600 12px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
-.pair .label.src { color: var(--src); } .pair .label.sim, .replay-bar .label.sim { color: var(--sim); }
+.pair .label.src { color: var(--src); } .pair .label.sim, .replay-bar .label.sim { color: var(--sim); } .pair .label.bad { color: var(--bad); }
 .pair video { width: 100%; aspect-ratio: var(--aspect); object-fit: contain; background: #0b0f10; border-radius: 4px; cursor: pointer; }
 #featured .replay { margin-top: 14px; }
-@media (max-width: 720px) { .pair, .pair[data-n="2"] { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) { .pair, .pair[data-n="2"], .pair[data-n="4"] { grid-template-columns: minmax(0, 1fr); } }
 #featured .case-tabs, #gallery .case-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 76px), 1fr)); gap: 8px; }
 #featured .case-tab, #gallery .case-tab { flex-direction: column; align-items: stretch; padding: 4px; }
 #featured .case-tab img, #gallery .case-tab img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }

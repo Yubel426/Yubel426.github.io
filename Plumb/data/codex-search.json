@@ -1,0 +1,71 @@
+{
+ "case": "PhysInOne double pendulum (full44 010), Codex alone",
+ "fits": [
+  {
+   "name": "best.json",
+   "minute": 7.26,
+   "rmse_px": 141.44,
+   "delivered": false
+  },
+  {
+   "name": "affine_rest_best.json",
+   "minute": 11.37,
+   "rmse_px": 115.82,
+   "delivered": false
+  },
+  {
+   "name": "affine_best.json",
+   "minute": 12.42,
+   "rmse_px": 106.74,
+   "delivered": false
+  },
+  {
+   "name": "camera_first_best.json",
+   "minute": 14.77,
+   "rmse_px": 141.44,
+   "delivered": false
+  },
+  {
+   "name": "camera_best.json",
+   "minute": 17.31,
+   "rmse_px": 111.15,
+   "delivered": false
+  },
+  {
+   "name": "ortho_best.json",
+   "minute": 21.75,
+   "rmse_px": 107.29,
+   "delivered": false
+  },
+  {
+   "name": "cable_first_best.json",
+   "minute": 25.83,
+   "rmse_px": 115.13,
+   "delivered": false
+  },
+  {
+   "name": "cable_best.json",
+   "minute": 27.11,
+   "rmse_px": 147.8,
+   "delivered": false
+  },
+  {
+   "name": "cable_camera_balanced_best.json",
+   "minute": 35.31,
+   "rmse_px": 132.83,
+   "delivered": false
+  },
+  {
+   "name": "cable_camera_best.json",
+   "minute": 45.94,
+   "rmse_px": 148.97,
+   "delivered": true
+  }
+ ],
+ "fit_logs": 10,
+ "evaluations_at_least": 54300,
+ "restarts": 125,
+ "run_minutes": 49.9,
+ "tokens": 4103367,
+ "note": "rmse_px is Codex's own objective: pixel error against markers it measured in the video."
+}

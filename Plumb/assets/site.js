@@ -115,10 +115,10 @@
     }).catch(() => { tabs.textContent = 'The examples could not load. Reload the page to try again.'; });
   }
 
-  // ---------- results gallery: benchmark video and Plumb's reconstruction, side by side ----------
+  // ---------- results gallery: benchmark video, Codex's and Plumb's reconstructions, side by side ----------
   const gTabs = document.getElementById('gal-tabs');
-  const gSrc = document.getElementById('gal-src'), gSim = document.getElementById('gal-sim');
-  const gPair = document.getElementById('gal-pair'), gCap = document.getElementById('gal-cap');
+  const gSrc = document.getElementById('gal-src'), gSim = document.getElementById('gal-sim'), gCodex = document.getElementById('gal-codex');
+  const gPair = document.getElementById('gal-pair');
   if (gTabs && gSrc && gSim) {
     const setSrc = (v, url, posterUrl) => { v.poster = posterUrl; v.src = url; v.load(); };
     const pick = (c, btn) => {
@@ -126,10 +126,11 @@
       gPair.style.setProperty('--aspect', String(c.aspect));
       setSrc(gSrc, c.media.source, c.media.source_poster);
       setSrc(gSim, c.media.sim, c.media.sim_poster);
-      if (gCap) gCap.textContent = `${c.dataset} · ${c.category}`;
+      const vids = [gSrc, gSim];
+      if (gCodex) { setSrc(gCodex, c.media.codex, c.media.codex_poster); vids.push(gCodex); }
       let ready = 0;
-      const go = () => { if (++ready === 2) syncGroup.gallery?.restart(); };
-      [gSrc, gSim].forEach(v => v.addEventListener('loadeddata', go, { once: true }));
+      const go = () => { if (++ready === vids.length) syncGroup.gallery?.restart(); };
+      vids.forEach(v => v.addEventListener('loadeddata', go, { once: true }));
     };
     fetch('data/gallery.json').then(r => (r.ok ? r.json() : Promise.reject(r.status))).then(cases => {
       gTabs.innerHTML = '';
@@ -145,6 +146,33 @@
       if (cases.length) pick(cases[0], gTabs.firstElementChild);
     }).catch(() => { gTabs.textContent = 'The gallery could not load. Reload the page to try again.'; });
   }
+
+  // ---------- Motivation 05: Codex's saved fits on one video, by minute of the run ----------
+  const plot = document.getElementById('search-plot');
+  if (plot) fetch('data/codex-search.json').then(r => (r.ok ? r.json() : Promise.reject(r.status))).then(d => {
+    const draw = () => {
+      const W = Math.max(300, plot.clientWidth), H = 230, m = { l: 44, r: 16, t: 26, b: 40 };
+      const x1 = Math.ceil(d.run_minutes / 10) * 10, y0 = 90, y1 = 160;
+      const X = v => m.l + v / x1 * (W - m.l - m.r), Y = v => H - m.b - (v - y0) / (y1 - y0) * (H - m.t - m.b);
+      const best = d.fits.reduce((a, f) => (f.rmse_px < a.rmse_px ? f : a));
+      const last = d.fits.find(f => f.delivered);
+      let s = '';
+      for (let v = 100; v <= y1; v += 20) s += `<line class="grid" x1="${m.l}" x2="${W - m.r}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${m.l - 8}" y="${Y(v) + 4}" text-anchor="end">${v}</text>`;
+      for (let v = 0; v <= x1; v += 10) s += `<text x="${X(v)}" y="${H - m.b + 18}" text-anchor="middle">${v}</text>`;
+      s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 4}" text-anchor="middle">minutes into the run</text>`;
+      s += `<line class="best" x1="${X(best.minute)}" x2="${X(last.minute)}" y1="${Y(best.rmse_px)}" y2="${Y(best.rmse_px)}"/>`;
+      d.fits.forEach((f, i) => {
+        const cls = f.delivered ? ' delivered' : f === best ? ' best-dot' : '';
+        s += `<circle class="dot${cls}" cx="${X(f.minute)}" cy="${Y(f.rmse_px)}" r="6"><title>Fit ${i + 1} of ${d.fits.length}: ${Math.round(f.rmse_px)} px at minute ${Math.round(f.minute)}${f.delivered ? ', delivered' : ''}</title></circle>`;
+      });
+      s += `<text class="note" x="${X(best.minute)}" y="${Y(best.rmse_px) + 22}" text-anchor="middle">best: ${Math.round(best.rmse_px)} px</text>`;
+      s += `<text class="note" x="${X(last.minute)}" y="${Y(last.rmse_px) - 12}" text-anchor="end">delivered: ${Math.round(last.rmse_px)} px</text>`;
+      plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">${s}</svg>`;
+    };
+    draw();
+    let raf = 0;
+    window.addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); });
+  }).catch(() => { plot.textContent = 'The chart could not load. Reload the page to try again.'; });
 
   // ---------- BibTeX copy ----------
   const copy = document.getElementById('copy-bib');

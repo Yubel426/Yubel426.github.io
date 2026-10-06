@@ -10,12 +10,15 @@
   "delivered_round": "round-001",
   "accepted": false,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/023_physion_v15_dominoes_pilot_dominoes_2mid_J025R30_tdwroom_0021/001",
   "media": {
    "source": "media/gallery/dominoes-2mid/source.mp4",
+   "codex": "media/gallery/dominoes-2mid/codex.mp4",
    "sim": "media/gallery/dominoes-2mid/sim.mp4",
    "thumb": "media/gallery/dominoes-2mid/thumb.jpg",
    "source_poster": "media/gallery/dominoes-2mid/source.jpg",
-   "sim_poster": "media/gallery/dominoes-2mid/sim.jpg"
+   "sim_poster": "media/gallery/dominoes-2mid/sim.jpg",
+   "codex_poster": "media/gallery/dominoes-2mid/codex.jpg"
   }
  },
  {
@@ -29,12 +32,15 @@
   "delivered_round": "round-002",
   "accepted": false,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/025_physion_v15_link_pilot_linking_nl1-8_mg000_aCyl_bCyl_tdwroom1_long_a_0006/001",
   "media": {
    "source": "media/gallery/link/source.mp4",
+   "codex": "media/gallery/link/codex.mp4",
    "sim": "media/gallery/link/sim.mp4",
    "thumb": "media/gallery/link/thumb.jpg",
    "source_poster": "media/gallery/link/source.jpg",
-   "sim_poster": "media/gallery/link/sim.jpg"
+   "sim_poster": "media/gallery/link/sim.jpg",
+   "codex_poster": "media/gallery/link/codex.jpg"
   }
  },
  {
@@ -48,12 +54,15 @@
   "delivered_round": "round-004",
   "accepted": false,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/014_physion_v15_contain_pilot-containment-vase_torus_0045/001",
   "media": {
    "source": "media/gallery/contain-vase/source.mp4",
+   "codex": "media/gallery/contain-vase/codex.mp4",
    "sim": "media/gallery/contain-vase/sim.mp4",
    "thumb": "media/gallery/contain-vase/thumb.jpg",
    "source_poster": "media/gallery/contain-vase/source.jpg",
-   "sim_poster": "media/gallery/contain-vase/sim.jpg"
+   "sim_poster": "media/gallery/contain-vase/sim.jpg",
+   "codex_poster": "media/gallery/contain-vase/codex.jpg"
   }
  },
  {
@@ -67,12 +76,15 @@
   "delivered_round": "round-004",
   "accepted": true,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/041_physion_v15_dominoes_pilot_dominoes_4midRM1_tdwroom_2_0019/001",
   "media": {
    "source": "media/gallery/dominoes-4mid/source.mp4",
+   "codex": "media/gallery/dominoes-4mid/codex.mp4",
    "sim": "media/gallery/dominoes-4mid/sim.mp4",
    "thumb": "media/gallery/dominoes-4mid/thumb.jpg",
    "source_poster": "media/gallery/dominoes-4mid/source.jpg",
-   "sim_poster": "media/gallery/dominoes-4mid/sim.jpg"
+   "sim_poster": "media/gallery/dominoes-4mid/sim.jpg",
+   "codex_poster": "media/gallery/dominoes-4mid/codex.jpg"
   }
  },
  {
@@ -86,12 +98,15 @@
   "delivered_round": "round-002",
   "accepted": false,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/012_physion_v15_support_pilot_towers_nb4_SJ025_mono1_dis0_occ0_tdwroom_unstable_0006/001",
   "media": {
    "source": "media/gallery/towers/source.mp4",
+   "codex": "media/gallery/towers/codex.mp4",
    "sim": "media/gallery/towers/sim.mp4",
    "thumb": "media/gallery/towers/thumb.jpg",
    "source_poster": "media/gallery/towers/source.jpg",
-   "sim_poster": "media/gallery/towers/sim.jpg"
+   "sim_poster": "media/gallery/towers/sim.jpg",
+   "codex_poster": "media/gallery/towers/codex.jpg"
   }
  },
  {
@@ -105,12 +120,15 @@
   "delivered_round": "round-005",
   "accepted": false,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/026_physinone_pendulum_DoublePendulum__bg063__MZob5h/001",
   "media": {
    "source": "media/gallery/double-pendulum/source.mp4",
+   "codex": "media/gallery/double-pendulum/codex.mp4",
    "sim": "media/gallery/double-pendulum/sim.mp4",
    "thumb": "media/gallery/double-pendulum/thumb.jpg",
    "source_poster": "media/gallery/double-pendulum/source.jpg",
-   "sim_poster": "media/gallery/double-pendulum/sim.jpg"
+   "sim_poster": "media/gallery/double-pendulum/sim.jpg",
+   "codex_poster": "media/gallery/double-pendulum/codex.jpg"
   }
  },
  {
@@ -124,12 +142,15 @@
   "delivered_round": "round-004",
   "accepted": true,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/016_physion_v15_contain_pilot-containment-bowl_0046/001",
   "media": {
    "source": "media/gallery/contain-bowl/source.mp4",
+   "codex": "media/gallery/contain-bowl/codex.mp4",
    "sim": "media/gallery/contain-bowl/sim.mp4",
    "thumb": "media/gallery/contain-bowl/thumb.jpg",
    "source_poster": "media/gallery/contain-bowl/source.jpg",
-   "sim_poster": "media/gallery/contain-bowl/sim.jpg"
+   "sim_poster": "media/gallery/contain-bowl/sim.jpg",
+   "codex_poster": "media/gallery/contain-bowl/codex.jpg"
   }
  },
  {
@@ -143,12 +164,15 @@
   "delivered_round": "round-004",
   "accepted": false,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/030_physinone_rotation_and_friction_FrictionStop__bg002__HUTmYY/001",
   "media": {
    "source": "media/gallery/friction-stop/source.mp4",
+   "codex": "media/gallery/friction-stop/codex.mp4",
    "sim": "media/gallery/friction-stop/sim.mp4",
    "thumb": "media/gallery/friction-stop/thumb.jpg",
    "source_poster": "media/gallery/friction-stop/source.jpg",
-   "sim_poster": "media/gallery/friction-stop/sim.jpg"
+   "sim_poster": "media/gallery/friction-stop/sim.jpg",
+   "codex_poster": "media/gallery/friction-stop/codex.jpg"
   }
  },
  {
@@ -162,12 +186,15 @@
   "delivered_round": "round-003",
   "accepted": false,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/002_physinone_projectile_and_rolling_RollUpSlope__bg086__miH39t/001",
   "media": {
    "source": "media/gallery/roll-up-slope/source.mp4",
+   "codex": "media/gallery/roll-up-slope/codex.mp4",
    "sim": "media/gallery/roll-up-slope/sim.mp4",
    "thumb": "media/gallery/roll-up-slope/thumb.jpg",
    "source_poster": "media/gallery/roll-up-slope/source.jpg",
-   "sim_poster": "media/gallery/roll-up-slope/sim.jpg"
+   "sim_poster": "media/gallery/roll-up-slope/sim.jpg",
+   "codex_poster": "media/gallery/roll-up-slope/codex.jpg"
   }
  },
  {
@@ -181,12 +208,15 @@
   "delivered_round": "round-005",
   "accepted": false,
   "sim_source": "re-render at 4x, 16k shadow map",
+  "codex_job": "full44_retimed_fast_20261004/jobs/029_physinone_collision_MovingHitsStationary__bg127__FICCnn/001",
   "media": {
    "source": "media/gallery/moving-hits-stationary/source.mp4",
+   "codex": "media/gallery/moving-hits-stationary/codex.mp4",
    "sim": "media/gallery/moving-hits-stationary/sim.mp4",
    "thumb": "media/gallery/moving-hits-stationary/thumb.jpg",
    "source_poster": "media/gallery/moving-hits-stationary/source.jpg",
-   "sim_poster": "media/gallery/moving-hits-stationary/sim.jpg"
+   "sim_poster": "media/gallery/moving-hits-stationary/sim.jpg",
+   "codex_poster": "media/gallery/moving-hits-stationary/codex.jpg"
   }
  }
 ]
