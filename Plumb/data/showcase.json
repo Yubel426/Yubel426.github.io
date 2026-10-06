@@ -1,0 +1,170 @@
+[
+ {
+  "slug": "ball-train",
+  "name": "Ball train",
+  "frames": 100,
+  "fps": 30.0,
+  "aspect": 1.7778,
+  "delivered_round": "round-001",
+  "accepted": false,
+  "run": "round-98-free-motion-new3-astra-max-10m-fast-03ba847/runs/v2_PhysicsIQ_0029_ball_train_original_3840x2160_30fps",
+  "media": {
+   "source": "media/showcase/ball-train/source.mp4",
+   "sim": "media/showcase/ball-train/sim.mp4",
+   "thumb": "media/showcase/ball-train/thumb.jpg",
+   "source_poster": "media/showcase/ball-train/source.jpg",
+   "sim_poster": "media/showcase/ball-train/sim.jpg",
+   "blender": "media/showcase/ball-train/blender.mp4",
+   "blender_poster": "media/showcase/ball-train/blender.jpg"
+  },
+  "scene": "data/scene-ball-train.json",
+  "sim_source": "16k-shadow re-render (rerender-shadow16k)"
+ },
+ {
+  "slug": "bowling-chain",
+  "name": "Bowling chain",
+  "frames": 61,
+  "fps": 30.0,
+  "aspect": 1.3333,
+  "delivered_round": "round-006",
+  "accepted": false,
+  "run": "round-98-free-motion-new3-astra-max-10m-fast-03ba847/runs/05_bowling_chain_640x480_PREVIEW_30fps_CAPTURE_FPS_UNKNOWN",
+  "media": {
+   "source": "media/showcase/bowling-chain/source.mp4",
+   "sim": "media/showcase/bowling-chain/sim.mp4",
+   "thumb": "media/showcase/bowling-chain/thumb.jpg",
+   "source_poster": "media/showcase/bowling-chain/source.jpg",
+   "sim_poster": "media/showcase/bowling-chain/sim.jpg",
+   "blender": "media/showcase/bowling-chain/blender.mp4",
+   "blender_poster": "media/showcase/bowling-chain/blender.jpg"
+  },
+  "scene": "data/scene-bowling-chain.json",
+  "sim_source": "16k-shadow re-render (rerender-shadow16k)"
+ },
+ {
+  "slug": "cup-pyramid",
+  "name": "Cup pyramid",
+  "frames": 195,
+  "fps": 60.0,
+  "aspect": 1.7778,
+  "delivered_round": "round-008",
+  "accepted": false,
+  "run": "round-98-free-motion-new3-astra-max-10m-fast-03ba847/runs/tabletop_03_cup_pyramid_collapse",
+  "media": {
+   "source": "media/showcase/cup-pyramid/source.mp4",
+   "sim": "media/showcase/cup-pyramid/sim.mp4",
+   "thumb": "media/showcase/cup-pyramid/thumb.jpg",
+   "source_poster": "media/showcase/cup-pyramid/source.jpg",
+   "sim_poster": "media/showcase/cup-pyramid/sim.jpg",
+   "blender": "media/showcase/cup-pyramid/blender.mp4",
+   "blender_poster": "media/showcase/cup-pyramid/blender.jpg"
+  },
+  "scene": "data/scene-cup-pyramid.json",
+  "sim_source": "16k-shadow re-render (rerender-shadow16k)"
+ },
+ {
+  "slug": "pendulum",
+  "name": "Marble pendulum",
+  "frames": 112,
+  "fps": 30.0,
+  "aspect": 1.7778,
+  "delivered_round": "round-006",
+  "accepted": false,
+  "run": "round-76-free-motion7-fast-cam-9804ae8/runs/054708-pendulum-free",
+  "media": {
+   "source": "media/showcase/pendulum/source.mp4",
+   "sim": "media/showcase/pendulum/sim.mp4",
+   "thumb": "media/showcase/pendulum/thumb.jpg",
+   "source_poster": "media/showcase/pendulum/source.jpg",
+   "sim_poster": "media/showcase/pendulum/sim.jpg",
+   "blender": "media/showcase/pendulum/blender.mp4",
+   "blender_poster": "media/showcase/pendulum/blender.jpg"
+  },
+  "scene": "data/scene-pendulum.json",
+  "sim_source": "16k-shadow re-render (rerender)"
+ },
+ {
+  "slug": "elastic",
+  "name": "Basketball and net",
+  "frames": 76,
+  "fps": 30.0,
+  "aspect": 1.7778,
+  "delivered_round": "round-009",
+  "accepted": false,
+  "run": "round-97-free-motion7-astra-max-10m-fast-03ba847/runs/028965-elastic-motion-free",
+  "media": {
+   "source": "media/showcase/elastic/source.mp4",
+   "sim": "media/showcase/elastic/sim.mp4",
+   "thumb": "media/showcase/elastic/thumb.jpg",
+   "source_poster": "media/showcase/elastic/source.jpg",
+   "sim_poster": "media/showcase/elastic/sim.jpg",
+   "blender": "media/showcase/elastic/blender.mp4",
+   "blender_poster": "media/showcase/elastic/blender.jpg"
+  },
+  "scene": "data/scene-elastic.json",
+  "sim_source": "16k-shadow re-render (rerender)"
+ },
+ {
+  "slug": "billiards",
+  "name": "Billiards chain",
+  "frames": 118,
+  "fps": 29.97,
+  "aspect": 1.7778,
+  "delivered_round": "round-006",
+  "accepted": false,
+  "run": "round-97-free-motion7-astra-max-10m-fast-03ba847/runs/004971-billiards-chain-collision",
+  "media": {
+   "source": "media/showcase/billiards/source.mp4",
+   "sim": "media/showcase/billiards/sim.mp4",
+   "thumb": "media/showcase/billiards/thumb.jpg",
+   "source_poster": "media/showcase/billiards/source.jpg",
+   "sim_poster": "media/showcase/billiards/sim.jpg",
+   "blender": "media/showcase/billiards/blender.mp4",
+   "blender_poster": "media/showcase/billiards/blender.jpg"
+  },
+  "scene": "data/scene-billiards.json",
+  "sim_source": "16k-shadow re-render (rerender-shadow16k)"
+ },
+ {
+  "slug": "rotation",
+  "name": "Spinning coin",
+  "frames": 250,
+  "fps": 30.0,
+  "aspect": 1.7778,
+  "delivered_round": "round-006",
+  "accepted": true,
+  "run": "round-76-free-motion7-fast-cam-9804ae8/runs/035759-rotation",
+  "media": {
+   "source": "media/showcase/rotation/source.mp4",
+   "sim": "media/showcase/rotation/sim.mp4",
+   "thumb": "media/showcase/rotation/thumb.jpg",
+   "source_poster": "media/showcase/rotation/source.jpg",
+   "sim_poster": "media/showcase/rotation/sim.jpg",
+   "blender": "media/showcase/rotation/blender.mp4",
+   "blender_poster": "media/showcase/rotation/blender.jpg"
+  },
+  "scene": "data/scene-rotation.json",
+  "sim_source": "16k-shadow re-render (rerender)"
+ },
+ {
+  "slug": "elastic-ball",
+  "name": "Pendulum arm",
+  "frames": 91,
+  "fps": 29.97,
+  "aspect": 1.7778,
+  "delivered_round": "round-006",
+  "accepted": false,
+  "run": "round-76-free-motion7-fast-cam-9804ae8/runs/000974-elastic-motion-free",
+  "media": {
+   "source": "media/showcase/elastic-ball/source.mp4",
+   "sim": "media/showcase/elastic-ball/sim.mp4",
+   "thumb": "media/showcase/elastic-ball/thumb.jpg",
+   "source_poster": "media/showcase/elastic-ball/source.jpg",
+   "sim_poster": "media/showcase/elastic-ball/sim.jpg",
+   "blender": "media/showcase/elastic-ball/blender.mp4",
+   "blender_poster": "media/showcase/elastic-ball/blender.jpg"
+  },
+  "scene": "data/scene-elastic-ball.json",
+  "sim_source": "16k-shadow re-render (rerender)"
+ }
+]

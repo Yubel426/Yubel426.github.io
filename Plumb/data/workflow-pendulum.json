@@ -1,0 +1,2814 @@
+{
+ "schema_version": 1,
+ "generated_by": "scripts/build_workflow_data.py",
+ "case": {
+  "id": "pendulum",
+  "dataset": null,
+  "name": "054708-pendulum-free",
+  "display_name": "Newton's cradle",
+  "category": null,
+  "background": null,
+  "run_dir": "054708-pendulum-free",
+  "frames": 112,
+  "fps": 30.0,
+  "duration_s": 3.733,
+  "width": 1920,
+  "height": 1080,
+  "source_video": "media/showcase/pendulum/source.mp4",
+  "sim_video": "media/showcase/pendulum/sim.mp4"
+ },
+ "run": {
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "objective": "physics",
+  "physics_profile": "main_process",
+  "candidate_selection_policy": "metric-first-v6",
+  "started_at": "2026-10-05T10:22:22.311370+00:00",
+  "finished_at": "2026-10-05T11:54:30.721052+00:00"
+ },
+ "initialization": {
+  "seconds": 701.8,
+  "seconds_note": "wall time from run start to discovery start (debug log); the initialization stage alone is initialization_stage_seconds",
+  "initialization_stage_seconds": 676.8,
+  "vlm_calls": 24,
+  "tokens": null,
+  "stages": [
+   {
+    "name": "Source preflight",
+    "seconds": 4.14,
+    "vlm_calls": null,
+    "output": "Validated input video: 112 frames at 30 fps, 1920x1080."
+   },
+   {
+    "name": "Scene graph (VLM)",
+    "seconds": 220.63,
+    "vlm_calls": 3,
+    "output": "15-object scene graph (left_blue_marble, second_yellow_green_marble, third_green_marble, fourth_orange_marble, fifth_yellow_marble, right_blue_marble, left_suspension, second_suspension, third_suspension, fourth_suspension…"
+   },
+   {
+    "name": "Pi3X depth + camera",
+    "seconds": 70.07,
+    "vlm_calls": null,
+    "output": "Depth and cameras for 112 frames (fit camera, FOV 21.1 deg); support plane (tabletop) by depth RANSAC (inlier ratio 1.00)."
+   },
+   {
+    "name": "SAM3 grounding + VLM review",
+    "seconds": 181.28,
+    "vlm_calls": 10,
+    "output": "7 SAM3 runs + 10 VLM reviews; tracked left_blue_marble, second_yellow_green_marble, third_green_marble, right_blue_marble (112 masks, f0-111). fourth_orange_marble, fifth_yellow_marble…"
+   },
+   {
+    "name": "Scene-graph completeness review (VLM)",
+    "seconds": 252.42,
+    "vlm_calls": 1,
+    "output": "Decision 'revise' (confidence 0.91); inventory supported, no bodies added or removed; 7 event audits (1 unresolved, 3 hypothesized, 3 accounted)."
+   },
+   {
+    "name": "Reference frames",
+    "seconds": 11.31,
+    "vlm_calls": null,
+    "output": "Per-object reference frames left_blue_marble f11, second_yellow_green_marble f55, third_green_marble f86, right_blue_marble f2 (per-object-frames; no common scene frame)."
+   },
+   {
+    "name": "Mesh prototype (VLM)",
+    "seconds": 26.74,
+    "vlm_calls": 2,
+    "output": "left_blue_marble, second_yellow_green_marble, third_green_marble, right_blue_marble: 'sphere' primitive (radius 0.5) from frame 59; geometry source vlm-primitive."
+   },
+   {
+    "name": "Primitive alignment",
+    "seconds": 19.84,
+    "vlm_calls": null,
+    "output": "Mask+depth fit IoU: left_blue_marble f11 0.830, second_yellow_green_marble f55 0.885, third_green_marble f86 0.951, right_blue_marble f2 0.752 (median rel. depth err <= 0.003)…"
+   },
+   {
+    "name": "Initial seed rollout",
+    "seconds": 35.31,
+    "vlm_calls": null,
+    "output": "Seed scene with second_yellow_green_marble, left_blue_marble, third_green_marble, right_blue_marble, tabletop (missing cradle_stand, fifth_suspension, fifth_yellow_marble, fourth_orange_marble, fourth_suspension, left_suspension…"
+   },
+   {
+    "name": "Evidence bundle + preflight",
+    "seconds": 20.79,
+    "vlm_calls": null,
+    "output": "Packaged and validated the source-only evidence bundle for discovery."
+   }
+  ],
+  "objects": [
+   {
+    "id": "left_blue_marble",
+    "label": "Leftmost blue suspended marble",
+    "role": "dynamic_subject",
+    "importance": "secondary",
+    "geometry": "sphere",
+    "geometry_prior": "sphere",
+    "extent": [
+     0.084,
+     0.084,
+     0.084
+    ],
+    "motion": "dynamic",
+    "mask_frames": 112,
+    "mask_frame_range": [
+     0,
+     111
+    ],
+    "grounding": "sam3_mask",
+    "grounding_note": null,
+    "seed": "in initial seed",
+    "confidence": 0.98,
+    "alignment": {
+     "frame": 11,
+     "geometry_reference_frame": 59,
+     "primitive": "sphere",
+     "primitive_parameters": {
+      "radius": 0.5
+     },
+     "mask_iou": 0.83,
+     "median_relative_depth_error": 0.001,
+     "prototype_reason": "Complete rounded bodies at frames 59 and 86 support spheres. Left-blue views at frames 36 and 44 resolve its spherical body despite stand occlusion at frame 26."
+    }
+   },
+   {
+    "id": "second_yellow_green_marble",
+    "label": "Second marble from left, yellow-green",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "sphere",
+    "geometry_prior": "sphere",
+    "extent": [
+     0.078,
+     0.078,
+     0.078
+    ],
+    "motion": "dynamic",
+    "mask_frames": 112,
+    "mask_frame_range": [
+     0,
+     111
+    ],
+    "grounding": "sam3_mask",
+    "grounding_note": null,
+    "seed": "in initial seed",
+    "confidence": 0.98,
+    "alignment": {
+     "frame": 55,
+     "geometry_reference_frame": 59,
+     "primitive": "sphere",
+     "primitive_parameters": {
+      "radius": 0.5
+     },
+     "mask_iou": 0.885,
+     "median_relative_depth_error": 0.0,
+     "prototype_reason": "Complete rounded bodies at frames 59 and 86 support spheres. Left-blue views at frames 36 and 44 resolve its spherical body despite stand occlusion at frame 26."
+    }
+   },
+   {
+    "id": "third_green_marble",
+    "label": "Third marble from left, green",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "sphere",
+    "geometry_prior": "sphere",
+    "extent": [
+     0.075,
+     0.075,
+     0.075
+    ],
+    "motion": "dynamic",
+    "mask_frames": 112,
+    "mask_frame_range": [
+     0,
+     111
+    ],
+    "grounding": "sam3_mask",
+    "grounding_note": null,
+    "seed": "in initial seed",
+    "confidence": 0.98,
+    "alignment": {
+     "frame": 86,
+     "geometry_reference_frame": 59,
+     "primitive": "sphere",
+     "primitive_parameters": {
+      "radius": 0.5
+     },
+     "mask_iou": 0.951,
+     "median_relative_depth_error": 0.001,
+     "prototype_reason": "Complete rounded bodies at frames 59 and 86 support spheres. Left-blue views at frames 36 and 44 resolve its spherical body despite stand occlusion at frame 26."
+    }
+   },
+   {
+    "id": "fourth_orange_marble",
+    "label": "Fourth marble from left, orange-red",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "sphere",
+    "geometry_prior": "sphere",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "sam3-retry-budget-exhausted; secondary grounding budget of 1 round(s) spent, deferred to discovery",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.98
+   },
+   {
+    "id": "fifth_yellow_marble",
+    "label": "Fifth marble from left, yellow",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "sphere",
+    "geometry_prior": "sphere",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "sam3-retry-budget-exhausted; secondary grounding budget of 1 round(s) spent, deferred to discovery",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.98
+   },
+   {
+    "id": "right_blue_marble",
+    "label": "Rightmost blue suspended marble, initially beside fingers",
+    "role": "dynamic_subject",
+    "importance": "primary",
+    "geometry": "sphere",
+    "geometry_prior": "sphere",
+    "extent": [
+     0.089,
+     0.089,
+     0.089
+    ],
+    "motion": "dynamic",
+    "mask_frames": 112,
+    "mask_frame_range": [
+     0,
+     111
+    ],
+    "grounding": "sam3_mask",
+    "grounding_note": null,
+    "seed": "in initial seed",
+    "confidence": 0.98,
+    "alignment": {
+     "frame": 2,
+     "geometry_reference_frame": 59,
+     "primitive": "sphere",
+     "primitive_parameters": {
+      "radius": 0.5
+     },
+     "mask_iou": 0.752,
+     "median_relative_depth_error": 0.003,
+     "prototype_reason": "Complete rounded bodies at frames 59 and 86 support spheres. Left-blue views at frames 36 and 44 resolve its spherical body despite stand occlusion at frame 26."
+    }
+   },
+   {
+    "id": "left_suspension",
+    "label": "Paired yellow suspension strands for the left blue marble",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "unknown",
+    "geometry_prior": "unknown",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "Semantic geometry/spatial prior remains unknown",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.92
+   },
+   {
+    "id": "second_suspension",
+    "label": "Paired yellow suspension strands for the second marble",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "unknown",
+    "geometry_prior": "unknown",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "Semantic geometry/spatial prior remains unknown",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.92
+   },
+   {
+    "id": "third_suspension",
+    "label": "Paired yellow suspension strands for the third marble",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "unknown",
+    "geometry_prior": "unknown",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "Semantic geometry/spatial prior remains unknown",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.92
+   },
+   {
+    "id": "fourth_suspension",
+    "label": "Paired yellow suspension strands for the fourth marble",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "unknown",
+    "geometry_prior": "unknown",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "Semantic geometry/spatial prior remains unknown",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.92
+   },
+   {
+    "id": "fifth_suspension",
+    "label": "Paired yellow suspension strands for the fifth marble",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "unknown",
+    "geometry_prior": "unknown",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "Semantic geometry/spatial prior remains unknown",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.92
+   },
+   {
+    "id": "right_suspension",
+    "label": "Paired yellow suspension strands for the right blue marble",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "unknown",
+    "geometry_prior": "unknown",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "Semantic geometry/spatial prior remains unknown",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.93
+   },
+   {
+    "id": "cradle_stand",
+    "label": "Open brown cradle stand with tray base, uprights and overhead rails",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "unknown",
+    "geometry_prior": "unknown",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "Semantic geometry/spatial prior remains unknown",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.95
+   },
+   {
+    "id": "tabletop",
+    "label": "White horizontal tabletop beneath the cradle",
+    "role": "static_support",
+    "importance": "secondary",
+    "geometry": "box",
+    "geometry_prior": "box",
+    "extent": [
+     1.158,
+     0.009,
+     0.874
+    ],
+    "motion": "static",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "inferred_primitive",
+    "grounding_note": "declared-by-vlm-scene-graph-before-sam3",
+    "seed": "in initial seed",
+    "confidence": 0.99
+   },
+   {
+    "id": "release_fingertip",
+    "label": "Minimal possible release-contact boundary beside the right marble",
+    "role": "interacting_dynamic",
+    "importance": "secondary",
+    "geometry": "capsule",
+    "geometry_prior": "capsule",
+    "extent": null,
+    "motion": "dynamic",
+    "mask_frames": 0,
+    "mask_frame_range": null,
+    "grounding": "deferred_hypothesis",
+    "grounding_note": "sam3-retry-budget-exhausted; secondary grounding budget of 1 round(s) spent, deferred to discovery",
+    "seed": "not in seed (deferred_hypothesis)",
+    "confidence": 0.68
+   }
+  ],
+  "objects_note": "extent = initial-seed box/primitive extent in the scene's unmeasured length gauge; null when the object was not in the seed",
+  "relations": [
+   {
+    "type": "supported_by",
+    "members": [
+     "cradle_stand",
+     "tabletop"
+    ],
+    "confidence": 0.99
+   },
+   {
+    "type": "same_dimensions_as",
+    "members": [
+     "left_blue_marble",
+     "second_yellow_green_marble",
+     "third_green_marble",
+     "fourth_orange_marble",
+     "fifth_yellow_marble",
+     "right_blue_marble"
+    ],
+    "confidence": 0.84
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "left_blue_marble",
+     "left_suspension"
+    ],
+    "confidence": 0.98
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "second_yellow_green_marble",
+     "second_suspension"
+    ],
+    "confidence": 0.98
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "third_green_marble",
+     "third_suspension"
+    ],
+    "confidence": 0.98
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "fourth_orange_marble",
+     "fourth_suspension"
+    ],
+    "confidence": 0.98
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "fifth_yellow_marble",
+     "fifth_suspension"
+    ],
+    "confidence": 0.98
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "right_blue_marble",
+     "right_suspension"
+    ],
+    "confidence": 0.98
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "left_suspension",
+     "cradle_stand"
+    ],
+    "confidence": 0.97
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "second_suspension",
+     "cradle_stand"
+    ],
+    "confidence": 0.97
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "third_suspension",
+     "cradle_stand"
+    ],
+    "confidence": 0.97
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "fourth_suspension",
+     "cradle_stand"
+    ],
+    "confidence": 0.97
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "fifth_suspension",
+     "cradle_stand"
+    ],
+    "confidence": 0.97
+   },
+   {
+    "type": "suspended_by",
+    "members": [
+     "right_suspension",
+     "cradle_stand"
+    ],
+    "confidence": 0.97
+   },
+   {
+    "type": "possible_contact",
+    "members": [
+     "release_fingertip",
+     "right_blue_marble"
+    ],
+    "confidence": 0.45
+   },
+   {
+    "type": "possible_contact",
+    "members": [
+     "left_blue_marble",
+     "second_yellow_green_marble"
+    ],
+    "confidence": 0.94
+   },
+   {
+    "type": "possible_contact",
+    "members": [
+     "second_yellow_green_marble",
+     "third_green_marble"
+    ],
+    "confidence": 0.91
+   },
+   {
+    "type": "possible_contact",
+    "members": [
+     "third_green_marble",
+     "fourth_orange_marble"
+    ],
+    "confidence": 0.91
+   },
+   {
+    "type": "possible_contact",
+    "members": [
+     "fourth_orange_marble",
+     "fifth_yellow_marble"
+    ],
+    "confidence": 0.91
+   },
+   {
+    "type": "possible_contact",
+    "members": [
+     "fifth_yellow_marble",
+     "right_blue_marble"
+    ],
+    "confidence": 0.95
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "right_blue_marble",
+     "fifth_yellow_marble"
+    ],
+    "confidence": 0.87
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "fifth_yellow_marble",
+     "fourth_orange_marble"
+    ],
+    "confidence": 0.78
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "fourth_orange_marble",
+     "third_green_marble"
+    ],
+    "confidence": 0.78
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "third_green_marble",
+     "second_yellow_green_marble"
+    ],
+    "confidence": 0.78
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "second_yellow_green_marble",
+     "left_blue_marble"
+    ],
+    "confidence": 0.87
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "left_blue_marble",
+     "second_yellow_green_marble"
+    ],
+    "confidence": 0.87
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "second_yellow_green_marble",
+     "third_green_marble"
+    ],
+    "confidence": 0.78
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "third_green_marble",
+     "fourth_orange_marble"
+    ],
+    "confidence": 0.78
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "fourth_orange_marble",
+     "fifth_yellow_marble"
+    ],
+    "confidence": 0.78
+   },
+   {
+    "type": "transfers_motion_to",
+    "members": [
+     "fifth_yellow_marble",
+     "right_blue_marble"
+    ],
+    "confidence": 0.87
+   }
+  ],
+  "camera": {
+   "source": "Pi3X",
+   "model": "yyfz233/Pi3X",
+   "fov_deg": 21.15,
+   "static": false,
+   "camera_motion": "fit",
+   "evidence_status": "learned-estimate-not-background-pnp-verified",
+   "pi3x_input_size": [
+    378,
+    672
+   ],
+   "scene_image_size": [
+    1080,
+    1920
+   ],
+   "scene_focal_px": 2891.92,
+   "pi3x_inference_seconds": 16.3,
+   "pi3x_windows": 2
+  },
+  "scale": {
+   "pi3x_metric_scale": 0.291,
+   "pi3x_metric_scale_note": "Pi3X approximate metric scale, treated as an estimate",
+   "shared_scale_multiplier": 1.0,
+   "scale_status": "model-similarity-gauge",
+   "simulator_gravity": [
+    0.0,
+    -9.81,
+    0.0
+   ],
+   "gravity_direction_method": "pi3x-horizontal-support-plane-normal-v1",
+   "gravity_direction_confidence": 0.913,
+   "gravity_magnitude_status": "unidentifiable-from-monocular-video-alone",
+   "support_plane": {
+    "object_id": "tabletop",
+    "frame": "frame_000000",
+    "method": "deterministic-depth-ransac-plane-v1",
+    "inlier_ratio": 1.0
+   }
+  },
+  "seed": {
+   "objects": [
+    "second_yellow_green_marble",
+    "left_blue_marble",
+    "third_green_marble",
+    "right_blue_marble",
+    "tabletop"
+   ],
+   "missing_objects": [
+    "cradle_stand",
+    "fifth_suspension",
+    "fifth_yellow_marble",
+    "fourth_orange_marble",
+    "fourth_suspension",
+    "left_suspension",
+    "release_fingertip",
+    "right_suspension",
+    "second_suspension",
+    "third_suspension"
+   ],
+   "elapsed_seconds": 34.15,
+   "native_rollout_mask_iou": [
+    {
+     "object_id": "second_yellow_green_marble",
+     "frame": 0,
+     "kind": "frame-zero candidate",
+     "mask_iou": 0.848
+    },
+    {
+     "object_id": "left_blue_marble",
+     "frame": 0,
+     "kind": "frame-zero candidate",
+     "mask_iou": 0.156
+    },
+    {
+     "object_id": "third_green_marble",
+     "frame": 0,
+     "kind": "frame-zero candidate",
+     "mask_iou": 0.877
+    },
+    {
+     "object_id": "right_blue_marble",
+     "frame": 0,
+     "kind": "frame-zero candidate",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "right_blue_marble",
+     "frame": 2,
+     "kind": "native diagnostic",
+     "mask_iou": 0.447
+    },
+    {
+     "object_id": "second_yellow_green_marble",
+     "frame": 5,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "left_blue_marble",
+     "frame": 5,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "third_green_marble",
+     "frame": 5,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "right_blue_marble",
+     "frame": 5,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "left_blue_marble",
+     "frame": 11,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "second_yellow_green_marble",
+     "frame": 55,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "second_yellow_green_marble",
+     "frame": 60,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "left_blue_marble",
+     "frame": 60,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "third_green_marble",
+     "frame": 60,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "right_blue_marble",
+     "frame": 60,
+     "kind": "native diagnostic",
+     "mask_iou": 0.0
+    },
+    {
+     "object_id": "third_green_marble",
+     "frame": 86,
+     "kind": "source registration (not rollout)",
+     "mask_iou": 0.896
+    }
+   ],
+   "validation_accepted": false
+  },
+  "uncertainties": [
+   {
+    "dimension": "event_causality",
+    "impact": "material",
+    "objects": [
+     "release_fingertip",
+     "right_blue_marble"
+    ],
+    "note": "Earlier holding contact and the release instant are not shown."
+   },
+   {
+    "dimension": "event_causality",
+    "impact": "material",
+    "objects": [
+     "fifth_yellow_marble",
+     "fourth_orange_marble",
+     "left_blue_marble",
+     "right_blue_marble",
+     "second_yellow_green_marble",
+     "third_green_marble"
+    ],
+    "note": "Individual impacts are not resolved."
+   },
+   {
+    "dimension": "event_causality",
+    "impact": "material",
+    "objects": [
+     "fifth_yellow_marble",
+     "fourth_orange_marble",
+     "left_blue_marble",
+     "right_blue_marble",
+     "second_yellow_green_marble",
+     "third_green_marble"
+    ],
+    "note": "The close views do not certify individual contacts."
+   },
+   {
+    "dimension": "identity_stability",
+    "impact": "unknown",
+    "objects": [
+     "left_suspension"
+    ],
+    "note": "Semantic geometry/spatial prior remains unknown"
+   }
+  ],
+  "images": {
+   "masks": "media/workflow-pendulum/init-masks.jpg",
+   "depth": "media/workflow-pendulum/init-depth.jpg",
+   "seed": "media/workflow-pendulum/init-seed.jpg",
+   "frame": 59,
+   "depth_range": [
+    1.87,
+    2.55
+   ],
+   "seed_object": "right_blue_marble"
+  },
+  "sources": [
+   "evidence/initialization/manifest.json",
+   "evidence/initialization/grounded-scene-graph.json",
+   "evidence/initialization/grounding.json",
+   "evidence/sam3/manifest.json",
+   "evidence/sam3/tracks.json",
+   "evidence/initialization/models/pi3x/manifest.json",
+   "evidence/initialization/models/pi3x-geometry-mesh-v2/manifest.json",
+   "evidence/initialization/models/pi3x-geometry-mesh-v2/alignment.json",
+   "evidence/initialization/gravity-estimate.json",
+   "evidence/initialization/initial-seed/manifest.json",
+   "evidence/initialization/initial-seed/scene.json",
+   "evidence/initialization/initial-seed/overlay-metrics.json",
+   "../../logs/054708-pendulum-free.log"
+  ]
+ },
+ "rounds": [
+  {
+   "id": "round-001",
+   "round": 1,
+   "kind": "observation request",
+   "seconds": 185.8,
+   "seconds_breakdown": {
+    "proposal": 182.2,
+    "simulation": null,
+    "comparison": null,
+    "other": 3.7
+   },
+   "tokens": 321786,
+   "model_requests": 13,
+   "agent_activity": {
+    "api_rounds": 13,
+    "tool_calls": 18,
+    "tools": {
+     "read": 8,
+     "bash": 6,
+     "request_observation": 2,
+     "physics_models": 1,
+     "inspect_artifact": 1
+    },
+    "refused_submissions": 0
+   },
+   "reason": "The initialized seed held four of the six marbles and the tabletop. The orange and yellow marbles, the stand and all six suspensions were missing, and seed mask IoU fell to about 0 after frame 5.",
+   "decision": "Ask for evidence before modeling: request a SAM3 track of the orange marble, pointing to seven frames (0 to 111) where it is visible. No scene is submitted.",
+   "reason_evidence": [
+    "Seed scene objects: second_yellow_green_marble, left_blue_marble, third_green_marble, right_blue_marble, tabletop; missing: cradle_stand, fifth_suspension, fifth_yellow_marble, fourth_orange_marble, fourth_suspension, left_suspension, release_fingertip, right_suspension, second_suspension, third_suspension",
+    "Seed native rollout mask IoU: left_blue_marble f0 0.16, f5 0.00, f11 0.00, f60 0.00; second_yellow_green_marble f0 0.85, f5 0.00, f55 0.00, f60 0.00; third_green_marble f0 0.88, f5 0.00, f60 0.00; right_blue_marble f0 0.00, f2 0.45, f5 0.00, f60 0.00"
+   ],
+   "hypothesis": "With the marble tracked, later rounds can measure it instead of guessing where it is.",
+   "expectation": null,
+   "changes": [],
+   "agent_notes": null,
+   "experiments": [
+    {
+     "what": "request_observation (segmentation): fourth_orange_marble at frames 0, 3, 49, 53, 60, 86, 111",
+     "frames": null,
+     "parameters": [],
+     "rollouts": 0,
+     "rollout_seconds": null,
+     "outcome": "updated; requested frames 0:visible, 111:visible, 3:visible, 49:visible, 53:visible, 60:visible, 86:visible",
+     "source": "discovery/observations/request-001/result.json"
+    }
+   ],
+   "local_fit_rollouts": 0,
+   "result": {
+    "ade_pct_diag": null,
+    "iou": null,
+    "failed_checks": [],
+    "accepted": null,
+    "review_verdict": null,
+    "best_so_far": null,
+    "summary": "A complete 112-frame track of the orange marble was added to the observations, effective from the next round."
+   },
+   "media": {
+    "video": null,
+    "poster": null
+   },
+   "sources": [
+    "discovery/timing.json",
+    "discovery/round-001/proposal-input-metrics.jsonl",
+    "discovery/round-001/proposal-input-metrics.tools.jsonl",
+    "evidence/initialization/initial-seed/manifest.json",
+    "evidence/initialization/initial-seed/overlay-metrics.json"
+   ]
+  },
+  {
+   "id": "round-002",
+   "round": 2,
+   "kind": "observation request",
+   "seconds": 147.7,
+   "seconds_breakdown": {
+    "proposal": 141.6,
+    "simulation": null,
+    "comparison": null,
+    "other": 6.1
+   },
+   "tokens": 29657,
+   "model_requests": 1,
+   "agent_activity": {
+    "api_rounds": 1,
+    "tool_calls": 1,
+    "tools": {
+     "request_observation": 1
+    },
+    "refused_submissions": 0
+   },
+   "reason": "The orange marble was now tracked, but the fifth (yellow) marble still had no observations of its own.",
+   "decision": "Request a SAM3 track of the yellow marble, pointing to six frames where it is visible. Still no scene.",
+   "reason_evidence": [
+    "Seed scene objects: second_yellow_green_marble, left_blue_marble, third_green_marble, right_blue_marble, tabletop; missing: cradle_stand, fifth_suspension, fifth_yellow_marble, fourth_orange_marble, fourth_suspension, left_suspension, release_fingertip, right_suspension, second_suspension, third_suspension",
+    "Seed native rollout mask IoU: left_blue_marble f0 0.16, f5 0.00, f11 0.00, f60 0.00; second_yellow_green_marble f0 0.85, f5 0.00, f55 0.00, f60 0.00; third_green_marble f0 0.88, f5 0.00, f60 0.00; right_blue_marble f0 0.00, f2 0.45, f5 0.00, f60 0.00"
+   ],
+   "hypothesis": "With both tracked, all six marbles can be measured in every frame.",
+   "expectation": null,
+   "changes": [],
+   "agent_notes": null,
+   "experiments": [
+    {
+     "what": "request_observation (segmentation): fifth_yellow_marble at frames 0, 3, 53, 60, 86, 111",
+     "frames": null,
+     "parameters": [],
+     "rollouts": 0,
+     "rollout_seconds": null,
+     "outcome": "updated; requested frames 0:visible, 111:visible, 3:visible, 53:visible, 60:visible, 86:visible",
+     "source": "discovery/observations/request-002/result.json"
+    }
+   ],
+   "local_fit_rollouts": 0,
+   "result": {
+    "ade_pct_diag": null,
+    "iou": null,
+    "failed_checks": [],
+    "accepted": null,
+    "review_verdict": null,
+    "best_so_far": null,
+    "summary": "A complete 112-frame track of the yellow marble was added, so all six marbles are observed in every frame."
+   },
+   "media": {
+    "video": null,
+    "poster": null
+   },
+   "sources": [
+    "discovery/timing.json",
+    "discovery/round-002/proposal-input-metrics.jsonl",
+    "discovery/round-002/proposal-input-metrics.tools.jsonl",
+    "evidence/initialization/initial-seed/manifest.json",
+    "evidence/initialization/initial-seed/overlay-metrics.json"
+   ]
+  },
+  {
+   "id": "round-003",
+   "round": 3,
+   "kind": "official evaluation",
+   "seconds": 1912.0,
+   "seconds_breakdown": {
+    "proposal": 1759.3,
+    "simulation": 100.5,
+    "comparison": 43.6,
+    "other": 8.7
+   },
+   "tokens": 1195515,
+   "model_requests": 27,
+   "agent_activity": {
+    "api_rounds": 27,
+    "tool_calls": 27,
+    "tools": {
+     "bash": 18,
+     "submit_proposal": 3,
+     "physics_models": 2,
+     "refit_observations": 1,
+     "motion_estimates": 1,
+     "read": 1,
+     "proposal_preflight": 1
+    },
+    "refused_submissions": 2
+   },
+   "reason": "With all six marbles tracked, the cradle could be built and tested as a whole.",
+   "decision": "Submit the first full scene: the two missing marbles, six suspensions as light rigid strand pairs, a heavy free stand on the table and the releasing fingertip. Gravity stays fixed; one scene scale is fitted.",
+   "reason_evidence": [
+    "Seed scene objects: second_yellow_green_marble, left_blue_marble, third_green_marble, right_blue_marble, tabletop; missing: cradle_stand, fifth_suspension, fifth_yellow_marble, fourth_orange_marble, fourth_suspension, left_suspension, release_fingertip, right_suspension, second_suspension, third_suspension",
+    "Seed native rollout mask IoU: left_blue_marble f0 0.16, f5 0.00, f11 0.00, f60 0.00; second_yellow_green_marble f0 0.85, f5 0.00, f55 0.00, f60 0.00; third_green_marble f0 0.88, f5 0.00, f60 0.00; right_blue_marble f0 0.00, f2 0.45, f5 0.00, f60 0.00"
+   ],
+   "problem_statement": "Full-video six-ball cradle reconstruction including suspensions, dynamic stand, table and release contact boundary; world-motion fits currently unknown.",
+   "hypothesis": "Passive pendula exchanging near-elastic contacts reproduce the transfers along the row.",
+   "hypothesis_verbatim": "Passive constrained pendula exchange native near-elastic contacts, with gravity unchanged and global monocular gauge fitted. Low-mass rigid strand pairs approximate taut bifilar suspensions. Stand is heavy and free, supported by table. Fingertip proxy is already separated and withdrawing; no continuing force, anatomy or pose replay. Hidden release and surface spin remain uncertain.",
+   "expectation": "Each marble's trajectory error over the whole video (frames 0-111) stays within 3.5% of the image diagonal.",
+   "declared_assertions": [
+    {
+     "id": "target-1",
+     "role": "target",
+     "text": "left_blue_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-2",
+     "role": "target",
+     "text": "right_blue_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-3",
+     "role": "target",
+     "text": "second_yellow_green_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-4",
+     "role": "target",
+     "text": "third_green_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-5",
+     "role": "target",
+     "text": "fourth_orange_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-6",
+     "role": "target",
+     "text": "fifth_yellow_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-7",
+     "role": "target",
+     "text": "left_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-8",
+     "role": "target",
+     "text": "second_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-9",
+     "role": "target",
+     "text": "third_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-10",
+     "role": "target",
+     "text": "fourth_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-11",
+     "role": "target",
+     "text": "fifth_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-12",
+     "role": "target",
+     "text": "right_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-13",
+     "role": "target",
+     "text": "cradle_stand native speed <= 0.02"
+    },
+    {
+     "id": "target-14",
+     "role": "target",
+     "text": "native contact release_fingertip-right_blue_marble absent"
+    }
+   ],
+   "allowed_changes": [
+    "/camera/binding",
+    "/mujoco",
+    "/objects",
+    "/simulator/time_step"
+   ],
+   "declared_process": null,
+   "changes": [
+    "add left_suspension: dynamic_rigid, box 0.00×0.06×0.01",
+    "add second_suspension: dynamic_rigid, box 0.00×0.06×0.01",
+    "add third_suspension: dynamic_rigid, box 0.00×0.06×0.01",
+    "add fourth_orange_marble: dynamic_rigid, sphere 0.01×0.01×0.01",
+    "add fourth_suspension: dynamic_rigid, box 0.00×0.06×0.01",
+    "add fifth_yellow_marble: dynamic_rigid, sphere 0.01×0.01×0.01",
+    "add fifth_suspension: dynamic_rigid, box 0.00×0.06×0.01",
+    "add right_suspension: dynamic_rigid, box 0.00×0.06×0.01",
+    "add cradle_stand: dynamic_rigid, box 0.19×0.13×0.06",
+    "add release_fingertip: dynamic_rigid, sphere 0.01×0.01×0.01",
+    "second_yellow_green_marble extent 0.078×0.078×0.078 -> 0.015×0.015×0.015",
+    "second_yellow_green_marble body friction 0.6 -> 0.1",
+    "second_yellow_green_marble initial position (0.088, -0.322, 2.198) -> (0.017, -0.071, 0.476)",
+    "second_yellow_green_marble orientation quat (0.78, 0.10, 0.35, -0.50) -> yaw 0.000 rad (about vertical y)",
+    "second_yellow_green_marble initial velocity (0.005, 0.001, 0.003) -> (0.000, 0.000, 0.000)",
+    "left_blue_marble extent 0.084×0.084×0.084 -> 0.015×0.015×0.015",
+    "left_blue_marble body friction 0.6 -> 0.1",
+    "left_blue_marble initial position (0.200, -0.301, 2.160) -> (0.032, -0.071, 0.476)",
+    "left_blue_marble orientation quat (0.78, 0.52, -0.12, -0.32) -> yaw 0.000 rad (about vertical y)",
+    "third_green_marble extent 0.075×0.075×0.075 -> 0.015×0.015×0.015",
+    "third_green_marble body friction 0.6 -> 0.1",
+    "third_green_marble initial position (0.018, -0.326, 2.205) -> (0.002, -0.071, 0.476)",
+    "third_green_marble orientation quat (-0.32, 0.38, -0.05, 0.87) -> yaw 0.000 rad (about vertical y)",
+    "third_green_marble initial velocity (-0.018, 0.001, 0.004) -> (0.000, 0.000, 0.000)",
+    "right_blue_marble extent 0.089×0.089×0.089 -> 0.015×0.015×0.015",
+    "right_blue_marble body friction 0.6 -> 0.1",
+    "right_blue_marble initial position (-0.183, -0.315, 2.179) -> (-0.043, -0.071, 0.476)",
+    "right_blue_marble orientation quat (0.56, 0.36, -0.44, 0.60) -> yaw 0.000 rad (about vertical y)",
+    "right_blue_marble initial velocity (-0.194, -0.039, 0.011) -> (0.000, 0.000, 0.000)",
+    "tabletop extent 1.158×0.009×0.874 -> 0.281×0.002×0.216",
+    "tabletop initial position (-0.044, -0.612, 1.951) -> (-0.009, -0.135, 0.476)",
+    "tabletop orientation yaw 3.207 rad -> yaw 0.000 rad (about vertical y)",
+    "simulator time_step 0.002 -> 2e-05",
+    "camera binding changed",
+    "add native MJCF model: timestep 2e-05, iterations 100, integrator implicitfast"
+   ],
+   "scene_edit": {
+    "base_round": null,
+    "changed": null,
+    "total": 222,
+    "items": [
+     {
+      "what": "New bodies",
+      "to": "2 marbles, 6 suspensions, the stand and the fingertip, added to the seed's 4 marbles and table"
+     },
+     {
+      "what": "Marbles",
+      "to": "radius 7.1 mm, 15 mm apart, 55 mm below their pivots"
+     }
+    ],
+    "diff": [
+     {
+      "op": "meta",
+      "text": "--- initial seed (no MuJoCo model)"
+     },
+     {
+      "op": "meta",
+      "text": "+++ round-003/scene.xml"
+     },
+     {
+      "op": "+",
+      "text": "<mujoco model=\"passive_cradle\">"
+     },
+     {
+      "op": "+",
+      "text": "  <compiler angle=\"radian\"/>"
+     },
+     {
+      "op": "+",
+      "text": "  <option timestep=\"2e-05\" gravity=\"0 0 -9.81\" iterations=\"100\" integrator=\"implicitfast\"/>"
+     },
+     {
+      "op": "+",
+      "text": "  <worldbody>"
+     },
+     {
+      "op": "+",
+      "text": "    <body name=\"tabletop\" pos=\"-0.008657 -0.4761 -0.1346\">"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"tabletop_collision\" type=\"box\" size=\"0.1407 0.1082 0.001082\" rgba=\"0.95 0.95 0.95 1\" friction=\"0.9 0.001 0.0001\"/>"
+     },
+     {
+      "op": "+",
+      "text": "    </body>"
+     },
+     {
+      "op": "+",
+      "text": "    <body name=\"cradle_stand\" pos=\"-0.005297 -0.4761 -0.1141\">"
+     },
+     {
+      "op": "+",
+      "text": "      <freejoint name=\"stand_free\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision\" type=\"box\" pos=\"0 0 0\" size=\"0.09306 0.03246 0.01948\" mass=\"40\" rgba=\"0.45 0.27 0.1 1\" friction=\"0.8 0.001 0.0001\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_post-1-1\" type=\"box\" pos=\"-0.08657 0.0119 0.06925\" size=\"0.001948 0.001731 0.05194\" mass=\"2\" rgba=\"0.45 0.27 0.1 1\" friction=\"0.8 0.001 0.0001\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_post-11\" type=\"box\" pos=\"-0.08657 -0.0119 0.06925\" size=\"0.001948 0.001731 0.05194\" mass=\"2\" rgba=\"0.45 0.27 0.1 1\" friction=\"0.8 0.001 0.0001\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_post1-1\" type=\"box\" pos=\"0.08657 0.0119 0.06925\" size=\"0.001948 0.001731 0.05194\" mass=\"2\" rgba=\"0.45 0.27 0.1 1\" friction=\"0.8 0.001 0.0001\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_post11\" type=\"box\" pos=\"0.08657 -0.0119 0.06925\" size=\"0.001948 0.001731 0.05194\" mass=\"2\" rgba=\"0.45 0.27 0.1 1\" friction=\"0.8 0.001 0.0001\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_rail-1\" type=\"box\" pos=\"0 0.0119 0.1039\" size=\"0.08657 0.001731 0.001515\" mass=\"0.6\" rgba=\"0.45 0.27 0.1 1\" friction=\"0.8 0.001 0.0001\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_rail1\" type=\"box\" pos=\"0 -0.0119 0.1039\" size=\"0.08657 0.001731 0.001515\" mass=\"0.6\" rgba=\"0.45 0.27 0.1 1\" friction=\"0.8 0.001 0.0001\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"left_suspension\" pos=\"0.0375 0 0.09878\">"
+     },
+     {
+      "op": "+",
+      "text": "        <joint name=\"left_suspension_hinge\" type=\"hinge\" axis=\"0 1 0\" damping=\"1.5e-08\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <geom name=\"left_suspension_visual_0\" type=\"capsule\" fromto=\"0 -0.004761 0 0 -0.001731 -0.05082\" size=\"0.0002381\" mass=\"1e-06\" rgba=\"0.85 0.72 0.08 1\" contype=\"0\" conaffinity=\"0\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <geom name=\"left_suspension_visual_1\" type=\"capsule\" fromto=\"0 0.004761 0 0 0.001731 -0.05082\" size=\"0.0002381\" mass=\"1e-06\" rgba=\"0.85 0.72 0.08 1\" contype=\"0\" conaffinity=\"0\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <body name=\"left_blue_marble\" pos=\"0 0 -0.05531\">"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"left_blue_marble_collision\" type=\"sphere\" size=\"0.007149\" mass=\"0.02\" rgba=\"0.1 0.25 0.85 1\" friction=\"0 0 0\" solref=\"-1e+08 -10.72\" solimp=\"0.99 0.999 0.0001\" condim=\"1\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        </body>"
+     },
+     {
+      "op": "+",
+      "text": "      </body>"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"second_suspension\" pos=\"0.0225 0 0.09878\">"
+     },
+     {
+      "op": "+",
+      "text": "        <joint name=\"second_suspension_hinge\" type=\"hinge\" axis=\"0 1 0\" damping=\"1.5e-08\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <geom name=\"second_suspension_visual_0\" type=\"capsule\" fromto=\"0 -0.004761 0 0 -0.001731 -0.05082\" size=\"0.0002381\" mass=\"1e-06\" rgba=\"0.85 0.72 0.08 1\" contype=\"0\" conaffinity=\"0\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <geom name=\"second_suspension_visual_1\" type=\"capsule\" fromto=\"0 0.004761 0 0 0.001731 -0.05082\" size=\"0.0002381\" mass=\"1e-06\" rgba=\"0.85 0.72 0.08 1\" contype=\"0\" conaffinity=\"0\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <body name=\"second_yellow_green_marble\" pos=\"0 0 -0.05531\">"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"second_yellow_green_marble_collision\" type=\"sphere\" size=\"0.007149\" mass=\"0.02\" rgba=\"0.65 0.8 0.1 1\" friction=\"0 0 0\" solref=\"-1e+08 -10.72\" solimp=\"0.99 0.999 0.0001\" condim=\"1\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        </body>"
+     },
+     {
+      "op": "+",
+      "text": "      </body>"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"third_suspension\" pos=\"0.0075 0 0.09878\">"
+     },
+     {
+      "op": "+",
+      "text": "        <joint name=\"third_suspension_hinge\" type=\"hinge\" axis=\"0 1 0\" damping=\"1.5e-08\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <geom name=\"third_suspension_visual_0\" type=\"capsule\" fromto=\"0 -0.004761 0 0 -0.001731 -0.05082\" size=\"0.0002381\" mass=\"1e-06\" rgba=\"0.85 0.72 0.08 1\" contype=\"0\" conaffinity=\"0\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <geom name=\"third_suspension_visual_1\" type=\"capsule\" fromto=\"0 0.004761 0 0 0.001731 -0.05082\" size=\"0.0002381\" mass=\"1e-06\" rgba=\"0.85 0.72 0.08 1\" contype=\"0\" conaffinity=\"0\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <body name=\"third_green_marble\" pos=\"0 0 -0.05531\">"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"third_green_marble_collision\" type=\"sphere\" size=\"0.007149\" mass=\"0.02\" rgba=\"0.1 0.6 0.2 1\" friction=\"0 0 0\" solref=\"-1e+08 -10.72\" solimp=\"0.99 0.999 0.0001\" condim=\"1\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        </body>"
+     },
+     {
+      "op": "+",
+      "text": "      </body>"
+     },
+     {
+      "op": "meta",
+      "text": "... 31 more lines"
+     }
+    ]
+   },
+   "agent_notes": null,
+   "experiments": [],
+   "local_fit_rollouts": 0,
+   "result": {
+    "ade_pct_diag": 2.2384,
+    "velocity_ade_pct_diag": 0.9208,
+    "iou": 0.3295,
+    "accuracy_at_2pct": 61.905,
+    "metric_scope": "dynamic objects",
+    "checks_total": 50,
+    "checks_passed": 28,
+    "checks_failed": 5,
+    "checks_unknown": 17,
+    "failed_checks": [
+     "dynamic_object_iou",
+     "object_iou",
+     "initial_object.initial_mask_iou",
+     "initial_object.initial_mask_iou",
+     "physical_scene_review"
+    ],
+    "unknown_checks": [
+     "source_local_motion_consistency: historical source-motion 6c6ca44f - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 34c0fe04 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 8ca617ab - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 51313483 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion f6731de5 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 966b6cd6 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 936ab443 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 1fa709c3 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 64d9ea05 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion aa4efaf3 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency - no_usable_source_motion_window",
+     "source_local_motion_consistency - no_usable_source_motion_window",
+     "source_local_motion_consistency - no_usable_source_motion_window",
+     "source_local_motion_consistency - no_usable_source_motion_window",
+     "source_local_motion_consistency - no_usable_source_motion_window",
+     "source_local_motion_consistency - no_usable_source_motion_window",
+     "source_uncertainty_certification - Source claims remain unresolved"
+    ],
+    "accepted": false,
+    "assessment_status": "not_satisfied",
+    "review_verdict": "revise (incumbent review)",
+    "best_so_far": true,
+    "selection_basis": "first_evaluation_in_current_context",
+    "compared_with_round": null,
+    "accuracy_relation": "unavailable",
+    "intent": {
+     "targets": "not_satisfied",
+     "preservation": "unable_to_determine",
+     "assessment": "diagnosis_unresolved",
+     "failed_assertions": [
+      "target-7: left_suspension native speed <= 0.02 (got 0.446)",
+      "target-8: second_suspension native speed <= 0.02 (got 0.325)",
+      "target-9: third_suspension native speed <= 0.02 (got 0.027)",
+      "target-10: fourth_suspension native speed <= 0.02 (got 0.041)",
+      "target-11: fifth_suspension native speed <= 0.02 (got 0.315)",
+      "target-12: right_suspension native speed <= 0.02 (got 0.45)"
+     ]
+    },
+    "top_issues": [
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       0,
+       111
+      ],
+      "peak_error": 1.0,
+      "bodies": [
+       "left_blue_marble"
+      ]
+     },
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       0,
+       111
+      ],
+      "peak_error": 1.0,
+      "bodies": [
+       "right_blue_marble"
+      ]
+     },
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       1,
+       111
+      ],
+      "peak_error": 1.0,
+      "bodies": [
+       "fifth_yellow_marble"
+      ]
+     }
+    ],
+    "issue_counts": {
+     "depth_mismatch": 31,
+     "depth_unavailable": 11,
+     "ownership_conflict": 53,
+     "silhouette_mismatch": 12
+    },
+    "summary": "ADE 2.24% diag, IoU 0.33: the first evaluation, so the first best. The reviewer asked for a revision: late in the video two balls leave together at each end, where the source shows single-ball transfers."
+   },
+   "media": {
+    "video": "media/workflow-pendulum/round-003.mp4",
+    "poster": "media/workflow-pendulum/round-003.jpg"
+   },
+   "sources": [
+    "discovery/timing.json",
+    "discovery/round-003/proposal-input-metrics.jsonl",
+    "discovery/round-003/proposal-input-metrics.tools.jsonl",
+    "evidence/initialization/initial-seed/manifest.json",
+    "evidence/initialization/initial-seed/overlay-metrics.json",
+    "discovery/round-003/frozen-intent.json",
+    "discovery/round-003/physics-plan.json",
+    "discovery/round-003/memory/submission/revision-base-scene.json",
+    "discovery/round-003/frozen-scene.json",
+    "discovery/round-003/acceptance.json",
+    "discovery/round-003/intent-evaluation.json",
+    "discovery/round-003/comparison/error-summary.json",
+    "discovery/trace.json#/rounds",
+    "discovery/round-003/scene-visual-review/review.json"
+   ]
+  },
+  {
+   "id": "round-004",
+   "round": 4,
+   "kind": "official evaluation",
+   "seconds": 1387.5,
+   "seconds_breakdown": {
+    "proposal": 1207.2,
+    "simulation": 123.4,
+    "comparison": 43.5,
+    "other": 13.4
+   },
+   "tokens": 929496,
+   "model_requests": 13,
+   "agent_activity": {
+    "api_rounds": 13,
+    "tool_calls": 13,
+    "tools": {
+     "bash": 8,
+     "inspect_artifact": 2,
+     "read": 1,
+     "research_notes": 1,
+     "submit_proposal": 1
+    },
+    "refused_submissions": 0
+   },
+   "reason": "Round 3's review: early and middle transfers matched, but late paired departures changed which balls collide. The interior suspensions also kept oscillating where the agent had predicted near rest.",
+   "decision": "Add passive damping at the interior suspension pivots, replace the noisy estimated camera path with a fixed camera and realign the pivots slightly; fit the change in the sandbox over 195 local rollouts, then submit.",
+   "reason_evidence": [
+    "round-003: ADE 2.238% diag, IoU 0.330; 28 checks passed, 5 failed, 17 unknown",
+    "round-003 failed checks: dynamic_object_iou; object_iou; initial_object.initial_mask_iou; initial_object.initial_mask_iou; physical_scene_review",
+    "round-003 failed assertion: target-7: left_suspension native speed <= 0.02 (got 0.446)",
+    "round-003 failed assertion: target-8: second_suspension native speed <= 0.02 (got 0.325)",
+    "round-003 failed assertion: target-9: third_suspension native speed <= 0.02 (got 0.027)",
+    "round-003 failed assertion: target-10: fourth_suspension native speed <= 0.02 (got 0.041)",
+    "round-003 failed assertion: target-11: fifth_suspension native speed <= 0.02 (got 0.315)",
+    "round-003 failed assertion: target-12: right_suspension native speed <= 0.02 (got 0.45)",
+    "round-003 major comparison issues: silhouette_mismatch f0-111 (peak 1.00); silhouette_mismatch f0-111 (peak 1.00); silhouette_mismatch f1-111 (peak 1.00)",
+    "Agent reading: Round 3 early/middle alternating exchanges reproduced, late paired departures failed review",
+    "Agent reading: Advisory interior passive hinge damping rates 0..10/s: 2/s reduces late interior departures without prescribed motion",
+    "Agent reading: Source stationary stand indicates camera is near-fixed; unverified seed camera trajectory caused frame-to-frame background motion amplified by the chosen gauge"
+   ],
+   "problem_statement": "Repair round-3 late paired departures while preserving single-end-ball transfers and all workspace bodies.",
+   "hypothesis": "The damping removes the leftover oscillation while near-elastic contacts still carry the main impulse.",
+   "hypothesis_verbatim": "Passive damping at interior strand pivots dissipates residual interior oscillation without driving any body, while near-elastic sphere contacts transmit the dominant impulse. A fixed-camera hypothesis replaces the unverified noisy learned camera trajectory; stationary stand frames support this change. Small pivot alignment correction improves initial row position. End-sphere surface spin and release impulse remain unknown.",
+   "expectation": "Trajectory error decreases for the end marbles and the interior marbles.",
+   "declared_assertions": [
+    {
+     "id": "target-1",
+     "role": "target",
+     "text": "left_blue_marble trajectory ADE (% diag) f0-111 decreases"
+    },
+    {
+     "id": "target-2",
+     "role": "target",
+     "text": "right_blue_marble trajectory ADE (% diag) f0-111 decreases"
+    },
+    {
+     "id": "target-3",
+     "role": "target",
+     "text": "second_yellow_green_marble trajectory ADE (% diag) f0-111 decreases"
+    },
+    {
+     "id": "target-4",
+     "role": "target",
+     "text": "third_green_marble trajectory ADE (% diag) f0-111 decreases"
+    },
+    {
+     "id": "target-5",
+     "role": "target",
+     "text": "fourth_orange_marble trajectory ADE (% diag) f0-111 decreases"
+    },
+    {
+     "id": "target-6",
+     "role": "target",
+     "text": "fifth_yellow_marble trajectory ADE (% diag) f0-111 decreases"
+    },
+    {
+     "id": "target-7",
+     "role": "target",
+     "text": "left_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-8",
+     "role": "target",
+     "text": "second_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-9",
+     "role": "target",
+     "text": "third_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-10",
+     "role": "target",
+     "text": "fourth_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-11",
+     "role": "target",
+     "text": "fifth_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-12",
+     "role": "target",
+     "text": "right_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-13",
+     "role": "target",
+     "text": "cradle_stand native speed <= 0.02"
+    },
+    {
+     "id": "target-14",
+     "role": "target",
+     "text": "native contact release_fingertip-right_blue_marble absent"
+    }
+   ],
+   "allowed_changes": [
+    "/camera/binding/trajectory",
+    "/mujoco/initial_state",
+    "/mujoco/mjcf"
+   ],
+   "declared_process": null,
+   "changes": [
+    "camera binding changed",
+    "native MJCF model changed"
+   ],
+   "scene_edit": {
+    "base_round": "round-003",
+    "changed": 16,
+    "total": 222,
+    "camera_poses": [
+     112,
+     1
+    ],
+    "items": [
+     {
+      "what": "Interior pivot damping",
+      "from": "1.5×10⁻⁸",
+      "to": "2.4×10⁻⁴ N·m·s/rad"
+     },
+     {
+      "what": "Marble contact damping",
+      "from": "10.7",
+      "to": "30.6"
+     },
+     {
+      "what": "All six pivots",
+      "to": "1.7 mm further left, 1.3 mm higher"
+     },
+     {
+      "what": "Camera",
+      "from": "112 estimated poses",
+      "to": "one fixed pose"
+     }
+    ],
+    "diff": [
+     {
+      "op": "meta",
+      "text": "--- round-003/scene.xml"
+     },
+     {
+      "op": "meta",
+      "text": "+++ round-004/scene.xml"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"left_suspension\" pos=\"0.0375 0 0.09878\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"left_suspension\" pos=\"0.03915 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "          <geom name=\"left_blue_marble_collision\" solref=\"-1e+08 -10.72\"/>"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"left_blue_marble_collision\" solref=\"-1e+08 -30.6\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"second_suspension\" pos=\"0.0225 0 0.09878\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"second_suspension\" pos=\"0.02415 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "        <joint name=\"second_suspension_hinge\" damping=\"1.5e-08\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <joint name=\"second_suspension_hinge\" damping=\"0.0002375\"/>"
+     },
+     {
+      "op": "-",
+      "text": "          <geom name=\"second_yellow_green_marble_collision\" solref=\"-1e+08 -10.72\"/>"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"second_yellow_green_marble_collision\" solref=\"-1e+08 -30.6\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"third_suspension\" pos=\"0.0075 0 0.09878\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"third_suspension\" pos=\"0.00915 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "        <joint name=\"third_suspension_hinge\" damping=\"1.5e-08\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <joint name=\"third_suspension_hinge\" damping=\"0.0002375\"/>"
+     },
+     {
+      "op": "-",
+      "text": "          <geom name=\"third_green_marble_collision\" solref=\"-1e+08 -10.72\"/>"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"third_green_marble_collision\" solref=\"-1e+08 -30.6\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"fourth_suspension\" pos=\"-0.0075 0 0.09878\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"fourth_suspension\" pos=\"-0.00585 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "        <joint name=\"fourth_suspension_hinge\" damping=\"1.5e-08\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <joint name=\"fourth_suspension_hinge\" damping=\"0.0002375\"/>"
+     },
+     {
+      "op": "-",
+      "text": "          <geom name=\"fourth_orange_marble_collision\" solref=\"-1e+08 -10.72\"/>"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"fourth_orange_marble_collision\" solref=\"-1e+08 -30.6\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"fifth_suspension\" pos=\"-0.0225 0 0.09878\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"fifth_suspension\" pos=\"-0.02085 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "        <joint name=\"fifth_suspension_hinge\" damping=\"1.5e-08\"/>"
+     },
+     {
+      "op": "+",
+      "text": "        <joint name=\"fifth_suspension_hinge\" damping=\"0.0002375\"/>"
+     },
+     {
+      "op": "-",
+      "text": "          <geom name=\"fifth_yellow_marble_collision\" solref=\"-1e+08 -10.72\"/>"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"fifth_yellow_marble_collision\" solref=\"-1e+08 -30.6\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"right_suspension\" pos=\"-0.0375 0 0.09878\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"right_suspension\" pos=\"-0.03585 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "          <geom name=\"right_blue_marble_collision\" solref=\"-1e+08 -10.72\"/>"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"right_blue_marble_collision\" solref=\"-1e+08 -30.6\"/>"
+     },
+     {
+      "op": "-",
+      "text": "camera: 112 estimated poses, one per frame"
+     },
+     {
+      "op": "+",
+      "text": "camera: 1 fixed pose"
+     }
+    ]
+   },
+   "agent_notes": {
+    "focus": "Address round-3 reviewer: suppress spurious late multi-ball departures and improve initial swing timing.",
+    "next_experiment": "Fit constant-camera passive candidate with interior damping and correct pivot placement to all six native source masks; officially test reviewer repair."
+   },
+   "experiments": [
+    {
+     "what": "local_fit: All-six native source mask centroid residual plus initial alignment; passive interior hinge/contact damping repair",
+     "frames": [
+      0,
+      111
+     ],
+     "parameters": [
+      "mujoco.qpos.12 1.1229 -> 1.1923",
+      "mujoco.qvel.11 -10.8005 -> -12.2191",
+      "mjcf:joint[second_suspension_hinge].damping[0] 0.0 -> 0.0002",
+      "mjcf:joint[third_suspension_hinge].damping[0] 0.0 -> 0.0002",
+      "mjcf:joint[fourth_suspension_hinge].damping[0] 0.0 -> 0.0002",
+      "mjcf:joint[fifth_suspension_hinge].damping[0] 0.0 -> 0.0002",
+      "mjcf:geom[left_blue_marble_collision].solref[1] -10.7207 -> -30.6018",
+      "mjcf:geom[second_yellow_green_marble_collision].solref[1] -10.7207 -> -30.6018",
+      "mjcf:geom[third_green_marble_collision].solref[1] -10.7207 -> -30.6018",
+      "mjcf:geom[fourth_orange_marble_collision].solref[1] -10.7207 -> -30.6018",
+      "mjcf:geom[fifth_yellow_marble_collision].solref[1] -10.7207 -> -30.6018",
+      "mjcf:geom[right_blue_marble_collision].solref[1] -10.7207 -> -30.6018"
+     ],
+     "rollouts": 195,
+     "rollout_seconds": 882.21,
+     "outcome": "fitted scene submitted as this round's candidate",
+     "source": "discovery/round-004/fit-work/local-fit/receipts/20261005T043141-47074f9b.json"
+    }
+   ],
+   "local_fit_rollouts": 195,
+   "result": {
+    "ade_pct_diag": 1.3322,
+    "velocity_ade_pct_diag": 0.5686,
+    "iou": 0.5013,
+    "accuracy_at_2pct": 82.887,
+    "metric_scope": "dynamic objects",
+    "checks_total": 50,
+    "checks_passed": 32,
+    "checks_failed": 1,
+    "checks_unknown": 17,
+    "failed_checks": [
+     "initial_object.initial_mask_iou"
+    ],
+    "unknown_checks": [
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency: historical source-motion 6c6ca44f - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 34c0fe04 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 8ca617ab - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 51313483 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion f6731de5 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 966b6cd6 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 936ab443 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 1fa709c3 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 64d9ea05 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion aa4efaf3 - Historical measurement has no applicable current answer…",
+     "source_uncertainty_certification - Source claims remain unresolved"
+    ],
+    "accepted": false,
+    "assessment_status": "not_satisfied",
+    "review_verdict": "pass (incumbent review)",
+    "best_so_far": true,
+    "selection_basis": "higher_accuracy",
+    "compared_with_round": 3,
+    "accuracy_relation": "better",
+    "intent": {
+     "targets": "not_satisfied",
+     "preservation": "unable_to_determine",
+     "assessment": "partial_improvement",
+     "failed_assertions": [
+      "target-7: left_suspension native speed <= 0.02 (got 0.459)",
+      "target-10: fourth_suspension native speed <= 0.02 (got 0.29)",
+      "target-11: fifth_suspension native speed <= 0.02 (got 0.37)",
+      "target-12: right_suspension native speed <= 0.02 (got 0.489)"
+     ]
+    },
+    "top_issues": [
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       0,
+       111
+      ],
+      "peak_error": 1.0,
+      "bodies": [
+       "right_blue_marble"
+      ]
+     },
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       20,
+       32
+      ],
+      "peak_error": 1.0,
+      "bodies": [
+       "left_blue_marble"
+      ]
+     },
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       0,
+       111
+      ],
+      "peak_error": 0.882,
+      "bodies": [
+       "fifth_yellow_marble"
+      ]
+     }
+    ],
+    "issue_counts": {
+     "depth_mismatch": 21,
+     "depth_unavailable": 6,
+     "ownership_conflict": 36,
+     "silhouette_mismatch": 39
+    },
+    "summary": "ADE 2.24 -> 1.33% diag, IoU 0.33 -> 0.50: new best, and the reviewer passed the main process (inward swing, opposite-end departure, alternating transfers). One check still failed: the right marble's initial overlap."
+   },
+   "media": {
+    "video": "media/workflow-pendulum/round-004.mp4",
+    "poster": "media/workflow-pendulum/round-004.jpg"
+   },
+   "sources": [
+    "discovery/timing.json",
+    "discovery/round-004/proposal-input-metrics.jsonl",
+    "discovery/round-004/proposal-input-metrics.tools.jsonl",
+    "discovery/round-004/research-notes.json",
+    "discovery/round-004/frozen-intent.json",
+    "discovery/round-004/physics-plan.json",
+    "discovery/round-004/memory/submission/revision-base-scene.json",
+    "discovery/round-004/frozen-scene.json",
+    "discovery/round-004/acceptance.json",
+    "discovery/round-004/intent-evaluation.json",
+    "discovery/round-004/comparison/error-summary.json",
+    "discovery/trace.json#/rounds",
+    "discovery/round-004/scene-visual-review/review.json"
+   ]
+  },
+  {
+   "id": "round-005",
+   "round": 5,
+   "kind": "official evaluation",
+   "seconds": 570.4,
+   "seconds_breakdown": {
+    "proposal": 457.6,
+    "simulation": 51.7,
+    "comparison": 44.8,
+    "other": 16.3
+   },
+   "tokens": 772617,
+   "model_requests": 9,
+   "agent_activity": {
+    "api_rounds": 9,
+    "tool_calls": 9,
+    "tools": {
+     "bash": 4,
+     "inspect_artifact": 1,
+     "simulate": 1,
+     "experiment_result": 1,
+     "research_notes": 1,
+     "submit_proposal": 1
+    },
+    "refused_submissions": 0
+   },
+   "reason": "Round 4's one failed check: the right marble's initial mask overlap (0.51, needs 0.65). In the render the stand was too wide and partly hid the outgoing right marble.",
+   "decision": "Move the right pivot slightly right, make the right marble a little larger and narrow the stand; keep the fitted damping and passive motion.",
+   "reason_evidence": [
+    "round-004: ADE 1.332% diag, IoU 0.501; 32 checks passed, 1 failed, 17 unknown",
+    "round-004 failed checks: initial_object.initial_mask_iou",
+    "round-004 failed assertion: target-7: left_suspension native speed <= 0.02 (got 0.459)",
+    "round-004 failed assertion: target-10: fourth_suspension native speed <= 0.02 (got 0.29)",
+    "round-004 failed assertion: target-11: fifth_suspension native speed <= 0.02 (got 0.37)",
+    "round-004 failed assertion: target-12: right_suspension native speed <= 0.02 (got 0.489)",
+    "round-004 major comparison issues: silhouette_mismatch f0-111 (peak 1.00); silhouette_mismatch f20-32 (peak 1.00); silhouette_mismatch f0-111 (peak 0.88)",
+    "Agent reading: Round 4 review passes main causal sequence; initial right mask median IoU=0.506 remains below 0.65",
+    "Agent reading: Source anchors and render show wrong stand width partially occluding the outgoing right sphere",
+    "Agent reading: Batch experiment timed out with no verified result; retrieved persisted receipt and did not infer improvement",
+    "Agent reading: Advisory revised right pivot position/radius and narrower stand uprights give right ADE about45 source pixels"
+   ],
+   "problem_statement": "Resolve right initial overlap failure and reduce right trajectory residual without changing causal exchange.",
+   "hypothesis": "Starting where the video shows it, and no longer hidden, the right marble follows the video more closely.",
+   "hypothesis_verbatim": "Right anchor is slightly farther right than the row-spacing guess and the right sphere is modestly larger. The source stand is narrower than the previous guess; corrected uprights should not occlude the outgoing sphere. All motion remains passive, and previously fitted interior damping is retained. Early motion blur versus physical size remains an alternative.",
+   "expectation": "The right marble's trajectory error decreases; every other marble stays within 3.5% of the diagonal.",
+   "declared_assertions": [
+    {
+     "id": "target-1",
+     "role": "target",
+     "text": "left_blue_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-2",
+     "role": "target",
+     "text": "right_blue_marble trajectory ADE (% diag) f0-111 decreases"
+    },
+    {
+     "id": "target-3",
+     "role": "target",
+     "text": "second_yellow_green_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-4",
+     "role": "target",
+     "text": "third_green_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-5",
+     "role": "target",
+     "text": "fourth_orange_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-6",
+     "role": "target",
+     "text": "fifth_yellow_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-7",
+     "role": "target",
+     "text": "left_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-8",
+     "role": "target",
+     "text": "second_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-9",
+     "role": "target",
+     "text": "third_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-10",
+     "role": "target",
+     "text": "fourth_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-11",
+     "role": "target",
+     "text": "fifth_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-12",
+     "role": "target",
+     "text": "right_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-13",
+     "role": "target",
+     "text": "cradle_stand native speed <= 0.02"
+    },
+    {
+     "id": "target-14",
+     "role": "target",
+     "text": "native contact release_fingertip-right_blue_marble absent"
+    }
+   ],
+   "allowed_changes": [
+    "/mujoco/initial_state",
+    "/mujoco/mjcf"
+   ],
+   "declared_process": null,
+   "changes": [
+    "native MJCF model changed"
+   ],
+   "scene_edit": {
+    "base_round": "round-004",
+    "changed": 8,
+    "total": 222,
+    "camera_poses": null,
+    "items": [
+     {
+      "what": "Frame width (between posts)",
+      "from": "173 mm",
+      "to": "149 mm"
+     },
+     {
+      "what": "Right marble radius",
+      "from": "7.1 mm",
+      "to": "7.8 mm"
+     },
+     {
+      "what": "Right pivot",
+      "to": "3.3 mm further right"
+     }
+    ],
+    "diff": [
+     {
+      "op": "meta",
+      "text": "--- round-004/scene.xml"
+     },
+     {
+      "op": "meta",
+      "text": "+++ round-005/scene.xml"
+     },
+     {
+      "op": "-",
+      "text": "      <geom name=\"cradle_stand_collision_post-1-1\" pos=\"-0.08657 0.0119 0.06925\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_post-1-1\" pos=\"-0.07445 0.0119 0.06925\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <geom name=\"cradle_stand_collision_post-11\" pos=\"-0.08657 -0.0119 0.06925\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_post-11\" pos=\"-0.07445 -0.0119 0.06925\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <geom name=\"cradle_stand_collision_post1-1\" pos=\"0.08657 0.0119 0.06925\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_post1-1\" pos=\"0.07445 0.0119 0.06925\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <geom name=\"cradle_stand_collision_post11\" pos=\"0.08657 -0.0119 0.06925\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_post11\" pos=\"0.07445 -0.0119 0.06925\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <geom name=\"cradle_stand_collision_rail-1\" size=\"0.08657 0.001731 0.001515\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_rail-1\" size=\"0.07445 0.001731 0.001515\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <geom name=\"cradle_stand_collision_rail1\" size=\"0.08657 0.001731 0.001515\"/>"
+     },
+     {
+      "op": "+",
+      "text": "      <geom name=\"cradle_stand_collision_rail1\" size=\"0.07445 0.001731 0.001515\"/>"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"right_suspension\" pos=\"-0.03585 0 0.1\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"right_suspension\" pos=\"-0.03915 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "          <geom name=\"right_blue_marble_collision\" size=\"0.007149\"/>"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"right_blue_marble_collision\" size=\"0.007793\"/>"
+     }
+    ]
+   },
+   "agent_notes": {
+    "focus": "Remaining initial right sphere mask overlap and right-end excursion geometry.",
+    "next_experiment": "Official uninterrupted evaluation of revised right pivot, modest larger sphere and narrowed stand, retaining passive dynamics."
+   },
+   "experiments": [
+    {
+     "what": "local_fit: Bounded geometry hypothesis: source right pivot, sphere size and unoccluded stand boundary",
+     "frames": [
+      0,
+      111
+     ],
+     "parameters": [
+      "mujoco.qpos.12 1.15 -> 1.15"
+     ],
+     "rollouts": 3,
+     "rollout_seconds": 13.04,
+     "outcome": "fitted scene submitted as this round's candidate",
+     "source": "discovery/round-005/fit-work/local-fit/receipts/20261005T044403-1691526a.json"
+    }
+   ],
+   "local_fit_rollouts": 3,
+   "result": {
+    "ade_pct_diag": 1.2801,
+    "velocity_ade_pct_diag": 0.712,
+    "iou": 0.5203,
+    "accuracy_at_2pct": 84.821,
+    "metric_scope": "dynamic objects",
+    "checks_total": 50,
+    "checks_passed": 31,
+    "checks_failed": 1,
+    "checks_unknown": 18,
+    "failed_checks": [
+     "initial_object.initial_mask_iou"
+    ],
+    "unknown_checks": [
+     "physical_scene_review - The independent review runs only on a candidate whose accuracy makes it the new best eval…",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency: historical source-motion 6c6ca44f - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 34c0fe04 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 8ca617ab - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 51313483 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion f6731de5 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 966b6cd6 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 936ab443 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 1fa709c3 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 64d9ea05 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion aa4efaf3 - Historical measurement has no applicable current answer…",
+     "source_uncertainty_certification - Source claims remain unresolved"
+    ],
+    "accepted": false,
+    "assessment_status": "not_satisfied",
+    "review_verdict": "deferred",
+    "best_so_far": false,
+    "selection_basis": "required_checks_at_equal_accuracy",
+    "compared_with_round": 4,
+    "accuracy_relation": "equivalent",
+    "intent": {
+     "targets": "not_satisfied",
+     "preservation": "unable_to_determine",
+     "assessment": "partial_improvement",
+     "failed_assertions": [
+      "target-7: left_suspension native speed <= 0.02 (got 0.452)",
+      "target-8: second_suspension native speed <= 0.02 (got 0.241)",
+      "target-9: third_suspension native speed <= 0.02 (got 0.061)",
+      "target-10: fourth_suspension native speed <= 0.02 (got 0.068)",
+      "target-11: fifth_suspension native speed <= 0.02 (got 0.274)",
+      "target-12: right_suspension native speed <= 0.02 (got 0.48)"
+     ]
+    },
+    "top_issues": [
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       38,
+       105
+      ],
+      "peak_error": 1.0,
+      "bodies": [
+       "right_blue_marble"
+      ]
+     },
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       22,
+       45
+      ],
+      "peak_error": 1.0,
+      "bodies": [
+       "left_blue_marble"
+      ]
+     },
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       0,
+       111
+      ],
+      "peak_error": 0.913,
+      "bodies": [
+       "fifth_yellow_marble"
+      ]
+     }
+    ],
+    "issue_counts": {
+     "depth_mismatch": 28,
+     "depth_unavailable": 9,
+     "ownership_conflict": 27,
+     "silhouette_mismatch": 51
+    },
+    "summary": "ADE 1.28% and IoU 0.52 fall inside round 4's noise bands, so both count as equally accurate, and round 4, which had passed review, stays the best. The right marble's initial overlap still failed."
+   },
+   "media": {
+    "video": "media/workflow-pendulum/round-005.mp4",
+    "poster": "media/workflow-pendulum/round-005.jpg"
+   },
+   "sources": [
+    "discovery/timing.json",
+    "discovery/round-005/proposal-input-metrics.jsonl",
+    "discovery/round-005/proposal-input-metrics.tools.jsonl",
+    "discovery/round-005/research-notes.json",
+    "discovery/round-005/frozen-intent.json",
+    "discovery/round-005/physics-plan.json",
+    "discovery/round-005/memory/submission/revision-base-scene.json",
+    "discovery/round-005/frozen-scene.json",
+    "discovery/round-005/acceptance.json",
+    "discovery/round-005/intent-evaluation.json",
+    "discovery/round-005/comparison/error-summary.json",
+    "discovery/trace.json#/rounds"
+   ]
+  },
+  {
+   "id": "round-006",
+   "round": 6,
+   "kind": "official evaluation",
+   "seconds": 394.1,
+   "seconds_breakdown": {
+    "proposal": 237.6,
+    "simulation": 99.1,
+    "comparison": 39.4,
+    "other": 18.0
+   },
+   "tokens": 831596,
+   "model_requests": 9,
+   "agent_activity": {
+    "api_rounds": 9,
+    "tool_calls": 9,
+    "tools": {
+     "bash": 5,
+     "inspect_artifact": 3,
+     "submit_proposal": 1
+    },
+    "refused_submissions": 0
+   },
+   "reason": "Round 5 did not beat round 4, and the interior marbles still drifted. The source shows the suspensions leaning slightly off vertical, which more damping would not explain.",
+   "decision": "Place the pivots slightly right of their marbles' initial centers and start the row at rest from those small angles; make the right marble another 2% larger. Topology and damping stay as reviewed.",
+   "reason_evidence": [
+    "round-005: ADE 1.280% diag, IoU 0.520; 31 checks passed, 1 failed, 18 unknown",
+    "round-005 failed checks: initial_object.initial_mask_iou",
+    "round-005 failed assertion: target-7: left_suspension native speed <= 0.02 (got 0.452)",
+    "round-005 failed assertion: target-8: second_suspension native speed <= 0.02 (got 0.241)",
+    "round-005 failed assertion: target-9: third_suspension native speed <= 0.02 (got 0.061)",
+    "round-005 failed assertion: target-10: fourth_suspension native speed <= 0.02 (got 0.068)",
+    "round-005 failed assertion: target-11: fifth_suspension native speed <= 0.02 (got 0.274)",
+    "round-005 failed assertion: target-12: right_suspension native speed <= 0.02 (got 0.48)",
+    "round-005 major comparison issues: silhouette_mismatch f38-105 (peak 1.00); silhouette_mismatch f22-45 (peak 1.00); silhouette_mismatch f0-111 (peak 0.91)"
+   ],
+   "problem_statement": "Test whether source-visible small nonvertical suspension alignment explains interior drift and right initial overlap, rather than adding more collision damping.",
+   "hypothesis": "From these small angles the row settles through contacts on its own, reducing the interior drift and the right marble's initial overlap.",
+   "hypothesis_verbatim": "Pivots lie modestly right of their initial sphere centers; small negative initial angles at zero speed preserve the measured initially resting row but permit passive relaxation through contacts. Right radius increases only 2% further. Previously reviewed passive topology and damping remain unchanged. Release history remains unresolved under obligations question-c548bd15ca3e51db34c1379b and question-cf5b64f9445ab491172bdb4d.",
+   "expectation": "Each marble's trajectory error over frames 0-111 stays within 3.5% of the image diagonal.",
+   "declared_assertions": [
+    {
+     "id": "target-1",
+     "role": "target",
+     "text": "left_blue_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-2",
+     "role": "target",
+     "text": "right_blue_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-3",
+     "role": "target",
+     "text": "second_yellow_green_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-4",
+     "role": "target",
+     "text": "third_green_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-5",
+     "role": "target",
+     "text": "fourth_orange_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-6",
+     "role": "target",
+     "text": "fifth_yellow_marble trajectory ADE (% diag) f0-111 <= 3.5"
+    },
+    {
+     "id": "target-7",
+     "role": "target",
+     "text": "left_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-8",
+     "role": "target",
+     "text": "second_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-9",
+     "role": "target",
+     "text": "third_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-10",
+     "role": "target",
+     "text": "fourth_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-11",
+     "role": "target",
+     "text": "fifth_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-12",
+     "role": "target",
+     "text": "right_suspension native speed <= 0.02"
+    },
+    {
+     "id": "target-13",
+     "role": "target",
+     "text": "cradle_stand native speed <= 0.02"
+    },
+    {
+     "id": "target-14",
+     "role": "target",
+     "text": "native contact release_fingertip-right_blue_marble absent"
+    }
+   ],
+   "allowed_changes": [
+    "/mujoco/initial_state",
+    "/mujoco/mjcf"
+   ],
+   "declared_process": null,
+   "changes": [
+    "native MJCF model changed"
+   ],
+   "scene_edit": {
+    "base_round": "round-005",
+    "changed": 6,
+    "total": 222,
+    "camera_poses": null,
+    "items": [
+     {
+      "what": "Five pivots",
+      "to": "1.2–3.2 mm further right (more toward the right end)"
+     },
+     {
+      "what": "Right marble radius",
+      "from": "7.8 mm",
+      "to": "7.9 mm"
+     }
+    ],
+    "diff": [
+     {
+      "op": "meta",
+      "text": "--- round-005/scene.xml"
+     },
+     {
+      "op": "meta",
+      "text": "+++ round-006/scene.xml"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"left_suspension\" pos=\"0.03915 0 0.1\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"left_suspension\" pos=\"0.03795 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"second_suspension\" pos=\"0.02415 0 0.1\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"second_suspension\" pos=\"0.02215 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"third_suspension\" pos=\"0.00915 0 0.1\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"third_suspension\" pos=\"0.00635 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"fourth_suspension\" pos=\"-0.00585 0 0.1\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"fourth_suspension\" pos=\"-0.00905 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "      <body name=\"fifth_suspension\" pos=\"-0.02085 0 0.1\">"
+     },
+     {
+      "op": "+",
+      "text": "      <body name=\"fifth_suspension\" pos=\"-0.02405 0 0.1\">"
+     },
+     {
+      "op": "-",
+      "text": "          <geom name=\"right_blue_marble_collision\" size=\"0.007793\"/>"
+     },
+     {
+      "op": "+",
+      "text": "          <geom name=\"right_blue_marble_collision\" size=\"0.007949\"/>"
+     }
+    ]
+   },
+   "agent_notes": null,
+   "experiments": [
+    {
+     "what": "local_fit: Source-supported nonvertical initial strands and corrected pivot placement; fixed passive hypothesis",
+     "frames": [
+      0,
+      111
+     ],
+     "parameters": [
+      "mujoco.qpos.7 -0.022 -> -0.022"
+     ],
+     "rollouts": 2,
+     "rollout_seconds": 8.66,
+     "outcome": "fitted scene submitted as this round's candidate",
+     "source": "discovery/round-006/fit-work/local-fit/receipts/20261005T045008-6ee9a831.json"
+    }
+   ],
+   "local_fit_rollouts": 2,
+   "result": {
+    "ade_pct_diag": 1.2162,
+    "velocity_ade_pct_diag": 0.7167,
+    "iou": 0.5466,
+    "accuracy_at_2pct": 85.565,
+    "metric_scope": "dynamic objects",
+    "checks_total": 50,
+    "checks_passed": 31,
+    "checks_failed": 1,
+    "checks_unknown": 18,
+    "failed_checks": [
+     "initial_object.initial_mask_iou"
+    ],
+    "unknown_checks": [
+     "physical_scene_review - The independent review runs only on a candidate whose accuracy makes it the new best eval…",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency - Recorded observation conditions differ from the current hypothesis or source view",
+     "source_local_motion_consistency: historical source-motion 6c6ca44f - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 34c0fe04 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 8ca617ab - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 51313483 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion f6731de5 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 966b6cd6 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 936ab443 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 1fa709c3 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion 64d9ea05 - Historical measurement has no applicable current answer…",
+     "source_local_motion_consistency: historical source-motion aa4efaf3 - Historical measurement has no applicable current answer…",
+     "source_uncertainty_certification - Source claims remain unresolved"
+    ],
+    "accepted": false,
+    "assessment_status": "not_satisfied",
+    "review_verdict": "skipped",
+    "best_so_far": true,
+    "selection_basis": "higher_accuracy",
+    "compared_with_round": 4,
+    "accuracy_relation": "better",
+    "intent": {
+     "targets": "not_satisfied",
+     "preservation": "unable_to_determine",
+     "assessment": "diagnosis_unresolved",
+     "failed_assertions": [
+      "target-7: left_suspension native speed <= 0.02 (got 0.453)",
+      "target-8: second_suspension native speed <= 0.02 (got 0.177)",
+      "target-9: third_suspension native speed <= 0.02 (got 0.035)",
+      "target-10: fourth_suspension native speed <= 0.02 (got 0.45)",
+      "target-11: fifth_suspension native speed <= 0.02 (got 0.058)",
+      "target-12: right_suspension native speed <= 0.02 (got 0.48)"
+     ]
+    },
+    "top_issues": [
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       76,
+       111
+      ],
+      "peak_error": 1.0,
+      "bodies": [
+       "right_blue_marble"
+      ]
+     },
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       78,
+       94
+      ],
+      "peak_error": 1.0,
+      "bodies": [
+       "left_blue_marble"
+      ]
+     },
+     {
+      "aspect": "silhouette_mismatch",
+      "frames": [
+       99,
+       107
+      ],
+      "peak_error": 0.924,
+      "bodies": [
+       "second_yellow_green_marble"
+      ]
+     }
+    ],
+    "issue_counts": {
+     "depth_mismatch": 26,
+     "depth_unavailable": 7,
+     "ownership_conflict": 16,
+     "silhouette_mismatch": 44
+    },
+    "summary": "ADE 1.33 -> 1.22% diag and IoU 0.50 -> 0.55, a gain beyond the noise band: new best. Not reviewed: less budget remained than one more proposal round needs."
+   },
+   "media": {
+    "video": "media/workflow-pendulum/round-006.mp4",
+    "poster": "media/workflow-pendulum/round-006.jpg"
+   },
+   "sources": [
+    "discovery/timing.json",
+    "discovery/round-006/proposal-input-metrics.jsonl",
+    "discovery/round-006/proposal-input-metrics.tools.jsonl",
+    "discovery/round-006/frozen-intent.json",
+    "discovery/round-006/physics-plan.json",
+    "discovery/round-006/memory/submission/revision-base-scene.json",
+    "discovery/round-006/frozen-scene.json",
+    "discovery/round-006/acceptance.json",
+    "discovery/round-006/intent-evaluation.json",
+    "discovery/round-006/comparison/error-summary.json",
+    "discovery/trace.json#/rounds"
+   ]
+  },
+  {
+   "id": "round-007",
+   "round": 7,
+   "kind": "research conclusion",
+   "seconds": 27.9,
+   "seconds_breakdown": {
+    "proposal": 27.1,
+    "simulation": null,
+    "comparison": null,
+    "other": 0.7
+   },
+   "tokens": 97068,
+   "model_requests": 1,
+   "agent_activity": {
+    "api_rounds": 1,
+    "tool_calls": 1,
+    "tools": {
+     "conclude_research": 1
+    },
+    "refused_submissions": 0
+   },
+   "reason": "Neither round 5 nor round 6 improved on round 4 by 10%, and the remaining budget had fallen inside the 15% reserve: both stop conditions held.",
+   "decision": "Stop discovery and deliver round 6 rather than spend the rest of the budget on another round.",
+   "reason_evidence": [
+    "round-006: ADE 1.216% diag, IoU 0.547; 31 checks passed, 1 failed, 18 unknown",
+    "round-006 failed checks: initial_object.initial_mask_iou",
+    "round-006 failed assertion: target-7: left_suspension native speed <= 0.02 (got 0.453)",
+    "round-006 failed assertion: target-8: second_suspension native speed <= 0.02 (got 0.177)",
+    "round-006 failed assertion: target-9: third_suspension native speed <= 0.02 (got 0.035)",
+    "round-006 failed assertion: target-10: fourth_suspension native speed <= 0.02 (got 0.45)",
+    "round-006 failed assertion: target-11: fifth_suspension native speed <= 0.02 (got 0.058)",
+    "round-006 failed assertion: target-12: right_suspension native speed <= 0.02 (got 0.48)",
+    "round-006 major comparison issues: silhouette_mismatch f76-111 (peak 1.00); silhouette_mismatch f78-94 (peak 1.00); silhouette_mismatch f99-107 (peak 0.92)",
+    "Model tokens at conclusion: 4,299,050 used of 5,000,000 (700,950 remaining, 0 held)",
+    "Agent rationale: Deliver the policy-retained best evaluated round 6, not the current draft or the individually reviewed but less accurate round 4.",
+    "Agent rationale: Rounds 5 and 6 offered scoped overlap/trajectory improvements without a 10% overall accuracy gain; the remaining budget is near reserve.",
+    "Agent rationale: Conclude conditionally: the main passive process has supporting experimental evidence, but the initial-overlap violation and current-review gap prevent claiming full acceptance."
+   ],
+   "problem_statement": null,
+   "hypothesis": "Round 6 reproduces the cradle's main sequence with passive physics alone: an end marble swings in, the opposite one leaves, and transfers alternate along the row.",
+   "expectation": "No further evaluation. The release before the video starts and the exact suspension attachments remain unverified.",
+   "changes": [],
+   "agent_notes": null,
+   "experiments": [],
+   "local_fit_rollouts": 0,
+   "result": {
+    "ade_pct_diag": null,
+    "iou": null,
+    "checks_passed": null,
+    "checks_failed": null,
+    "failed_checks": [],
+    "accepted": null,
+    "review_verdict": null,
+    "best_so_far": null,
+    "chosen_round": 6,
+    "research_status": "completed",
+    "summary": "The agent concluded with round 6, also the policy's best. Not accepted: the right marble's initial overlap check still fails."
+   },
+   "media": {
+    "video": null,
+    "poster": null
+   },
+   "sources": [
+    "discovery/timing.json",
+    "discovery/round-007/proposal-input-metrics.jsonl",
+    "discovery/round-007/proposal-input-metrics.tools.jsonl",
+    "discovery/round-007/memory/research-conclusion.json",
+    "discovery/round-007/memory/research-state.json"
+   ]
+  }
+ ],
+ "delivery": {
+  "round": 6,
+  "round_id": "round-006",
+  "accepted": false,
+  "numerical_accepted": false,
+  "certification_status": "not_satisfied",
+  "termination_reason": "research_completed",
+  "research_status": "completed",
+  "delivery_basis": "agent_selected",
+  "agent_choice_round": 6,
+  "agent_choice_vs_policy_best": "same_round",
+  "why": "Round 6 is both the agent's choice and the policy best: lowest trajectory error (1.22% vs 1.33/1.28%) and highest IoU (0.55). Not accepted: the right marble's initial overlap still fails.",
+  "agent_rationale": [
+   "Deliver the policy-retained best evaluated round 6, not the current draft or the individually reviewed but less accurate round 4.",
+   "Rounds 5 and 6 offered scoped overlap/trajectory improvements without a 10% overall accuracy gain; the remaining budget is near reserve.",
+   "Conclude conditionally: the main passive process has supporting experimental evidence, but the initial-overlap violation and current-review gap prevent claiming full acceptance."
+  ],
+  "metrics": {
+   "ade_pct_diag": 1.2162,
+   "velocity_ade_pct_diag": 0.7167,
+   "iou": 0.5466,
+   "metric_scope": "dynamic objects"
+  },
+  "review": {
+   "verdict": null,
+   "kind": null,
+   "round": null,
+   "summary": null,
+   "issues": [],
+   "reviewed_frames": null,
+   "vlm_calls": null,
+   "seconds": 192.4
+  },
+  "supported_claims": [
+   "Six dynamic spheres, six paired suspension units, a free resting stand and fixed tabletop are retained in one uninterrupted passive native rollout under locked gravity.",
+   "The evaluated round-6 candidate achieves trajectory ADE 1.216% of image diagonal, velocity ADE 0.717%, accuracy at 2% diagonal 85.57%, and mean object IoU 0.547.",
+   "Round 4 independently passed the principal causal sequence: inward approach, opposite-end departure, pendular return and alternating transfers. Round 6 retains that mechanism but has not received an independent visual pass."
+  ],
+  "known_disagreements": [
+   "Round-6 right-sphere initial mask IoU is 0.647235, below the required 0.65; it remains a genuine failed check, not a rounded pass.",
+   "The current best candidate's independent review was skipped because insufficient proposal budget remained; earlier review does not certify its geometry/state changes.",
+   "Source-world local motion fits are unobservable under revised geometry/camera, so fitted masses, pivot damping, impact details and metric scale are not uniquely established.",
+   "Stand/tray geometry and precise suspension attachments remain coarse; exact collision timing and small interior motions are imperfect."
+  ],
+  "known_disagreements_note": null,
+  "model_boundaries": [
+   "Paired flexible strands are reduced to low-mass rigid pendulum arms constraining sphere COM motion; independent sphere surface spin is not identified.",
+   "The stand is dynamic and rests by contact on an immovable tabletop; no unseen foundation attachment is asserted.",
+   "Only a minimal already-separated fingertip contact proxy is represented. Its free withdrawal is a boundary hypothesis, not a reconstruction of human anatomy or continuing human forces.",
+   "One scene-wide monocular length gauge is used; its value is not a measured metric scale."
+  ],
+  "totals": {
+   "tokens": 4396118,
+   "token_limit": 5000000,
+   "tokens_by_session": {
+    "proposal_agent": 4177735,
+    "other_sessions": [
+     {
+      "requests": 1,
+      "tokens": 4924
+     },
+     {
+      "requests": 1,
+      "tokens": 6112
+     },
+     {
+      "requests": 1,
+      "tokens": 7163
+     },
+     {
+      "requests": 1,
+      "tokens": 4930
+     },
+     {
+      "requests": 1,
+      "tokens": 8566
+     },
+     {
+      "requests": 1,
+      "tokens": 7180
+     },
+     {
+      "requests": 3,
+      "tokens": 101185
+     },
+     {
+      "requests": 2,
+      "tokens": 78323
+     }
+    ]
+   },
+   "seconds": 4824.1,
+   "seconds_note": "discovery wall time (excludes initialization)",
+   "run_wall_seconds": 5528.4,
+   "official_evaluations": 4,
+   "rounds": 7,
+   "rollouts": 200,
+   "rollouts_note": "native rollouts recorded in local_fit receipts; registered physics_fit rollouts charged: 2",
+   "seconds_by_category": {
+    "initialization": 6.3,
+    "proposal": 4012.5,
+    "discovery": 66.6,
+    "compile_ewr": 0.2,
+    "run_simulation": 374.6,
+    "compare_evidence": 171.4,
+    "accept_ewr": 0.0,
+    "review": 192.4
+   }
+  },
+  "sources": [
+   "discovery/result.json",
+   "discovery/trace.json#/agent_delivery_choice",
+   "discovery/trace.json#/certification",
+   "discovery/token-budget.json",
+   "discovery/timing.json",
+   "discovery/round-007/memory/research-conclusion.json",
+   null
+  ]
+ }
+}
