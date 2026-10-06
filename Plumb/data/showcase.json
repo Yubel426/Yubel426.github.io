@@ -1,5 +1,26 @@
 [
  {
+  "slug": "elastic",
+  "name": "Basketball and net",
+  "frames": 76,
+  "fps": 30.0,
+  "aspect": 1.7778,
+  "delivered_round": "round-009",
+  "accepted": false,
+  "run": "round-97-free-motion7-astra-max-10m-fast-03ba847/runs/028965-elastic-motion-free",
+  "media": {
+   "source": "media/showcase/elastic/source.mp4",
+   "sim": "media/showcase/elastic/sim.mp4",
+   "thumb": "media/showcase/elastic/thumb.jpg",
+   "source_poster": "media/showcase/elastic/source.jpg",
+   "sim_poster": "media/showcase/elastic/sim.jpg",
+   "blender": "media/showcase/elastic/blender.mp4",
+   "blender_poster": "media/showcase/elastic/blender.jpg"
+  },
+  "scene": "data/scene-elastic.json",
+  "sim_source": "16k-shadow re-render (rerender)"
+ },
+ {
   "slug": "ball-train",
   "name": "Ball train",
   "frames": 100,
@@ -81,27 +102,6 @@
    "blender_poster": "media/showcase/pendulum/blender.jpg"
   },
   "scene": "data/scene-pendulum.json",
-  "sim_source": "16k-shadow re-render (rerender)"
- },
- {
-  "slug": "elastic",
-  "name": "Basketball and net",
-  "frames": 76,
-  "fps": 30.0,
-  "aspect": 1.7778,
-  "delivered_round": "round-009",
-  "accepted": false,
-  "run": "round-97-free-motion7-astra-max-10m-fast-03ba847/runs/028965-elastic-motion-free",
-  "media": {
-   "source": "media/showcase/elastic/source.mp4",
-   "sim": "media/showcase/elastic/sim.mp4",
-   "thumb": "media/showcase/elastic/thumb.jpg",
-   "source_poster": "media/showcase/elastic/source.jpg",
-   "sim_poster": "media/showcase/elastic/sim.jpg",
-   "blender": "media/showcase/elastic/blender.mp4",
-   "blender_poster": "media/showcase/elastic/blender.jpg"
-  },
-  "scene": "data/scene-elastic.json",
   "sim_source": "16k-shadow re-render (rerender)"
  },
  {
