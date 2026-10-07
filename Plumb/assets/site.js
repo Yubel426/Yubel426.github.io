@@ -115,6 +115,24 @@
     }).catch(() => { tabs.textContent = 'The examples could not load. Reload the page to try again.'; });
   }
 
+  // ---------- overview video: starts only when asked; native controls once it plays ----------
+  const demo = document.getElementById('demo-video'), demoBtn = document.getElementById('demo-play');
+  if (demo && demoBtn) {
+    const frame = demo.parentElement;
+    demoBtn.addEventListener('click', () => {
+      frame.classList.add('playing');
+      demo.controls = true;
+      const p = demo.play(); if (p && p.catch) p.catch(() => {});
+      demo.focus({ preventScroll: true });
+    });
+    demo.addEventListener('ended', () => {
+      frame.classList.remove('playing');
+      demo.controls = false;
+      demo.load();   // back to the poster
+      demoBtn.querySelector('.demo-play-text').textContent = 'Watch again';
+    });
+  }
+
   // ---------- results gallery: benchmark video, Codex's and Plumb's reconstructions, side by side ----------
   const gTabs = document.getElementById('gal-tabs');
   const gSrc = document.getElementById('gal-src'), gSim = document.getElementById('gal-sim'), gCodex = document.getElementById('gal-codex');
@@ -147,11 +165,11 @@
     }).catch(() => { gTabs.textContent = 'The gallery could not load. Reload the page to try again.'; });
   }
 
-  // ---------- Motivation 05: Codex's saved fits on one video, by minute of the run ----------
+  // ---------- Motivation 04: one Codex run, its fits in order (the exploration as a line) ----------
   const plot = document.getElementById('search-plot');
   if (plot) fetch('data/codex-search.json').then(r => (r.ok ? r.json() : Promise.reject(r.status))).then(d => {
     const draw = () => {
-      const W = Math.max(300, plot.clientWidth), H = 230, m = { l: 44, r: 16, t: 26, b: 40 };
+      const W = Math.max(300, plot.clientWidth), H = 270, m = { l: 48, r: 64, t: 30, b: 42 };
       const x1 = Math.ceil(d.run_minutes / 10) * 10, y0 = 90, y1 = 160;
       const X = v => m.l + v / x1 * (W - m.l - m.r), Y = v => H - m.b - (v - y0) / (y1 - y0) * (H - m.t - m.b);
       const best = d.fits.reduce((a, f) => (f.rmse_px < a.rmse_px ? f : a));
@@ -160,13 +178,18 @@
       for (let v = 100; v <= y1; v += 20) s += `<line class="grid" x1="${m.l}" x2="${W - m.r}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${m.l - 8}" y="${Y(v) + 4}" text-anchor="end">${v}</text>`;
       for (let v = 0; v <= x1; v += 10) s += `<text x="${X(v)}" y="${H - m.b + 18}" text-anchor="middle">${v}</text>`;
       s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 4}" text-anchor="middle">minutes into the run</text>`;
+      // best level carried to the end, and the gap the delivery leaves
       s += `<line class="best" x1="${X(best.minute)}" x2="${X(last.minute)}" y1="${Y(best.rmse_px)}" y2="${Y(best.rmse_px)}"/>`;
+      s += `<line class="gap" x1="${X(last.minute) + 14}" x2="${X(last.minute) + 14}" y1="${Y(best.rmse_px)}" y2="${Y(last.rmse_px)}"/>`;
+      s += `<text class="gap-l" x="${X(last.minute) + 20}" y="${(Y(best.rmse_px) + Y(last.rmse_px)) / 2 + 4}">+${Math.round(last.rmse_px - best.rmse_px)} px</text>`;
+      // the exploration: fits joined in the order Codex made them
+      s += `<path class="explore" d="${d.fits.map((f, i) => `${i ? 'L' : 'M'}${X(f.minute).toFixed(1)},${Y(f.rmse_px).toFixed(1)}`).join('')}"/>`;
       d.fits.forEach((f, i) => {
         const cls = f.delivered ? ' delivered' : f === best ? ' best-dot' : '';
-        s += `<circle class="dot${cls}" cx="${X(f.minute)}" cy="${Y(f.rmse_px)}" r="6"><title>Fit ${i + 1} of ${d.fits.length}: ${Math.round(f.rmse_px)} px at minute ${Math.round(f.minute)}${f.delivered ? ', delivered' : ''}</title></circle>`;
+        s += `<circle class="dot${cls}" cx="${X(f.minute)}" cy="${Y(f.rmse_px)}" r="${cls ? 7 : 5}"><title>Fit ${i + 1} of ${d.fits.length}: ${Math.round(f.rmse_px)} px at minute ${Math.round(f.minute)}${f.delivered ? ', delivered' : ''}</title></circle>`;
       });
-      s += `<text class="note" x="${X(best.minute)}" y="${Y(best.rmse_px) + 22}" text-anchor="middle">best: ${Math.round(best.rmse_px)} px</text>`;
-      s += `<text class="note" x="${X(last.minute)}" y="${Y(last.rmse_px) - 12}" text-anchor="end">delivered: ${Math.round(last.rmse_px)} px</text>`;
+      s += `<text class="note" x="${X(best.minute)}" y="${Y(best.rmse_px) + 24}" text-anchor="middle">best: ${Math.round(best.rmse_px)} px</text>`;
+      s += `<text class="note bad" x="${X(last.minute)}" y="${Y(last.rmse_px) - 14}" text-anchor="end">delivered: ${Math.round(last.rmse_px)} px</text>`;
       plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">${s}</svg>`;
     };
     draw();

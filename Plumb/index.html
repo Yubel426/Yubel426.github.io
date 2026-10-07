@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Plumb</title>
-<meta name="description" content="An agent harness that turns a video into an executable MuJoCo scene using measured evidence, fixed physics and independent evaluation.">
+<meta name="description" content="Plumb combines a coding agent, visual geometry models and simulation feedback to reconstruct dynamic scenes from video in MuJoCo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
@@ -55,15 +55,23 @@
     <p class="links">
       <a class="btn" href="#" aria-disabled="true" title="Repository link to be added"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code <span class="ph" style="color:inherit">[link]</span></a>
     </p>
-    <p class="tldr">A harness that lets a coding agent turn a video into a MuJoCo scene that reconstructs <strong>not just appearance, but the underlying physical scene</strong>.</p>
-    <div class="takeaways">
-      <p class="takeaways-label">Takeaways</p>
-      <ol>
-        <li>3D foundation models make up for what vision-language models lack: counting objects, recovering their geometry and judging depth.</li>
-        <li>Working from these measurements instead of guessing by eye makes the coding agent more robust.</li>
-      </ol>
-    </div>
+    <ol class="tldr">
+      <li>Plumb helps a coding agent reconstruct a dynamic scene from video as an <strong>executable MuJoCo model</strong>.</li>
+      <li>Segmentation and 3D reconstruction models estimate object tracks, camera poses, depth and geometry for the agent to use in fitting.</li>
+      <li>The harness evaluates submitted scenes under a common protocol and selects the final reconstruction from the evaluated candidates.</li>
+    </ol>
   </div>
+
+  <figure class="demo-video wide" id="demo">
+    <div class="demo-frame">
+      <video id="demo-video" src="media/demo/discovery_to_physics.mp4?v=7" poster="media/demo/discovery_to_physics.jpg?v=3" muted playsinline preload="none"
+        aria-label="Overview: reconstructing a Newton's cradle from video, a ball striking a stack of cups, and a basketball shot"></video>
+      <button type="button" class="demo-play" id="demo-play" aria-label="Watch the overview video, 1 minute 38 seconds">
+        <span class="demo-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+        <span class="demo-play-text">Watch</span><span class="demo-play-time">1:38</span>
+      </button>
+    </div>
+  </figure>
 
   <section class="featured wide" id="featured" aria-label="Input videos, their simulations rendered in MuJoCo and Blender, and the reconstructed scenes">
     <div class="case-tabs" id="case-tabs" role="group" aria-label="Choose an example"></div>
@@ -72,13 +80,13 @@
         <span class="label src">Input video</span>
         <video id="show-src" data-sync="hero" muted playsinline loop autoplay preload="metadata"></video>
       </figure>
-      <figure id="show-blender-fig">
-        <span class="label sim">Simulation (Blender)</span>
-        <video id="show-blender" data-sync="hero" muted playsinline loop autoplay preload="metadata"></video>
-      </figure>
       <figure>
-        <span class="label sim">Simulation (MuJoCo)</span>
+        <span class="label sim">Physical reconstruction</span>
         <video id="show-sim" data-sync="hero" muted playsinline loop autoplay preload="metadata"></video>
+      </figure>
+      <figure id="show-blender-fig">
+        <span class="label sim">With textures and materials</span>
+        <video id="show-blender" data-sync="hero" muted playsinline loop autoplay preload="metadata"></video>
       </figure>
     </div>
     <div class="replay" id="replay-box">
@@ -109,54 +117,36 @@
 <section class="block" id="motivation">
   <div class="col">
     <h2>Motivation</h2>
-    <p>Can a coding agent watch a video of a physical event and then reproduce that event, physically correctly, in a simulator? Physically correct means more than a matching picture: the scene needs the right objects, shapes, masses, contacts and initial state, under one fixed set of physical laws, so that it runs on its own and the same scene can also answer what would happen if the ball were heavier or the ramp steeper.</p>
-    <p>We gave <a href="https://github.com/openai/codex" target="_blank" rel="noopener">Codex</a> a <a href="https://mujoco.org/" target="_blank" rel="noopener">MuJoCo</a> environment and asked it to reconstruct simulated and real videos. It delivered a scene every time, and its renders often look close to the source. When we read the delivered scenes and the scripts behind them, five problems kept coming back.</p>
+    <p>Can a coding agent reconstruct a physical event from video as a simulation? This requires choosing objects, geometry, physical parameters and an initial state whose simulated motion agrees with the observations. An executable scene also lets us test changes, such as a heavier ball or a steeper ramp. Whether those predictions describe the real scene depends on how well its physical properties are constrained by the video.</p>
+    <p>We gave <a href="https://github.com/openai/codex" target="_blank" rel="noopener">Codex</a> a <a href="https://mujoco.org/" target="_blank" rel="noopener">MuJoCo</a> environment and asked it to reconstruct synthetic and real-world videos. Inspecting the resulting scenes and fitting scripts revealed errors in geometry, camera estimation, physical modeling and candidate selection. The examples below motivated the design of Plumb.</p>
   </div>
 
+  <div class="col" id="geometry">
+    <p style="margin-top:28px"><span class="prob-n">01</span><strong>Object counts and geometry.</strong> In this real-world marble run, one ramp contains 14 dominoes. Codex reconstructed 21; Plumb reconstructed 14. The discrepancy changes both the scene geometry and the possible sequence of contacts.</p>
+  </div>
   <div class="wide">
-    <div class="failure-grid" id="failure-grid">
-      <article class="failure"><span class="n">01</span><p class="stmt"><b>No precise geometry.</b> It cannot count or measure what the video shows.</p></article>
-      <article class="failure"><span class="n">02</span><p class="stmt"><b>Invented parts.</b> To reproduce the motion, it adds mechanisms the real scene does not have.</p></article>
-    </div>
+    <figure class="countfig" aria-label="The same ramp in the video, in Codex's scene and in Plumb's scene">
+      <a href="media/versus/026184/count.jpg?v=5" target="_blank" rel="noopener" title="Open full size"><img src="media/versus/026184/count.jpg?v=5" alt="One ramp of the marble run: 14 dominoes in the video, 21 in Codex's scene, 14 in Plumb's scene" loading="lazy" width="1280" height="840"></a>
+    </figure>
   </div>
 
-  <div class="col">
+  <div class="col" id="camera-fit">
+    <p style="margin-top:28px"><span class="prob-n">02</span><strong>Camera motion.</strong> In this billiards video, the handheld camera moves near the end of the clip. Codex used a fixed camera throughout, while Plumb estimated a camera pose for each frame. A fixed-camera model attributes this image motion to the objects or leaves it unexplained.</p>
   </div>
-
   <div class="wide">
-    <div class="errfig" aria-label="A real domino marble run: the input video, Codex's reconstruction, and its errors up close">
-      <div class="errfig-col">
-        <figure>
-          <span class="label src">Input video</span>
-          <video muted playsinline loop preload="metadata" data-sync="marble" autoplay poster="media/versus/026184/source.jpg"><source src="media/versus/026184/source.mp4" type="video/mp4"></video>
-        </figure>
-        <figure>
-          <span class="label bad">Codex simulation video</span>
-          <video muted playsinline loop preload="metadata" data-sync="marble" autoplay poster="media/versus/026184/codex.jpg"><source src="media/versus/026184/codex.mp4" type="video/mp4"></video>
-        </figure>
+    <figure class="cam-traj cam3d" id="camera-chart">
+      <div class="cam3d-head">
+        <span class="label">Estimated camera motion</span>
+        <button class="icon-btn" type="button" id="camviz-scale" aria-pressed="true" disabled>Rotation shown 10×</button>
       </div>
-      <div class="errfig-col">
-        <figure>
-          <span class="label bad">Error 1 · domino count</span>
-          <a href="media/versus/026184/count.jpg?v=2" target="_blank" rel="noopener" title="Open full size"><img src="media/versus/026184/count.jpg?v=2" alt="The same ramp numbered in the video (14 dominoes) and in Codex's scene (21 dominoes)" loading="lazy"></a>
-        </figure>
-        <figure>
-          <span class="label bad">Error 2 · invented hinges</span>
-          <a href="media/versus/026184/hinge.jpg?v=2" target="_blank" rel="noopener" title="Open full size"><img src="media/versus/026184/hinge.jpg?v=2" alt="Close-up of Codex's scene with joint axes drawn: a hinge at the base of every domino" loading="lazy"></a>
-        </figure>
-      </div>
-    </div>
-    <ul class="errfig-cap">
-      <li><b>Error 1 · No precise geometry.</b> With only a vision-language model looking at frames, Codex cannot recover exact geometry: one ramp holds 14 dominoes in the video and 21 in its scene.</li>
-      <li><b>Error 2 · Invented hinges.</b> Codex reproduces the motion and the appearance, but only by adding parts the scene does not have: every domino in its scene turns on a hinge.</li>
-    </ul>
-
-    <!-- Placeholder: Plumb's reconstruction of the same domino marble run (input video and simulation, played in sync). -->
-    <figure class="ph-box" id="plumb-marble" style="aspect-ratio: 16 / 9; margin-top: 22px">Plumb's reconstruction of the same domino scene<br>video pending</figure>
+      <div class="camviz" id="camviz" role="img" aria-label="The billiards scene with two camera frustums at the same spot. Codex's red camera never moves. Plumb's blue camera turns right and up late in the clip, and the end of its centre ray draws a path."></div>
+      <p class="cam-key"><span><i class="sw sim"></i>Plumb: one camera pose per frame</span><span><i class="sw bad"></i>Codex: one fixed camera</span><span>Drag to orbit · scroll to zoom</span></p>
+      <p class="cam-readout" id="camera-readout"></p>
+    </figure>
   </div>
 
   <div class="col" id="robustness">
-    <p style="margin-top:28px"><span class="prob-n">03</span>Codex is also <strong>not robust</strong>. In this Physion video, the first domino starts to tip without a visible push. Codex found nothing that could start the chain and decided that passive physics could not produce the motion.</p>
+    <p style="margin-top:28px"><span class="prob-n">03</span><strong>Inferring the initial state.</strong> In this Physion video, the first domino starts to tip without a visible push. In this run, Codex treated the absence of a visible trigger as evidence that passive dynamics could not explain the sequence. An initial velocity or displacement can initiate motion even when the preceding interaction is outside the clip.</p>
   </div>
   <div class="wide">
     <div class="pair" id="robust-pair" data-n="3" style="--aspect: 1" aria-label="A Physion domino video, Codex's simulation and Plumb's simulation, played in sync">
@@ -175,37 +165,13 @@
     </div>
   </div>
 
-  <div class="col" id="camera-fit">
-    <p style="margin-top:28px"><span class="prob-n">04</span>Without a 3D tool, Codex also <strong>fits the camera poorly</strong>. In this real billiards video, its camera stays still while the video's moves, so by the end of the clip the balls that never move sit in different places than in the video.</p>
-  </div>
-  <div class="wide">
-    <div class="pair" id="camera-pair" data-n="4" aria-label="A real billiards video, Codex's simulation, and Plumb's simulation rendered in MuJoCo and in Blender, played in sync">
-      <figure>
-        <span class="label src">Input video</span>
-        <video data-sync="camera" muted playsinline loop autoplay preload="metadata" poster="media/versus/004971/source.jpg"><source src="media/versus/004971/source.mp4" type="video/mp4"></video>
-      </figure>
-      <figure>
-        <span class="label bad">Codex simulation</span>
-        <video data-sync="camera" muted playsinline loop autoplay preload="metadata" poster="media/versus/004971/codex.jpg"><source src="media/versus/004971/codex.mp4" type="video/mp4"></video>
-      </figure>
-      <figure>
-        <span class="label sim">Plumb simulation (Blender)</span>
-        <video data-sync="camera" muted playsinline loop autoplay preload="metadata" poster="media/versus/004971/blender.jpg"><source src="media/versus/004971/blender.mp4" type="video/mp4"></video>
-      </figure>
-      <figure>
-        <span class="label sim">Plumb simulation (MuJoCo)</span>
-        <video data-sync="camera" muted playsinline loop autoplay preload="metadata" poster="media/versus/004971/plumb.jpg"><source src="media/versus/004971/plumb.mp4" type="video/mp4"></video>
-      </figure>
-    </div>
-  </div>
-
   <div class="col">
-    <p style="margin-top:28px"><span class="prob-n">05</span><strong>No evidence loop, no acceptance test.</strong> Nothing tells it which candidate is better or when to stop, so the search runs on. On a PhysInOne video of a double pendulum, Codex evaluated its own objective more than 54,000 times across ten fits, then delivered its last fit (149 px error on its own measurements) rather than its best (107 px).</p>
+    <p style="margin-top:28px"><span class="prob-n">04</span><strong>Candidate selection.</strong> Codex wrote its own fitting objectives, but the baseline had no external rule for retaining a candidate or stopping the search. In one double-pendulum run, it evaluated its objectives at least 54,300 times across ten fits. The delivered fit had a reported pixel RMSE of 149, compared with 107 for an earlier fit. These are errors against Codex's own measurements; they illustrate a selection problem within that run, rather than a benchmark comparison.</p>
   </div>
   <div class="wide">
     <figure class="search-chart" id="search-chart">
-      <figcaption><b>Codex's saved fits on this video</b> error on its own measurements, px · lower is better</figcaption>
-      <div class="search-plot" id="search-plot" role="img" aria-label="Codex's saved fits on this video, by minute of the run"></div>
+      <figcaption><b>Ten fits from one Codex double-pendulum run</b> reported RMSE against its own measurements, px · lower is better</figcaption>
+      <div class="search-plot" id="search-plot" role="img" aria-label="Codex's ten fits in one run, by minute: the error goes up and down, the best fit (107 px) comes at minute 12, and the delivered fit (149 px) is the last one, at minute 46"></div>
     </figure>
   </div>
 </section>
@@ -214,32 +180,32 @@
 <section class="block" id="method">
   <div class="col">
     <h2>Method</h2>
-    <p>The harness takes the agent from a video to a delivered scene in five stages. The agent owns the physical hypotheses. The harness owns the observations, the rules and the grading.</p>
+    <p>Plumb organizes reconstruction into five stages. The agent proposes scene models and writes fitting code. The harness provides observations, controls the simulation protocol and evaluates submissions.</p>
     <ul>
-      <li><strong>Observe.</strong> A VLM inventories the scene, <a href="https://arxiv.org/abs/2511.16719" target="_blank" rel="noopener">SAM3</a> tracks each object, <a href="https://arxiv.org/abs/2507.13347" target="_blank" rel="noopener">Pi3X</a> recovers depth and the camera, and each object gets a primitive or mesh geometry and an initial state.</li>
+      <li><strong>Observe.</strong> A vision-language model (VLM) inventories the scene, <a href="https://arxiv.org/abs/2511.16719" target="_blank" rel="noopener">SAM3</a> produces object tracks, and <a href="https://github.com/yyfz/Pi3#introducing-pi3x-engineering-update" target="_blank" rel="noopener">Pi3X</a> estimates depth and camera parameters. These outputs initialize object geometry and state; missing observations can be requested during later rounds.</li>
       <li><strong>Hypothesize.</strong> The agent edits <code>scene.json</code>, declares the physical processes it expects, and states what the change should improve.</li>
-      <li><strong>Fit.</strong> In a sandbox with MuJoCo, the agent writes its own optimizer over exact local rollouts of the same integrator the evaluation uses.</li>
-      <li><strong>Evaluate.</strong> The harness compiles the candidate, runs it once over the whole video, renders it from the source camera and compares it with the SAM3 tracks. Feedback names the earliest window where it diverges, and when the candidate becomes the new best, an independent VLM review of its renders joins the feedback.</li>
-      <li><strong>Deliver.</strong> The most accurate evaluated candidate is delivered with its evidence, open questions and full history.</li>
+      <li><strong>Fit.</strong> In a sandbox with MuJoCo, the agent writes an optimizer using the same simulation backend as the harness evaluation.</li>
+      <li><strong>Evaluate.</strong> The harness compiles the candidate, simulates the full video interval from its initial state and compares the rendered output with the SAM3 tracks. Feedback identifies the earliest detected mismatch. New best candidates also receive a separate VLM review when the remaining budget permits.</li>
+      <li><strong>Deliver.</strong> The harness selects a candidate using replay checks and reconstruction metrics, and records its evaluation history and unresolved issues.</li>
     </ul>
   </div>
 
   <div class="wide flow" aria-label="Method: Observe, Hypothesize, Fit, Evaluate, Deliver, with an inner fitting loop and an outer evaluation loop">
     <div class="flow-stages">
       <section class="flow-stage obs">
-        <span class="n">01</span><h3>Observe</h3><p class="note">Build evidence from the video</p>
+        <span class="n">01</span><h3>Observe</h3><p class="note">Estimate tracks and geometry</p>
         <div class="chips"><a class="chip" href="#t-observe">VLM scene graph</a><a class="chip" href="#t-observe">SAM3</a><a class="chip" href="#t-observe">Pi3X</a><a class="chip" href="#t-observe">Primitives / SAM3D</a></div>
       </section>
       <section class="flow-stage agent">
-        <span class="n">02</span><h3>Hypothesize</h3><p class="note">Agent edits the scene and states a claim</p>
+        <span class="n">02</span><h3>Hypothesize</h3><p class="note">Propose a scene revision</p>
         <div class="chips"><a class="chip" href="#t-hypothesize">scene.json</a><a class="chip" href="#t-hypothesize">physics_models</a><a class="chip" href="#t-hypothesize">submit_proposal</a></div>
       </section>
       <section class="flow-stage agent">
-        <span class="n">03</span><h3>Fit</h3><p class="note">Agent's own experiments</p>
+        <span class="n">03</span><h3>Fit</h3><p class="note">Optimize scene parameters</p>
         <div class="chips"><a class="chip" href="#t-fit">sim-python</a><a class="chip" href="#t-fit">local_fit</a><a class="chip" href="#t-fit">simulate</a></div>
       </section>
       <section class="flow-stage eval">
-        <span class="n">04</span><h3>Evaluate</h3><p class="note">Independent, full video</p>
+        <span class="n">04</span><h3>Evaluate</h3><p class="note">Evaluate the full video interval</p>
         <div class="chips"><a class="chip" href="#t-evaluate">MuJoCo rollout</a><a class="chip" href="#t-evaluate">render + compare</a><a class="chip" href="#t-evaluate">checks</a><a class="chip" href="#t-evaluate">VLM review</a></div>
       </section>
       <section class="flow-stage eval">
@@ -254,8 +220,8 @@
   </div>
 
   <div class="col">
-    <p>The two loops are the core of the design. The inner loop is cheap and private: the agent can try any parameter search it likes. The outer loop is expensive and public: every candidate the agent submits is rerun from scratch by code the agent cannot touch, and only those results decide what gets delivered.</p>
-    <p>The panel below replays a real run on a video of a Newton's cradle. Initialization runs with no agent involved. Then each round shows why the agent made it, what it expected, and what came back: two requests for missing observations, four official evaluations, and the conclusion. Press play, or click any segment.</p>
+    <p>Fitting and evaluation form two loops. In the inner loop, the agent chooses an optimizer and runs local simulations. In the outer loop, the harness reruns each submitted scene from its initial state using evaluation code the agent cannot modify. Candidate selection uses these evaluation results. Both loops use observations from the input video, so this evaluates reconstruction fit rather than generalization to unseen motion.</p>
+    <p>The panel below follows one Newton's cradle reconstruction. Initialization uses a predefined sequence of model and tool calls. The proposal agent then makes two requests for missing observations, submits four candidates for evaluation and concludes the run. Each step shows its rationale, expected outcome and recorded result. Press play or select a segment to inspect the sequence.</p>
   </div>
 
   <!-- Interactive run timeline -->
@@ -293,7 +259,7 @@
 <section class="block" id="results">
   <div class="col">
     <h2>Results</h2>
-    <p>We test on 29 videos, drawn at random within each category: two per category from <a href="https://arxiv.org/abs/2106.08261" target="_blank" rel="noopener">Physion v1.5</a> and three per category from <a href="https://arxiv.org/abs/2604.09415" target="_blank" rel="noopener">PhysInOne</a>. Both datasets play slower than real time, so we retimed their videos to real-time speed.</p>
+    <p>We test on 29 videos, drawn at random within each category: two per category from <a href="https://arxiv.org/abs/2106.08261" target="_blank" rel="noopener">Physion v1.5</a> and three per category from <a href="https://arxiv.org/abs/2604.09415" target="_blank" rel="noopener">PhysInOne</a>. Both datasets play slower than real time, so we retimed their videos to real-time speed. <strong>Every experiment, for Plumb and for Codex alike, runs on the same model: GPT-6.1 Sol at high reasoning effort.</strong></p>
   </div>
 
   <div class="col" id="vs-codex">
@@ -492,5 +458,6 @@
 <script src="assets/site.js"></script>
 <script src="assets/walkthrough.js"></script>
 <script type="module" src="assets/replay.js"></script>
+<script type="module" src="assets/camviz.js"></script>
 </body>
 </html>

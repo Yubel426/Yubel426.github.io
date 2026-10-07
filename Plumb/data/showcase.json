@@ -21,6 +21,27 @@
   "sim_source": "16k-shadow re-render (rerender)"
  },
  {
+  "slug": "marble-run",
+  "name": "Domino marble run",
+  "frames": 500,
+  "fps": 50.0,
+  "aspect": 1.7778,
+  "delivered_round": "round-011",
+  "accepted": false,
+  "run": "round-109-marble-astra-max-10m-fast-bfdf0ae/runs/026184-marble-run",
+  "media": {
+   "source": "media/showcase/marble-run/source.mp4",
+   "sim": "media/showcase/marble-run/sim.mp4",
+   "thumb": "media/showcase/marble-run/thumb.jpg",
+   "source_poster": "media/showcase/marble-run/source.jpg",
+   "sim_poster": "media/showcase/marble-run/sim.jpg",
+   "blender": "media/showcase/marble-run/blender.mp4",
+   "blender_poster": "media/showcase/marble-run/blender.jpg"
+  },
+  "scene": "data/scene-marble-run.json",
+  "sim_source": "1280x720 render of round-011 (renders/)"
+ },
+ {
   "slug": "ball-train",
   "name": "Ball train",
   "frames": 100,

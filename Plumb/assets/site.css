@@ -135,13 +135,25 @@ h1 .name { font-weight: 600; }
 .btn[disabled] { opacity: .5; cursor: default; }
 .hero-text { max-width: var(--wide); }
 .tldr { margin: 28px 0 0; padding: 14px 20px; background: var(--surface); border-left: 3px solid var(--sim); font-size: 19px; line-height: 1.55; }
-.takeaways { margin: 18px 0 0; padding: 0 20px 0 23px; }
-.takeaways-label { margin: 0 0 8px; font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.takeaways ol { margin: 0; padding-left: 1.3em; font-size: 17px; line-height: 1.55; }
-.takeaways li + li { margin-top: 4px; }
+ol.tldr { padding: 14px 20px 14px 44px; }
+ol.tldr li + li { margin-top: 6px; }
 
 /* ---------- featured comparison ---------- */
 .featured { margin-top: 36px; }
+.demo-video { margin: 32px 0 0; }
+.demo-frame { position: relative; border-radius: 6px; overflow: hidden; background: #0b0f10; }
+.demo-frame video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #0b0f10; }
+.demo-frame::after { content: ""; position: absolute; inset: 0; background: rgba(6, 10, 12, .28); pointer-events: none; transition: opacity .2s; }
+.demo-frame.playing::after { opacity: 0; }
+.demo-play { position: absolute; left: 50%; top: 50%; z-index: 1; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 12px;
+  padding: 10px 22px 10px 10px; border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px; background: rgba(10, 16, 20, .72); color: #fff;
+  font: 600 17px/1 var(--body); cursor: pointer; backdrop-filter: blur(6px); box-shadow: 0 8px 28px rgba(0, 0, 0, .35); transition: transform .15s, background .15s; }
+.demo-play:hover, .demo-play:focus-visible { transform: translate(-50%, -50%) scale(1.04); background: rgba(10, 16, 20, .86); }
+.demo-play:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.demo-play-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #fff; }
+.demo-play-icon svg { width: 20px; height: 20px; margin-left: 3px; fill: #0b0f10; }
+.demo-play-time { font: 500 13px/1 var(--mono); opacity: .75; }
+.demo-frame.playing .demo-play { display: none; }
 .case-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 .case-tab {
   display: flex; align-items: center; gap: 10px; padding: 6px 12px 6px 6px; border: 1px solid var(--line);
@@ -173,15 +185,44 @@ h1 .name { font-weight: 600; }
 .search-chart { margin: 18px 0 0; padding: 14px 16px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .search-chart figcaption { font-size: 13.5px; color: var(--muted); }
 .search-chart figcaption b { margin-right: 8px; color: var(--ink); font-weight: 600; }
-.search-plot { margin-top: 6px; min-height: 230px; }
+.search-plot { margin-top: 6px; min-height: 270px; }
 .search-plot svg { display: block; max-width: 100%; height: auto; overflow: visible; }
 .search-plot text { fill: var(--muted); font: 500 11px var(--mono); }
 .search-plot text.note { fill: var(--ink); font-weight: 600; }
 .search-plot .grid { stroke: var(--line); stroke-width: 1; }
 .search-plot .best { stroke: var(--sim); stroke-width: 1.5; stroke-dasharray: 4 3; }
-.search-plot .dot { fill: var(--surface); stroke: var(--muted); stroke-width: 2; }
+.search-plot .explore { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; opacity: .55; }
+.search-plot .gap { stroke: var(--bad); stroke-width: 1.5; }
+.search-plot text.gap-l { fill: var(--bad); font-weight: 600; }
+.search-plot text.note.bad { fill: var(--bad); }
+.search-plot .dot { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
 .search-plot .dot.best-dot { fill: var(--sim); stroke: var(--surface); }
 .search-plot .dot.delivered { fill: var(--bad); stroke: var(--surface); }
+/* Motivation 01: domino count, video / Codex / Plumb */
+.countfig { margin: 8px 0 0; }
+.countfig a { display: block; cursor: zoom-in; }
+.countfig img { display: block; width: 100%; height: auto; border-radius: 4px; }
+/* Motivation 03: camera trajectory */
+.cam-traj { margin: 0; max-width: 560px; min-width: 0; padding: 12px 14px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); align-self: start; }
+.cam-traj .label { color: var(--ink); }
+.cam3d { max-width: none; }
+.cam3d-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.camviz { width: 100%; aspect-ratio: 16 / 9; background: #0b0f10; border-radius: 4px; overflow: hidden; color: #cfd6d8; font-size: 14px; }
+.camviz canvas { display: block; width: 100% !important; height: 100% !important; cursor: grab; }
+.cam-plot { display: flex; justify-content: center; }
+.cam-plot svg { display: block; max-width: 100%; height: auto; overflow: visible; }
+.cam-plot text { fill: var(--muted); font: 500 11px var(--mono); }
+.cam-plot text.note, .cam-plot text.tick-l { fill: var(--ink); font-weight: 600; }
+.cam-plot .grid { stroke: var(--line); stroke-width: 1; }
+.cam-plot .traj { fill: none; stroke: var(--sim); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.cam-plot .tick { fill: var(--surface); stroke: var(--sim); stroke-width: 2; }
+.cam-plot .dot.sim { fill: var(--sim); stroke: var(--surface); stroke-width: 2.5; }
+.cam-plot .codex-mark path { stroke: var(--bad); stroke-width: 3; stroke-linecap: round; }
+.cam-key { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+.cam-key span { display: inline-flex; align-items: center; gap: 6px; }
+.cam-key .sw { display: inline-block; width: 16px; height: 3px; border-radius: 2px; }
+.cam-key .sw.sim { background: var(--sim); } .cam-key .sw.bad { background: var(--bad); }
+.cam-readout { margin: 4px 0 0; min-height: 1.3em; font: 500 12px var(--mono); color: var(--ink); }
 /* numbers for the problems told in the text, in the same style as the cards above */
 .prob-n { margin-right: 10px; font: 600 12px/1 var(--mono); letter-spacing: .1em; color: var(--bad); vertical-align: 1px; }
 .principles { list-style: none; padding: 0; display: grid; gap: 14px; margin: 22px 0 26px; }
@@ -200,7 +241,7 @@ figure.ph-box { margin: 18px 0; }
 .errfig a { display: block; cursor: zoom-in; }
 .errfig video, .errfig img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #0b0f10; border-radius: 4px; }
 .errfig .label { font: 600 12px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; display: block; }
-.errfig .label.src { color: var(--src); } .errfig .label.bad { color: var(--bad); }
+.errfig .label.src { color: var(--src); } .errfig .label.bad { color: var(--bad); } .errfig .label.sim { color: var(--sim); }
 .errfig figcaption { margin-top: 6px; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
 .versus figcaption { margin-top: 6px; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
 .versus .label { font: 600 12px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; display: block; }
@@ -465,6 +506,7 @@ table.data td.num .sub { text-align: right; }
 /* showcase: input and simulation side by side, interactive scene below */
 .pair { --aspect: 1.7778; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .pair[data-n="2"], .pair[data-n="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pair[data-n="1"] { grid-template-columns: minmax(0, 1fr); }
 .pair figure { margin: 0; min-width: 0; }
 .pair .label, .replay-bar .label { display: block; margin-bottom: 6px; font: 600 12px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 .pair .label.src { color: var(--src); } .pair .label.sim, .replay-bar .label.sim { color: var(--sim); } .pair .label.bad { color: var(--bad); }

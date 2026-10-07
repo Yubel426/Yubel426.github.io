@@ -1,15 +1,18 @@
 // 3D replay of a delivered scene: recorded MuJoCo body poses per video frame, drawn with three.js.
 // Data: data/scene-<case>.json (built by scripts/build_scene_data.py). MuJoCo is z-up; quaternions are [w, x, y, z].
+// Optional `textures`: a GLB of the simulated bodies' meshes with video-baked textures, one node per geom name,
+// in the geom's own frame (z-up); those meshes replace the flat-colored primitives.
 const $ = id => document.getElementById(id);
 const mount = $('replay-mount'), loadBtn = $('replay-load'), status = $('replay-status');
 const playBtn = $('replay-play'), slider = $('replay-frame'), clockOut = $('replay-clock'), viewBtn = $('replay-view');
 const poster = $('replay-poster');
 const leadVideo = $('show-src');   // the showcase input video; the replay follows its clock while both play
 
-let THREE = null, OrbitControls = null;
+let THREE = null, OrbitControls = null, GLTFLoader = null;
 let renderer, scene, camera, controls, sourceCam = null, root = null;
 let data = null, bodies = new Map(), frame = 0, playing = false, last = 0, acc = 0, useSource = false;
 let currentCase = null, starting = null, visible = false;
+let geomMeshes = new Map(), loadToken = 0;
 
 // The showcase tabs (site.js) announce the selected case; the scene loads once it is on screen.
 window.addEventListener('showcase:select', e => {
@@ -38,6 +41,7 @@ async function start() {
     try {
       THREE = await import('three');
       ({ OrbitControls } = await import('three/addons/controls/OrbitControls.js'));
+      ({ GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js'));
       setup();
       await loadCase(currentCase);
     } catch (err) { fail(err); } finally { starting = null; }
@@ -82,22 +86,49 @@ function resize() {
 async function loadCase(id) {
   setPlaying(false);
   status && (status.textContent = 'Loading scene…');
+  const token = ++loadToken;
   const r = await fetch(`data/scene-${id}.json`);
   if (!r.ok) throw new Error(`scene-${id}.json: ${r.status}`);
-  data = await r.json();
-  if (root) scene.remove(root);
-  root = new THREE.Group(); bodies = new Map();
-  scene.add(root);
-  for (const b of data.bodies || []) {
+  const next = await r.json();
+  if (token !== loadToken) return;   // another case was selected meanwhile
+  // Fetch the baked textures while the primitives are built; the scene is shown only once they
+  // are in place (or have failed), so it never flashes flat colors first.
+  const textures = next.textures
+    ? new GLTFLoader().loadAsync(next.textures).catch(err => { console.warn('textures', err); return null; })
+    : null;
+  const nextRoot = new THREE.Group(), nextBodies = new Map();
+  geomMeshes = new Map();
+  for (const b of next.bodies || []) {
     const g = new THREE.Group(); g.name = b.name;
     placeStatic(g, b);
     for (const geom of b.geoms || []) { const m = mesh(geom); if (m) g.add(m); }
-    root.add(g); bodies.set(b.name, g);
+    nextRoot.add(g); nextBodies.set(b.name, g);
   }
+  const gltf = textures ? await textures : null;
+  if (token !== loadToken) return;
+  if (gltf) applyTextures(gltf);
+  data = next;
+  if (root) scene.remove(root);
+  root = nextRoot; bodies = nextBodies;
+  scene.add(root);
   slider.max = String(Math.max(0, (data.frames || 1) - 1));
   frameCamera();
   setFrame(0);
   setPlaying(true);
+}
+
+function applyTextures(gltf) {
+  // Swap each textured geom's flat primitive for its baked mesh; the body Group keeps driving the pose.
+  gltf.scene.traverse(o => {
+    if (!o.isMesh) return;
+    const target = geomMeshes.get(o.name);
+    if (!target) return;
+    const map = o.material && o.material.map;
+    if (map) { map.colorSpace = THREE.SRGBColorSpace; renderer.initTexture(map); }   // upload before first draw
+    target.geometry.dispose();
+    target.geometry = o.geometry;
+    target.material = new THREE.MeshStandardMaterial({ map: map || null, roughness: 0.65, metalness: 0.05 });
+  });
 }
 
 function placeStatic(g, b) {
@@ -135,6 +166,7 @@ function mesh(geom) {
     default: return null;
   }
   const m = new THREE.Mesh(geo, material(geom.rgba));
+  if (geom.name) { m.name = geom.name; geomMeshes.set(THREE.PropertyBinding.sanitizeNodeName(geom.name), m); }
   if (geom.pos) m.position.set(geom.pos[0], geom.pos[1], geom.pos[2]);
   if (geom.quat) m.quaternion.set(geom.quat[1], geom.quat[2], geom.quat[3], geom.quat[0]);
   m.castShadow = geom.type !== 'plane';
@@ -147,10 +179,29 @@ function frameCamera() {
   const box = new THREE.Box3();
   const moving = Object.keys(data.poses || {}).map(n => bodies.get(n)).filter(Boolean);
   if (moving.length) {
+    // A body that falls out of the scene (the Newton's cradle's released fingertip has nothing under it and drops
+    // tens of metres) would stretch the framing far past the scene; skip poses more than the scene's own size
+    // below its lowest point at frame 0.
+    const g0 = data.gravity && Math.hypot(...data.gravity) > 0 ? data.gravity : [0, 0, -1];
+    const up = new THREE.Vector3(-g0[0], -g0[1], -g0[2]).normalize();
+    setFrame(0);
+    const start = new THREE.Box3();
+    root.traverse(o => { if (o.isMesh && o.geometry.type !== 'PlaneGeometry') { o.updateMatrixWorld(true); start.expandByObject(o); } });
+    let floor = -Infinity;
+    if (!start.isEmpty()) {
+      floor = Infinity;
+      for (const x of [start.min.x, start.max.x]) for (const y of [start.min.y, start.max.y]) for (const z of [start.min.z, start.max.z])
+        floor = Math.min(floor, up.dot(new THREE.Vector3(x, y, z)));
+      floor -= start.getSize(new THREE.Vector3()).length();
+    }
     const n = data.frames || 1;
     for (const f of [0, Math.floor(n / 3), Math.floor((2 * n) / 3), n - 1]) {
       setFrame(f);
-      moving.forEach(g => { g.updateMatrixWorld(true); box.expandByObject(g); });
+      moving.forEach(g => {
+        g.updateMatrixWorld(true);
+        const b = new THREE.Box3().setFromObject(g);
+        if (!b.isEmpty() && up.dot(b.getCenter(new THREE.Vector3())) >= floor) box.union(b);
+      });
     }
     setFrame(0);
   }
