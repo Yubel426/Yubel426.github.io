@@ -13,12 +13,12 @@ If we can rebuild a real scene in simulation, physically correct, we can tell wh
 Here, a coding agent watches a Newton's cradle and refines a model to match it.
 
 4
-00:00:16.400 --> 00:00:19.810
-Its first passive model is off by sixty-five pixels.
+00:00:16.200 --> 00:00:20.441
+SAM3 tracks each ball, and Pi3X lifts the scene into 3D.
 
 5
-00:00:20.400 --> 00:00:23.947
-Sweeping the contact stiffness cuts that error by more than half.
+00:00:20.900 --> 00:00:24.310
+Its first passive model is off by sixty-five pixels.
 
 6
 00:00:24.900 --> 00:00:28.834
