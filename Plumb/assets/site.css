@@ -263,6 +263,11 @@ a.chip:hover { background: var(--sim-soft); color: var(--sim); }
 .flow-stage + .flow-stage::before {
   content: ""; position: absolute; left: -10px; top: 24px; width: 10px; height: 2px; background: var(--muted);
 }
+/* a toolkit, not a pipeline: four groups, no arrows between them */
+.flow-stages.toolkit { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.flow-stages.toolkit .flow-stage h3 { margin-top: 0; }
+.flow-stages.toolkit .flow-stage + .flow-stage::before { content: none; }
+@media (max-width: 760px) { .flow-stages.toolkit { grid-template-columns: minmax(0, 1fr); } }
 .flow-loops { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
 .loop { grid-row: 1; padding: 6px 10px; border: 1.5px dashed var(--line); border-top: 0; border-radius: 0 0 10px 10px; font: 500 12px/1.4 var(--mono); color: var(--muted); text-align: center; }
 .loop b { color: var(--ink); font-weight: 600; }
@@ -448,6 +453,9 @@ table.data tfoot td { color: var(--muted); font-size: 12.5px; border-bottom: 0; 
 
 /* ---------- gallery ---------- */
 .gallery-viewer { margin: 14px 0 8px; }
+#gal-sv-pair { --aspect: 1; margin-top: 14px; }   /* the second-view renders are square */
+#gal-sv-pair[hidden] { display: none; }
+.sv-readout { margin: 8px 0 0; min-height: 1.3em; font: 500 12px/1.5 var(--mono); color: var(--muted); }
 .gal-cap { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
 
 /* ---------- references / citation ---------- */
@@ -513,6 +521,9 @@ table.data td.num .sub { text-align: right; }
 .pair video { width: 100%; aspect-ratio: var(--aspect); object-fit: contain; background: #0b0f10; border-radius: 4px; cursor: pointer; }
 #featured .replay { margin-top: 14px; }
 @media (max-width: 720px) { .pair, .pair[data-n="2"], .pair[data-n="4"] { grid-template-columns: minmax(0, 1fr); } }
-#featured .case-tabs, #gallery .case-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 76px), 1fr)); gap: 8px; }
+#gallery .case-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 76px), 1fr)); gap: 8px; }
+/* the showcase's examples in two rows of equal length (site.js sets --cols to half the case count) */
+#featured .case-tabs { display: grid; grid-template-columns: repeat(var(--cols, 7), minmax(0, 1fr)); gap: 8px; }
 #featured .case-tab, #gallery .case-tab { flex-direction: column; align-items: stretch; padding: 4px; }
 #featured .case-tab img, #gallery .case-tab img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+@media (max-width: 520px) { #featured .case-tabs { gap: 4px; } #featured .case-tab { padding: 2px; } }

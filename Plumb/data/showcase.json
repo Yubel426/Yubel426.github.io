@@ -5,9 +5,11 @@
   "frames": 76,
   "fps": 30.0,
   "aspect": 1.7778,
-  "delivered_round": "round-009",
-  "accepted": false,
-  "run": "round-97-free-motion7-astra-max-10m-fast-03ba847/runs/028965-elastic-motion-free",
+  "batch": "showcase9_skill_v10_astra_xhigh_20261017",
+  "job": "004_free_motion_028965-elastic-motion-free",
+  "skill": "v10",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/showcase9_skill_v10_astra_xhigh_20261017/jobs/004_free_motion_028965-elastic-motion-free/attempts/001/work",
   "media": {
    "source": "media/showcase/elastic/source.mp4",
    "sim": "media/showcase/elastic/sim.mp4",
@@ -18,7 +20,8 @@
    "blender_poster": "media/showcase/elastic/blender.jpg"
   },
   "scene": "data/scene-elastic.json",
-  "sim_source": "16k-shadow re-render (rerender)"
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "showcase9_skill_v10_astra_xhigh_20261017/blender-render/004_free_motion_028965-elastic-motion-free/render.mp4"
  },
  {
   "slug": "marble-run",
@@ -26,9 +29,11 @@
   "frames": 500,
   "fps": 50.0,
   "aspect": 1.7778,
-  "delivered_round": "round-011",
-  "accepted": false,
-  "run": "round-109-marble-astra-max-10m-fast-bfdf0ae/runs/026184-marble-run",
+  "batch": "crowd2_skill_v10.2_astra_xhigh_20261020",
+  "job": "001_free_motion_026184-marble-run",
+  "skill": "v10.2",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/crowd2_skill_v10.2_astra_xhigh_20261020/jobs/001_free_motion_026184-marble-run/attempts/001/work",
   "media": {
    "source": "media/showcase/marble-run/source.mp4",
    "sim": "media/showcase/marble-run/sim.mp4",
@@ -39,7 +44,32 @@
    "blender_poster": "media/showcase/marble-run/blender.jpg"
   },
   "scene": "data/scene-marble-run.json",
-  "sim_source": "1280x720 render of round-011 (renders/)"
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "crowd2_skill_v10.2_astra_xhigh_20261020/blender-render/001_free_motion_026184-marble-run/render.mp4"
+ },
+ {
+  "slug": "domino-spiral",
+  "name": "Domino spiral",
+  "frames": 250,
+  "fps": 30.0,
+  "aspect": 1.7778,
+  "batch": "crowd2_skill_v10.2_astra_xhigh_20261020",
+  "job": "002_free_motion_069370-domino",
+  "skill": "v10.2",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/crowd2_skill_v10.2_astra_xhigh_20261020/jobs/002_free_motion_069370-domino/attempts/001/work",
+  "media": {
+   "source": "media/showcase/domino-spiral/source.mp4",
+   "sim": "media/showcase/domino-spiral/sim.mp4",
+   "thumb": "media/showcase/domino-spiral/thumb.jpg",
+   "source_poster": "media/showcase/domino-spiral/source.jpg",
+   "sim_poster": "media/showcase/domino-spiral/sim.jpg",
+   "blender": "media/showcase/domino-spiral/blender.mp4",
+   "blender_poster": "media/showcase/domino-spiral/blender.jpg"
+  },
+  "scene": "data/scene-domino-spiral.json",
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "crowd2_skill_v10.2_astra_xhigh_20261020/blender-render/002_free_motion_069370-domino/render.mp4"
  },
  {
   "slug": "ball-train",
@@ -47,9 +77,11 @@
   "frames": 100,
   "fps": 30.0,
   "aspect": 1.7778,
-  "delivered_round": "round-001",
-  "accepted": false,
-  "run": "round-98-free-motion-new3-astra-max-10m-fast-03ba847/runs/v2_PhysicsIQ_0029_ball_train_original_3840x2160_30fps",
+  "batch": "showcase9_skill_v10_astra_xhigh_20261017",
+  "job": "009_free_motion_v2_PhysicsIQ_0029_ball_train_original_3840x2160_30fps",
+  "skill": "v10",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/showcase9_skill_v10_astra_xhigh_20261017/jobs/009_free_motion_v2_PhysicsIQ_0029_ball_train_original_3840x2160_30fps/attempts/001/work",
   "media": {
    "source": "media/showcase/ball-train/source.mp4",
    "sim": "media/showcase/ball-train/sim.mp4",
@@ -60,7 +92,8 @@
    "blender_poster": "media/showcase/ball-train/blender.jpg"
   },
   "scene": "data/scene-ball-train.json",
-  "sim_source": "16k-shadow re-render (rerender-shadow16k)"
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "showcase9_skill_v10_astra_xhigh_20261017/blender-render/009_free_motion_v2_PhysicsIQ_0029_ball_train_original_3840x2160_30fps/render.mp4"
  },
  {
   "slug": "bowling-chain",
@@ -68,9 +101,11 @@
   "frames": 61,
   "fps": 30.0,
   "aspect": 1.3333,
-  "delivered_round": "round-006",
-  "accepted": false,
-  "run": "round-98-free-motion-new3-astra-max-10m-fast-03ba847/runs/05_bowling_chain_640x480_PREVIEW_30fps_CAPTURE_FPS_UNKNOWN",
+  "batch": "showcase9_skill_v10_astra_xhigh_20261017",
+  "job": "007_free_motion_05_bowling_chain_640x480_PREVIEW_30fps_CAPTURE_FPS_UNKNOWN",
+  "skill": "v10",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/showcase9_skill_v10_astra_xhigh_20261017/jobs/007_free_motion_05_bowling_chain_640x480_PREVIEW_30fps_CAPTURE_FPS_UNKNOWN/attempts/001/work",
   "media": {
    "source": "media/showcase/bowling-chain/source.mp4",
    "sim": "media/showcase/bowling-chain/sim.mp4",
@@ -81,7 +116,8 @@
    "blender_poster": "media/showcase/bowling-chain/blender.jpg"
   },
   "scene": "data/scene-bowling-chain.json",
-  "sim_source": "16k-shadow re-render (rerender-shadow16k)"
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "showcase9_skill_v10_astra_xhigh_20261017/blender-render/007_free_motion_05_bowling_chain_640x480_PREVIEW_30fps_CAPTURE_FPS_UNKNOWN/render.mp4"
  },
  {
   "slug": "cup-pyramid",
@@ -89,9 +125,11 @@
   "frames": 195,
   "fps": 60.0,
   "aspect": 1.7778,
-  "delivered_round": "round-008",
-  "accepted": false,
-  "run": "round-98-free-motion-new3-astra-max-10m-fast-03ba847/runs/tabletop_03_cup_pyramid_collapse",
+  "batch": "showcase9_skill_v10_astra_xhigh_20261017",
+  "job": "008_free_motion_tabletop_03_cup_pyramid_collapse",
+  "skill": "v10",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/showcase9_skill_v10_astra_xhigh_20261017/jobs/008_free_motion_tabletop_03_cup_pyramid_collapse/attempts/001/work",
   "media": {
    "source": "media/showcase/cup-pyramid/source.mp4",
    "sim": "media/showcase/cup-pyramid/sim.mp4",
@@ -102,7 +140,8 @@
    "blender_poster": "media/showcase/cup-pyramid/blender.jpg"
   },
   "scene": "data/scene-cup-pyramid.json",
-  "sim_source": "16k-shadow re-render (rerender-shadow16k)"
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "showcase9_skill_v10_astra_xhigh_20261017/blender-render/008_free_motion_tabletop_03_cup_pyramid_collapse/render.mp4"
  },
  {
   "slug": "pendulum",
@@ -110,9 +149,11 @@
   "frames": 112,
   "fps": 30.0,
   "aspect": 1.7778,
-  "delivered_round": "round-006",
-  "accepted": false,
-  "run": "round-76-free-motion7-fast-cam-9804ae8/runs/054708-pendulum-free",
+  "batch": "showcase9_skill_v10_astra_xhigh_20261017",
+  "job": "006_free_motion_054708-pendulum-free",
+  "skill": "v10",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/showcase9_skill_v10_astra_xhigh_20261017/jobs/006_free_motion_054708-pendulum-free/attempts/001/work",
   "media": {
    "source": "media/showcase/pendulum/source.mp4",
    "sim": "media/showcase/pendulum/sim.mp4",
@@ -123,7 +164,8 @@
    "blender_poster": "media/showcase/pendulum/blender.jpg"
   },
   "scene": "data/scene-pendulum.json",
-  "sim_source": "16k-shadow re-render (rerender)"
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "showcase9_skill_v10_astra_xhigh_20261017/blender-render/006_free_motion_054708-pendulum-free/render.mp4"
  },
  {
   "slug": "billiards",
@@ -131,9 +173,11 @@
   "frames": 118,
   "fps": 29.97,
   "aspect": 1.7778,
-  "delivered_round": "round-006",
-  "accepted": false,
-  "run": "round-97-free-motion7-astra-max-10m-fast-03ba847/runs/004971-billiards-chain-collision",
+  "batch": "billiards_skill_v10.1_astra_xhigh_20261019",
+  "job": "002_free_motion_004971-billiards-chain-collision",
+  "skill": "v10.1",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/billiards_skill_v10.1_astra_xhigh_20261019/jobs/002_free_motion_004971-billiards-chain-collision/attempts/001/work",
   "media": {
    "source": "media/showcase/billiards/source.mp4",
    "sim": "media/showcase/billiards/sim.mp4",
@@ -144,7 +188,8 @@
    "blender_poster": "media/showcase/billiards/blender.jpg"
   },
   "scene": "data/scene-billiards.json",
-  "sim_source": "16k-shadow re-render (rerender-shadow16k)"
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "billiards_skill_v10.1_astra_xhigh_20261019/blender-render/002_free_motion_004971-billiards-chain-collision/render.mp4"
  },
  {
   "slug": "rotation",
@@ -152,9 +197,11 @@
   "frames": 250,
   "fps": 30.0,
   "aspect": 1.7778,
-  "delivered_round": "round-006",
-  "accepted": true,
-  "run": "round-76-free-motion7-fast-cam-9804ae8/runs/035759-rotation",
+  "batch": "coin_skill_v10.1_astra_xhigh_20261019",
+  "job": "005_free_motion_035759-rotation",
+  "skill": "v10.1",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/coin_skill_v10.1_astra_xhigh_20261019/jobs/005_free_motion_035759-rotation/attempts/001/work",
   "media": {
    "source": "media/showcase/rotation/source.mp4",
    "sim": "media/showcase/rotation/sim.mp4",
@@ -165,7 +212,8 @@
    "blender_poster": "media/showcase/rotation/blender.jpg"
   },
   "scene": "data/scene-rotation.json",
-  "sim_source": "16k-shadow re-render (rerender)"
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "coin_skill_v10.1_astra_xhigh_20261019/blender-render/005_free_motion_035759-rotation/render.mp4"
  },
  {
   "slug": "elastic-ball",
@@ -173,9 +221,11 @@
   "frames": 91,
   "fps": 29.97,
   "aspect": 1.7778,
-  "delivered_round": "round-006",
-  "accepted": false,
-  "run": "round-76-free-motion7-fast-cam-9804ae8/runs/000974-elastic-motion-free",
+  "batch": "showcase9_skill_v10_astra_xhigh_20261017",
+  "job": "001_free_motion_000974-elastic-motion-free",
+  "skill": "v10",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/showcase9_skill_v10_astra_xhigh_20261017/jobs/001_free_motion_000974-elastic-motion-free/attempts/001/work",
   "media": {
    "source": "media/showcase/elastic-ball/source.mp4",
    "sim": "media/showcase/elastic-ball/sim.mp4",
@@ -186,6 +236,103 @@
    "blender_poster": "media/showcase/elastic-ball/blender.jpg"
   },
   "scene": "data/scene-elastic-ball.json",
-  "sim_source": "16k-shadow re-render (rerender)"
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "showcase9_skill_v10_astra_xhigh_20261017/blender-render/001_free_motion_000974-elastic-motion-free/render.mp4"
+ },
+ {
+  "slug": "clock-rod",
+  "name": "Spinning clock rod",
+  "frames": 184,
+  "fps": 24.0,
+  "aspect": 1.7778,
+  "batch": "real8_skill_v10.1_astra_xhigh_20261019",
+  "job": "001_free_motion_gt-0",
+  "skill": "v10.1",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/real8_skill_v10.1_astra_xhigh_20261019/jobs/001_free_motion_gt-0/attempts/001/work",
+  "media": {
+   "source": "media/showcase/clock-rod/source.mp4",
+   "sim": "media/showcase/clock-rod/sim.mp4",
+   "thumb": "media/showcase/clock-rod/thumb.jpg",
+   "source_poster": "media/showcase/clock-rod/source.jpg",
+   "sim_poster": "media/showcase/clock-rod/sim.jpg",
+   "blender": "media/showcase/clock-rod/blender.mp4",
+   "blender_poster": "media/showcase/clock-rod/blender.jpg"
+  },
+  "scene": "data/scene-clock-rod.json",
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "real8_skill_v10.1_astra_xhigh_20261019/blender-render/001_free_motion_gt-0/render.mp4"
+ },
+ {
+  "slug": "hoop-net",
+  "name": "Ball through the net",
+  "frames": 95,
+  "fps": 25.0,
+  "aspect": 1.8935,
+  "batch": "real8_skill_v10.1_astra_xhigh_20261019",
+  "job": "003_free_motion_gt-2",
+  "skill": "v10.1",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/real8_skill_v10.1_astra_xhigh_20261019/jobs/003_free_motion_gt-2/attempts/001/work",
+  "media": {
+   "source": "media/showcase/hoop-net/source.mp4",
+   "sim": "media/showcase/hoop-net/sim.mp4",
+   "thumb": "media/showcase/hoop-net/thumb.jpg",
+   "source_poster": "media/showcase/hoop-net/source.jpg",
+   "sim_poster": "media/showcase/hoop-net/sim.jpg",
+   "blender": "media/showcase/hoop-net/blender.mp4",
+   "blender_poster": "media/showcase/hoop-net/blender.jpg"
+  },
+  "scene": "data/scene-hoop-net.json",
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "real8_skill_v10.1_astra_xhigh_20261019/blender-render/003_free_motion_gt-2/render.mp4"
+ },
+ {
+  "slug": "slope-release",
+  "name": "Release on a slope",
+  "frames": 47,
+  "fps": 30.0,
+  "aspect": 1.7778,
+  "batch": "real8_skill_v10.1_astra_xhigh_20261019",
+  "job": "005_free_motion_gt-4",
+  "skill": "v10.1",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/real8_skill_v10.1_astra_xhigh_20261019/jobs/005_free_motion_gt-4/attempts/001/work",
+  "media": {
+   "source": "media/showcase/slope-release/source.mp4",
+   "sim": "media/showcase/slope-release/sim.mp4",
+   "thumb": "media/showcase/slope-release/thumb.jpg",
+   "source_poster": "media/showcase/slope-release/source.jpg",
+   "sim_poster": "media/showcase/slope-release/sim.jpg",
+   "blender": "media/showcase/slope-release/blender.mp4",
+   "blender_poster": "media/showcase/slope-release/blender.jpg"
+  },
+  "scene": "data/scene-slope-release.json",
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "real8_skill_v10.1_astra_xhigh_20261019/blender-render/005_free_motion_gt-4/render.mp4"
+ },
+ {
+  "slug": "turntable-dominoes",
+  "name": "Turntable and dominoes",
+  "frames": 240,
+  "fps": 30.0,
+  "aspect": 1.7778,
+  "batch": "real8_skill_v10.1_astra_xhigh_20261019",
+  "job": "006_free_motion_gt-5",
+  "skill": "v10.1",
+  "model": "gpt-6-astra / xhigh",
+  "run": "/home/share/xiaoqian/codex_test/real8_skill_v10.1_astra_xhigh_20261019/jobs/006_free_motion_gt-5/attempts/001/work",
+  "media": {
+   "source": "media/showcase/turntable-dominoes/source.mp4",
+   "sim": "media/showcase/turntable-dominoes/sim.mp4",
+   "thumb": "media/showcase/turntable-dominoes/thumb.jpg",
+   "source_poster": "media/showcase/turntable-dominoes/source.jpg",
+   "sim_poster": "media/showcase/turntable-dominoes/sim.jpg",
+   "blender": "media/showcase/turntable-dominoes/blender.mp4",
+   "blender_poster": "media/showcase/turntable-dominoes/blender.jpg"
+  },
+  "scene": "data/scene-turntable-dominoes.json",
+  "sim_source": "delivered preview.mp4 (MuJoCo, the agent's render on the input's frame times)",
+  "blender_source": "real8_skill_v10.1_astra_xhigh_20261019/blender-render/006_free_motion_gt-5/render.mp4"
  }
 ]

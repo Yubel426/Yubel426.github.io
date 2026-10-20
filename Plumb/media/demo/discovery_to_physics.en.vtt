@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:04.103
+Plumb: an agent harness for inverse physics of dynamic scenes.
+
+2
+00:00:04.600 --> 00:00:10.514
+If we can rebuild a real scene in simulation, physically correct, we can tell whether the top will stop.
+
+3
+00:00:10.900 --> 00:00:15.676
+Here, a coding agent watches a Newton's cradle and refines a model to match it.
+
+4
+00:00:16.400 --> 00:00:19.810
+Its first passive model is off by sixty-five pixels.
+
+5
+00:00:20.400 --> 00:00:23.947
+Sweeping the contact stiffness cuts that error by more than half.
+
+6
+00:00:24.900 --> 00:00:28.834
+Then it measures the string anchors, and fits seven parameters at once.
+
+7
+00:00:29.400 --> 00:00:32.965
+The refined simulation has seventy-three percent less error.
+
+8
+00:00:34.400 --> 00:00:37.527
+Next, a ball rolls into a pyramid of fifteen cups.
+
+9
+00:00:37.800 --> 00:00:42.426
+Rebuilt in the simulator, the same moment can be slowed down, paused, and measured.
+
+10
+00:00:43.100 --> 00:00:46.258
+The ball strikes at zero point seven three meters per second.
+
+11
+00:00:47.300 --> 00:00:51.083
+Its momentum passes into the cups, and the pyramid comes down.
+
+12
+00:00:53.800 --> 00:00:57.528
+The agent estimates every parameter, from masses to friction.
+
+13
+00:00:59.400 --> 00:01:05.987
+Outdoors, from a single shot, it recovers the release velocity: seven point eight nine meters per second.
+
+14
+00:01:06.300 --> 00:01:10.513
+The simulation carries the ball along its arc, under gravity, to the rim.
+
+15
+00:01:11.000 --> 00:01:14.769
+There, its speed, restitution and mass decide how it bounces.
+
+16
+00:01:17.800 --> 00:01:21.911
+From the original camera, the simulated shot lines up with the real one.
+
+17
+00:01:23.800 --> 00:01:27.229
+So, will the top stop? The rebuilt simulation says it will.
+
+18
+00:01:28.300 --> 00:01:29.401
+Thanks for watching.

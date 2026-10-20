@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=2">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -26,19 +26,18 @@
   <a href="#top">Overview</a>
   <a href="#motivation">Motivation</a>
   <a href="#method">Method</a>
-  <a class="sub" href="#walkthrough">One run, step by step</a>
   <a href="#results">Results</a>
   <a class="sub" href="#vs-codex">Comparison with Codex</a>
-  <a class="sub" href="#more-rounds">More rounds</a>
+  <!-- <a class="sub" href="#more-rounds">More rounds</a> -->
+  <!-- Tools is hidden for now.
   <div class="toc-row"><a href="#tools">Tools</a><button type="button" class="toc-toggle" aria-expanded="false" aria-controls="toc-tools" aria-label="Show the tools"></button></div>
   <div class="toc-group" id="toc-tools" hidden>
-    <a class="sub" href="#t-runtime">Runtime</a>
-    <a class="sub" href="#t-observe">Observe</a>
-    <a class="sub" href="#t-hypothesize">Hypothesize</a>
-    <a class="sub" href="#t-fit">Fit</a>
-    <a class="sub" href="#t-evaluate">Evaluate</a>
-    <a class="sub" href="#t-deliver">Deliver</a>
+    <a class="sub" href="#t-models">Foundation models</a>
+    <a class="sub" href="#t-measure">Measurements</a>
+    <a class="sub" href="#t-check">Simulation checks</a>
+    <a class="sub" href="#t-deliver">Delivery</a>
   </div>
+  -->
   <a href="#whats-next">What's next</a>
   <!-- <a href="#related-work">Related work</a> -->
   <a href="#citation">Citation</a>
@@ -56,19 +55,20 @@
       <a class="btn" href="#" aria-disabled="true" title="Repository link to be added"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code <span class="ph" style="color:inherit">[link]</span></a>
     </p>
     <ol class="tldr">
-      <li>Plumb helps a coding agent reconstruct a dynamic scene from video as an <strong>executable MuJoCo model</strong>.</li>
-      <li>Segmentation and 3D reconstruction models estimate object tracks, camera poses, depth and geometry for the agent to use in fitting.</li>
-      <li>The harness evaluates submitted scenes under a common protocol and selects the final reconstruction from the evaluated candidates.</li>
+      <li>Frontier large language models already understand rigid-body motion fairly well.</li>
+      <li>A coding agent can match the input image but still gets geometry, camera and 3D layout wrong.</li>
+      <li>Plumb uses 3D tools such as Pi3X to help a coding agent reconstruct a dynamic scene from video as an executable MuJoCo model.</li>
     </ol>
   </div>
 
   <figure class="demo-video wide" id="demo">
     <div class="demo-frame">
-      <video id="demo-video" src="media/demo/discovery_to_physics.mp4?v=7" poster="media/demo/discovery_to_physics.jpg?v=3" muted playsinline preload="none"
-        aria-label="Overview: reconstructing a Newton's cradle from video, a ball striking a stack of cups, and a basketball shot"></video>
-      <button type="button" class="demo-play" id="demo-play" aria-label="Watch the overview video, 1 minute 38 seconds">
+      <video id="demo-video" src="media/demo/discovery_to_physics.mp4?v=10" poster="media/demo/discovery_to_physics.jpg?v=4" muted playsinline preload="none"
+        aria-label="Overview: reconstructing a Newton's cradle from video, a ball striking a stack of cups, and a basketball shot">
+        <track kind="captions" src="media/demo/discovery_to_physics.en.vtt?v=1" srclang="en" label="English"></video>
+      <button type="button" class="demo-play" id="demo-play" aria-label="Watch the overview video with narration, 1 minute 31 seconds">
         <span class="demo-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-        <span class="demo-play-text">Watch</span><span class="demo-play-time">1:38</span>
+        <span class="demo-play-text">Watch</span><span class="demo-play-time">1:31</span>
       </button>
     </div>
   </figure>
@@ -117,8 +117,7 @@
 <section class="block" id="motivation">
   <div class="col">
     <h2>Motivation</h2>
-    <p>Can a coding agent reconstruct a physical event from video as a simulation? This requires choosing objects, geometry, physical parameters and an initial state whose simulated motion agrees with the observations. An executable scene also lets us test changes, such as a heavier ball or a steeper ramp. Whether those predictions describe the real scene depends on how well its physical properties are constrained by the video.</p>
-    <p>We gave <a href="https://github.com/openai/codex" target="_blank" rel="noopener">Codex</a> a <a href="https://mujoco.org/" target="_blank" rel="noopener">MuJoCo</a> environment and asked it to reconstruct synthetic and real-world videos. Inspecting the resulting scenes and fitting scripts revealed errors in geometry, camera estimation, physical modeling and candidate selection. The examples below motivated the design of Plumb.</p>
+    <p>Can a coding agent reconstruct a physical event from video as a simulation? This requires choosing objects, geometry, physical parameters and an initial state whose simulated motion agrees with the observations. We gave <a href="https://github.com/openai/codex" target="_blank" rel="noopener">Codex</a> a <a href="https://mujoco.org/" target="_blank" rel="noopener">MuJoCo</a> environment and asked it to reconstruct synthetic and real-world videos. Inspecting the resulting scenes and fitting scripts revealed errors in object counts, camera motion and the 3D layout of the scene.</p>
   </div>
 
   <div class="col" id="geometry">
@@ -126,132 +125,97 @@
   </div>
   <div class="wide">
     <figure class="countfig" aria-label="The same ramp in the video, in Codex's scene and in Plumb's scene">
-      <a href="media/versus/026184/count.jpg?v=5" target="_blank" rel="noopener" title="Open full size"><img src="media/versus/026184/count.jpg?v=5" alt="One ramp of the marble run: 14 dominoes in the video, 21 in Codex's scene, 14 in Plumb's scene" loading="lazy" width="1280" height="840"></a>
+      <a href="media/versus/026184/count.jpg?v=7" target="_blank" rel="noopener" title="Open full size"><img src="media/versus/026184/count.jpg?v=7" alt="One ramp of the marble run: 14 dominoes in the video, 21 in Codex's scene, 14 in Plumb's scene" loading="lazy" width="1280" height="840"></a>
     </figure>
   </div>
 
   <div class="col" id="camera-fit">
-    <p style="margin-top:28px"><span class="prob-n">02</span><strong>Camera motion.</strong> In this billiards video, the handheld camera moves near the end of the clip. Codex used a fixed camera throughout, while Plumb estimated a camera pose for each frame. A fixed-camera model attributes this image motion to the objects or leaves it unexplained.</p>
+    <p style="margin-top:28px"><span class="prob-n">02</span><strong>Camera motion.</strong> In this billiards video, the handheld camera moves slightly near the end of the clip. Codex does not capture such small camera motion and renders the whole video from one fixed camera. Plumb estimates a camera pose for each frame and follows the motion.</p>
   </div>
   <div class="wide">
-    <figure class="cam-traj cam3d" id="camera-chart">
-      <div class="cam3d-head">
-        <span class="label">Estimated camera motion</span>
-        <button class="icon-btn" type="button" id="camviz-scale" aria-pressed="true" disabled>Rotation shown 10×</button>
-      </div>
-      <div class="camviz" id="camviz" role="img" aria-label="The billiards scene with two camera frustums at the same spot. Codex's red camera never moves. Plumb's blue camera turns right and up late in the clip, and the end of its centre ray draws a path."></div>
-      <p class="cam-key"><span><i class="sw sim"></i>Plumb: one camera pose per frame</span><span><i class="sw bad"></i>Codex: one fixed camera</span><span>Drag to orbit · scroll to zoom</span></p>
-      <p class="cam-readout" id="camera-readout"></p>
-    </figure>
-  </div>
-
-  <div class="col" id="robustness">
-    <p style="margin-top:28px"><span class="prob-n">03</span><strong>Inferring the initial state.</strong> In this Physion video, the first domino starts to tip without a visible push. In this run, Codex treated the absence of a visible trigger as evidence that passive dynamics could not explain the sequence. An initial velocity or displacement can initiate motion even when the preceding interaction is outside the clip.</p>
-  </div>
-  <div class="wide">
-    <div class="pair" id="robust-pair" data-n="3" style="--aspect: 1" aria-label="A Physion domino video, Codex's simulation and Plumb's simulation, played in sync">
+    <div class="pair" id="camera-pair" data-n="3" aria-label="The end of a billiards video, Codex's simulation and Plumb's simulation, played in sync">
       <figure>
         <span class="label src">Input video</span>
-        <video data-sync="robust" muted playsinline loop autoplay preload="metadata" poster="media/gallery/dominoes-4mid/source.jpg"><source src="media/gallery/dominoes-4mid/source.mp4" type="video/mp4"></video>
+        <video data-sync="camera" muted playsinline loop autoplay preload="metadata" poster="media/versus/004971/source-end.jpg"><source src="media/versus/004971/source-end.mp4" type="video/mp4"></video>
       </figure>
       <figure>
         <span class="label bad">Codex simulation</span>
-        <video data-sync="robust" muted playsinline loop autoplay preload="metadata" poster="media/gallery/dominoes-4mid/codex.jpg"><source src="media/gallery/dominoes-4mid/codex.mp4" type="video/mp4"></video>
+        <video data-sync="camera" muted playsinline loop autoplay preload="metadata" poster="media/versus/004971/codex-end.jpg"><source src="media/versus/004971/codex-end.mp4" type="video/mp4"></video>
       </figure>
       <figure>
         <span class="label sim">Plumb simulation</span>
-        <video data-sync="robust" muted playsinline loop autoplay preload="metadata" poster="media/gallery/dominoes-4mid/sim.jpg"><source src="media/gallery/dominoes-4mid/sim.mp4" type="video/mp4"></video>
+        <video data-sync="camera" muted playsinline loop autoplay preload="metadata" poster="media/versus/004971/plumb-end.jpg"><source src="media/versus/004971/plumb-end.mp4" type="video/mp4"></video>
       </figure>
     </div>
   </div>
 
-  <div class="col">
-    <p style="margin-top:28px"><span class="prob-n">04</span><strong>Candidate selection.</strong> Codex wrote its own fitting objectives, but the baseline had no external rule for retaining a candidate or stopping the search. In one double-pendulum run, it evaluated its objectives at least 54,300 times across ten fits. The delivered fit had a reported pixel RMSE of 149, compared with 107 for an earlier fit. These are errors against Codex's own measurements; they illustrate a selection problem within that run, rather than a benchmark comparison.</p>
+  <div class="col" id="perception-3d">
+    <p style="margin-top:28px"><span class="prob-n">03</span><strong>Perceiving the scene in 3D.</strong> Codex has no 3D perception of the scene: it only adjusts its reconstruction until the rendered RGB image matches the input view. In this double pendulum, Codex's scene lines up with the input view, but its field of view is far too narrow, its scale is off, and the lanterns and the room sit at the wrong depths. From a held-out camera to the side, the reconstruction falls apart. Plumb takes its camera and depth from Pi3X, so its scene stays much closer to the ground truth from the side as well.</p>
   </div>
   <div class="wide">
-    <figure class="search-chart" id="search-chart">
-      <figcaption><b>Ten fits from one Codex double-pendulum run</b> reported RMSE against its own measurements, px · lower is better</figcaption>
-      <div class="search-plot" id="search-plot" role="img" aria-label="Codex's ten fits in one run, by minute: the error goes up and down, the best fit (107 px) comes at minute 12, and the delivered fit (149 px) is the last one, at minute 46"></div>
-    </figure>
+    <div class="pair" id="views-pair" data-n="3" style="--aspect: 1" aria-label="A PhysInOne double pendulum seen from the input camera and from a held-out camera to the side: ground truth, Codex's reconstruction and Plumb's reconstruction, played in sync">
+      <figure>
+        <span class="label src">Input view · video</span>
+        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/source.jpg"><source src="media/bench50/010-pendulum/source.mp4" type="video/mp4"></video>
+      </figure>
+      <figure>
+        <span class="label bad">Input view · Codex</span>
+        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/codex.jpg"><source src="media/bench50/010-pendulum/codex.mp4" type="video/mp4"></video>
+      </figure>
+      <figure>
+        <span class="label sim">Input view · Plumb</span>
+        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sim.jpg?v=2"><source src="media/bench50/010-pendulum/sim.mp4?v=2" type="video/mp4"></video>
+      </figure>
+      <figure>
+        <span class="label src">Held-out camera · ground truth</span>
+        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_gt.jpg"><source src="media/bench50/010-pendulum/sv_gt.mp4" type="video/mp4"></video>
+      </figure>
+      <figure>
+        <span class="label bad">Held-out camera · Codex</span>
+        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_codex.jpg"><source src="media/bench50/010-pendulum/sv_codex.mp4" type="video/mp4"></video>
+      </figure>
+      <figure>
+        <span class="label sim">Held-out camera · Plumb</span>
+        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_plumb.jpg?v=2"><source src="media/bench50/010-pendulum/sv_plumb.mp4?v=2" type="video/mp4"></video>
+      </figure>
+    </div>
+    <p class="sv-readout">Outlines in the bottom row mark where the two lanterns are in the ground truth. Codex's back wall, which stands between this camera and its scene, is not drawn.</p>
   </div>
+
 </section>
 
 <!-- ============================== METHOD ============================== -->
 <section class="block" id="method">
   <div class="col">
     <h2>Method</h2>
-    <p>Plumb organizes reconstruction into five stages. The agent proposes scene models and writes fitting code. The harness provides observations, controls the simulation protocol and evaluates submissions.</p>
+    <p>In Plumb, the coding agent receives the video, a MuJoCo sandbox and the task requirements, and writes everything that defines the reconstruction: the MJCF scene, its initial state, the physical parameters and the fitting code.</p>
     <ul>
-      <li><strong>Observe.</strong> A vision-language model (VLM) inventories the scene, <a href="https://arxiv.org/abs/2511.16719" target="_blank" rel="noopener">SAM3</a> produces object tracks, and <a href="https://github.com/yyfz/Pi3#introducing-pi3x-engineering-update" target="_blank" rel="noopener">Pi3X</a> estimates depth and camera parameters. These outputs initialize object geometry and state; missing observations can be requested during later rounds.</li>
-      <li><strong>Hypothesize.</strong> The agent edits <code>scene.json</code>, declares the physical processes it expects, and states what the change should improve.</li>
-      <li><strong>Fit.</strong> In a sandbox with MuJoCo, the agent writes an optimizer using the same simulation backend as the harness evaluation.</li>
-      <li><strong>Evaluate.</strong> The harness compiles the candidate, simulates the full video interval from its initial state and compares the rendered output with the SAM3 tracks. Feedback identifies the earliest detected mismatch. New best candidates also receive a separate VLM review when the remaining budget permits.</li>
-      <li><strong>Deliver.</strong> The harness selects a candidate using replay checks and reconstruction metrics, and records its evaluation history and unresolved issues.</li>
+      <li><strong>Foundation models.</strong> <a href="https://arxiv.org/abs/2511.16719" target="_blank" rel="noopener">SAM3</a> segments and tracks objects from text prompts or example boxes. <a href="https://github.com/yyfz/Pi3#introducing-pi3x-engineering-update" target="_blank" rel="noopener">Pi3X</a> estimates per-frame depth, camera intrinsics and camera poses at an approximately metric scale.</li>
+      <li><strong>Measurements.</strong> From these outputs, helper commands derive a camera on a fitted support plane, the slope of ramps and tables, the size and 3D path of each tracked object, the motion of a moving camera, and 2D object tracks.</li>
+      <li><strong>Simulation checks.</strong> Any scene can be rolled out on the video's timeline, rendered through its camera and compared with the tracks, in image space and in depth.</li>
+      <li><strong>Delivery.</strong> A run-script template renders the preview video, and a format check confirms that the scene runs passively over the full video.</li>
     </ul>
   </div>
 
-  <div class="wide flow" aria-label="Method: Observe, Hypothesize, Fit, Evaluate, Deliver, with an inner fitting loop and an outer evaluation loop">
-    <div class="flow-stages">
+  <div class="wide flow" aria-label="Plumb's tools in four groups: foundation models, measurements, simulation checks and delivery. The agent uses them in any order.">
+    <div class="flow-stages toolkit">
       <section class="flow-stage obs">
-        <span class="n">01</span><h3>Observe</h3><p class="note">Estimate tracks and geometry</p>
-        <div class="chips"><a class="chip" href="#t-observe">VLM scene graph</a><a class="chip" href="#t-observe">SAM3</a><a class="chip" href="#t-observe">Pi3X</a><a class="chip" href="#t-observe">Primitives / SAM3D</a></div>
+        <h3>Foundation models</h3><p class="note">Tracks, depth and camera</p>
+        <div class="chips"><span class="chip">SAM3</span><span class="chip">Pi3X</span></div>
       </section>
       <section class="flow-stage agent">
-        <span class="n">02</span><h3>Hypothesize</h3><p class="note">Propose a scene revision</p>
-        <div class="chips"><a class="chip" href="#t-hypothesize">scene.json</a><a class="chip" href="#t-hypothesize">physics_models</a><a class="chip" href="#t-hypothesize">submit_proposal</a></div>
-      </section>
-      <section class="flow-stage agent">
-        <span class="n">03</span><h3>Fit</h3><p class="note">Optimize scene parameters</p>
-        <div class="chips"><a class="chip" href="#t-fit">sim-python</a><a class="chip" href="#t-fit">local_fit</a><a class="chip" href="#t-fit">simulate</a></div>
+        <h3>Measurements</h3><p class="note">Camera, planes and 3D paths</p>
+        <div class="chips"><span class="chip">pi3x camera</span><span class="chip">pi3x track</span><span class="chip">camera-track</span><span class="chip">track lift</span></div>
       </section>
       <section class="flow-stage eval">
-        <span class="n">04</span><h3>Evaluate</h3><p class="note">Evaluate the full video interval</p>
-        <div class="chips"><a class="chip" href="#t-evaluate">MuJoCo rollout</a><a class="chip" href="#t-evaluate">render + compare</a><a class="chip" href="#t-evaluate">checks</a><a class="chip" href="#t-evaluate">VLM review</a></div>
+        <h3>Simulation checks</h3><p class="note">A scene against the tracks</p>
+        <div class="chips"><span class="chip">rollout</span><span class="chip">compare</span><span class="chip">overlay</span></div>
       </section>
       <section class="flow-stage eval">
-        <span class="n">05</span><h3>Deliver</h3><p class="note">Pick the best evaluated candidate</p>
-        <div class="chips"><a class="chip" href="#t-deliver">fixed-step replay</a><a class="chip" href="#t-deliver">metric-first selection</a><a class="chip" href="#t-deliver">conclude_research</a></div>
+        <h3>Delivery</h3><p class="note">Run script and preview</p>
+        <div class="chips"><span class="chip">run.py template</span><span class="chip">preview.mp4</span><span class="chip">format check</span></div>
       </section>
     </div>
-    <div class="flow-loops">
-      <div class="loop inner"><b>Inner loop</b> · agent experiments freely in its sandbox</div>
-      <div class="loop outer"><b>Outer loop</b> · only evaluated candidates count; feedback returns to the agent</div>
-    </div>
-  </div>
-
-  <div class="col">
-    <p>Fitting and evaluation form two loops. In the inner loop, the agent chooses an optimizer and runs local simulations. In the outer loop, the harness reruns each submitted scene from its initial state using evaluation code the agent cannot modify. Candidate selection uses these evaluation results. Both loops use observations from the input video, so this evaluates reconstruction fit rather than generalization to unseen motion.</p>
-    <p>The panel below follows one Newton's cradle reconstruction. Initialization uses a predefined sequence of model and tool calls. The proposal agent then makes two requests for missing observations, submits four candidates for evaluation and concludes the run. Each step shows its rationale, expected outcome and recorded result. Press play or select a segment to inspect the sequence.</p>
-  </div>
-
-  <!-- Interactive run timeline -->
-  <div class="wide" id="walkthrough">
-    <div class="walk" id="walk" aria-label="Interactive walkthrough of one reconstruction run">
-      <div class="walk-head">
-        <div>
-          <h3>One run, step by step</h3>
-          <span class="sub" id="walk-sub">Loading run data…</span>
-        </div>
-        <div class="walk-controls">
-          <button class="icon-btn" type="button" id="walk-prev" aria-label="Previous step">←</button>
-          <button class="icon-btn" type="button" id="walk-play" aria-pressed="false" aria-label="Play through the run">▶ Play</button>
-          <button class="icon-btn" type="button" id="walk-next" aria-label="Next step">→</button>
-          <span class="step-count" id="walk-count" aria-live="polite"></span>
-        </div>
-      </div>
-      <div class="track-wrap">
-        <div class="track" id="walk-track" role="tablist" aria-label="Run steps"></div>
-        <div class="axis" id="walk-axis" aria-hidden="true"></div>
-      </div>
-      <p class="track-legend"><span><i style="background:var(--src-soft)"></i>initialization</span><span><i style="background:var(--sim-soft)"></i>official evaluation round</span><span><i style="background:repeating-linear-gradient(135deg, var(--sim-soft) 0 3px, var(--surface-2) 3px 6px)"></i>observation request</span><span><i style="background:var(--sim);height:3px;vertical-align:2px"></i>delivered</span></p>
-      <div class="walk-body" id="walk-body">
-        <div class="ph-box">Loading the run timeline…</div>
-      </div>
-      <div class="ade-chart" id="walk-chart" hidden></div>
-    </div>
-  </div>
-
-  <div class="col">
   </div>
 </section>
 
@@ -259,52 +223,58 @@
 <section class="block" id="results">
   <div class="col">
     <h2>Results</h2>
-    <p>We test on 29 videos, drawn at random within each category: two per category from <a href="https://arxiv.org/abs/2106.08261" target="_blank" rel="noopener">Physion v1.5</a> and three per category from <a href="https://arxiv.org/abs/2604.09415" target="_blank" rel="noopener">PhysInOne</a>. Both datasets play slower than real time, so we retimed their videos to real-time speed. <strong>Every experiment, for Plumb and for Codex alike, runs on the same model: GPT-6.1 Sol at high reasoning effort.</strong></p>
+    <p>We evaluate on 50 videos: 25 from <a href="https://arxiv.org/abs/2604.09415" target="_blank" rel="noopener">PhysInOne</a>, covering five categories, and 25 from <a href="https://arxiv.org/abs/2106.08261" target="_blank" rel="noopener">Physion v1.5</a>, covering all seven categories. The set was curated before either system ran. We removed videos whose ground truth conflicts with physical common sense and videos that lack the annotations needed for evaluation. The results therefore describe reconstruction on this curated set. We adjusted the videos' playback rates to match their simulation timing.</p>
+    <p>All agent calls in this comparison use GPT-6.1 Sol at high reasoning effort. The two systems receive the same input videos.</p>
   </div>
 
   <div class="col" id="vs-codex">
     <h3 style="margin-top:28px">Comparison with Codex</h3>
-    <p>Codex gets the video and a MuJoCo environment, <strong>with no harness and no token limit</strong>. To compare at about the same cost, Plumb runs with a discovery budget that allows about two official evaluation rounds per video.</p>
+    <p>We report <strong>mask intersection over union (IoU)</strong> and the <strong>average displacement error (ADE)</strong> of the moving objects, in 2D (pixels) and in 3D (metres), against dataset annotations. The second-view metrics render each reconstruction from a held-out camera that the agent never saw. <strong>Physics accuracy</strong> is the fraction of 279 physical quantities, such as launch speed, restitution and swing period, that a reconstruction recovers within a factor of 1.25 of the ground truth.</p>
   </div>
   <div class="wide">
     <div class="table-wrap">
       <table class="data results-table" id="results-table">
-        <caption>Accuracy on moving, visible objects · mean over all 29 videos</caption>
-        <thead><tr><th>Metric</th><th class="num">Codex alone</th><th class="num">Plumb · 2 rounds</th></tr></thead>
+        <caption>Codex and Plumb on the 50 curated videos · one run per video and system</caption>
+        <thead><tr><th>Metric</th><th class="num">Codex</th><th class="num">Plumb</th></tr></thead>
         <tbody>
-          <tr><td>Mask IoU ↑</td><td class="num best">0.489</td><td class="num">0.479</td></tr>
-          <tr><td>2D ADE, px ↓</td><td class="num">242</td><td class="num best">156</td></tr>
-          <tr><td>3D ADE, m ↓</td><td class="num">0.502</td><td class="num best">0.488</td></tr>
-          <tr class="tokens"><td>Model tokens per video, mean</td><td class="num">2.01M</td><td class="num">2.23M</td></tr>
+          <tr><td>Input view · 3D ADE, m ↓</td><td class="num">0.169</td><td class="num best">0.120</td></tr>
+          <tr><td>Input view · 2D ADE, px ↓</td><td class="num">31.3</td><td class="num best">27.1</td></tr>
+          <tr><td>Input view · Mask IoU ↑</td><td class="num">0.578</td><td class="num best">0.603</td></tr>
+          <tr><td>Second view · 2D ADE, px ↓</td><td class="num">75.8</td><td class="num best">53.2</td></tr>
+          <tr><td>Second view · Mask IoU ↑</td><td class="num">0.298</td><td class="num best">0.382</td></tr>
+          <tr><td>Physics accuracy, 279 items ↑</td><td class="num">0.308</td><td class="num best">0.348</td></tr>
+          <tr class="tokens"><td>API cost per video, USD, mean</td><td class="num">$0.82</td><td class="num">$0.93</td></tr>
         </tbody>
       </table>
-    </div>
-    <p style="margin-top:18px">At about the same token cost, Plumb cuts 2D trajectory error by about a third and 3D error slightly, while its mask IoU is slightly lower than Codex's; with more rounds it pulls ahead on mask IoU too (below).</p>
-  </div>
+    </div>  </div>
 
+  <!-- The discovery-budget comparison was measured on the earlier 29-video set and is hidden for now; remove this comment wrapper to show it again.
   <div class="col" id="more-rounds">
-    <h3 style="margin-top:28px">More rounds, higher accuracy</h3>
-    <p>We ran Plumb three times from the same initialization (scene inventory, SAM3 tracks, Pi3X), counted once per video in the tokens below. The runs differ only in how much discovery the token budget allows: about 2, 3 or 4 official evaluation rounds per video.</p>
+    <h3 style="margin-top:28px">Effect of the discovery budget</h3>
+    <p>For each video, we ran discovery with budgets of 2M, 3M and 5M model tokens, reusing the same initialization: scene inventory, SAM3 tracks and Pi3X estimates. These settings produced median evaluation counts of two, three and four. Each reported total includes one initialization. The 2M and 3M runs used the fast service tier, as did Codex; the 5M runs used the standard tier.</p>
   </div>
   <div class="wide">
     <div class="table-wrap">
       <table class="data results-table" id="rounds-table">
-        <caption>Plumb by number of discovery rounds · same videos and metrics</caption>
-        <thead><tr><th>Metric</th><th class="num">2 rounds</th><th class="num">3 rounds</th><th class="num">4 rounds</th></tr></thead>
+        <caption>Plumb at three discovery budgets · same 29 videos and metrics</caption>
+        <thead><tr><th>Metric</th><th class="num">2M budget</th><th class="num">3M budget</th><th class="num">5M budget</th></tr></thead>
         <tbody>
           <tr><td>Mask IoU ↑</td><td class="num">0.479</td><td class="num">0.526</td><td class="num best">0.554</td></tr>
           <tr><td>2D ADE, px ↓</td><td class="num">156</td><td class="num">158</td><td class="num best">131</td></tr>
           <tr><td>3D ADE, m ↓</td><td class="num">0.488</td><td class="num best">0.350</td><td class="num">0.391</td></tr>
+          <tr><td>Harness evaluations per video, median</td><td class="num">2</td><td class="num">3</td><td class="num">4</td></tr>
           <tr class="tokens"><td>Model tokens per video, mean</td><td class="num">2.23M</td><td class="num">3.09M</td><td class="num">4.50M</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="margin-top:18px">Mask IoU rises with every extra round, and trajectory error mostly falls.</p>
+    <p style="margin-top:18px">Mean mask IoU increases across the three budgets. Trajectory errors are not monotonic: the 5M setting has the lowest 2D ADE, while the 3M setting has the lowest 3D ADE. A larger search budget can improve reconstruction, but does not improve every metric in these runs. Token counts include input, cached input and output tokens; they do not account for perception-model compute or simulation time.</p>
   </div>
+  -->
 
   <div class="wide">
     <h3 style="margin-top:28px">Gallery</h3>
-    <div class="gallery-viewer" id="gallery" aria-label="Benchmark videos with Codex's and Plumb's reconstructions">
+    <p>All 50 benchmark videos with Codex's and Plumb's reconstructions, grouped by dataset and category. In the first row, each simulation is the preview that the agent rendered of its delivered scene, from its own estimated camera. The second row shows the same scenes from the second view used by the second-view metrics, which neither agent saw.</p>
+    <div class="gallery-viewer" id="gallery" aria-label="Benchmark videos with Codex's and Plumb's reconstructions, from the input camera and from a second view">
       <div class="case-tabs" id="gal-tabs" role="group" aria-label="Choose a video"></div>
       <div class="pair" id="gal-pair" data-n="3">
         <figure>
@@ -320,98 +290,88 @@
           <video id="gal-sim" data-sync="gallery" muted playsinline loop autoplay preload="metadata"></video>
         </figure>
       </div>
+      <div class="pair" id="gal-sv-pair" data-n="3">
+        <figure>
+          <span class="label src">Second view · ground truth</span>
+          <video id="gal-sv-gt" data-sync="gallery" muted playsinline loop autoplay preload="metadata"></video>
+        </figure>
+        <figure>
+          <span class="label bad">Codex · second view</span>
+          <video id="gal-sv-codex" data-sync="gallery" muted playsinline loop autoplay preload="metadata"></video>
+        </figure>
+        <figure>
+          <span class="label sim">Plumb · second view</span>
+          <video id="gal-sv-plumb" data-sync="gallery" muted playsinline loop autoplay preload="metadata"></video>
+        </figure>
+      </div>
+      <p class="sv-readout" id="gal-sv-readout" aria-live="polite"></p>
     </div>
   </div>
 </section>
 
 <!-- ============================== TOOLS ============================== -->
+<!-- Tools is hidden for now; remove this comment wrapper to show it again.
 <section class="block" id="tools">
   <div class="col">
-    <h2>Agentic tool use</h2>
-    <p>The tools are grouped by the stage of the method they serve. Each one replaces something the agent would otherwise do by eye or by hand.</p>
+    <h2>Tools</h2>
+    <p>Every tool is optional and read-only. The agent calls them from the shell or from its own Python scripts; a short reference lists each command and its inputs and outputs, not a procedure.</p>
   </div>
 
-  <!-- Runtime, under every stage -->
-  <article class="tool col" id="t-runtime">
+
+  <article class="tool col" id="t-models">
     <details>
     <summary>
-      <h3>Runtime: any model, persistent sessions, recoverable runs</h3>
+      <h3>Foundation models: SAM3 and Pi3X</h3>
     </summary>
-      <p>Plumb is not tied to one model. Every role, from scene understanding to proposals and review, can run on any vision-capable model on the market, from OpenAI, Anthropic, Google, xAI, DeepSeek, Qwen and many other providers, chosen at launch. This comes from <a href="https://github.com/earendil-works/pi" target="_blank" rel="noopener">Pi</a>, an open-source toolkit for coding agents that combines one LLM interface across dozens of providers with an agent runtime.</p>
-      <p>Pi also manages each conversation: message history, tool calls, retries, context compaction and session recovery. Plumb only adds task inputs, experiment results and tool outputs. The proposal agent keeps one conversation per branch, while each reviewer starts a fresh session. Every stage writes a checkpoint, so an interrupted run resumes where it stopped, and a finished run can later be refined from its delivered scene.</p>
+      <p><strong>SAM3</strong> tracks objects through the video from a text prompt. A box on one frame can serve as an example for the prompt, or select a single object to track. Helpers summarize the returned instances, draw their masks on frames and turn each one into a track of mask centroids, areas and bounding boxes.</p>
+      <p><strong>Pi3X</strong> reconstructs evenly sampled frames, including the first, in one feed-forward pass. It returns per-frame depth, camera intrinsics and camera poses, with a confidence for each pixel. Its units are approximately metres, a learned estimate rather than an exact scale.</p>
     </details>
   </article>
 
-  <!-- 01 Observe -->
-  <article class="tool col" id="t-observe">
+  <article class="tool col" id="t-measure">
     <details>
     <summary>
-      <h3>Observe: what is in the scene, where it is, and what shape it has</h3>
+      <h3>Measurements: camera, planes and 3D paths</h3>
     </summary>
-      <p><strong>Scene understanding.</strong> A vision-language model (VLM) reads a storyboard of the video and writes a scene graph. Each node is one body that moves as a single piece, annotated with its role in the event (moving, support or obstacle), its visibility and how it should be represented. An object stays in the inventory even while it is occluded.</p>
-      <p>Each node becomes a short text prompt for SAM3, which returns masks tracked through the video; the VLM then reviews the candidate tracks and assigns identities. Without this step, the agent measures objects with color thresholds and hand-typed pixel coordinates.</p>
-      <p><strong>Depth and camera.</strong> Pi3X estimates per-frame depth, camera intrinsics and camera poses. With them, each mask is lifted into 3D, all objects share one metric frame, and every candidate is rendered from the recovered source camera, so it is compared with the video in the same image plane.</p>
-      <p><strong>Geometry.</strong> A simple object gets a primitive chosen by the VLM (a sphere, box, cylinder, capsule or open container), sized per axis from its lifted masks. It collides as exactly that shape, which keeps contacts stable and masses meaningful. A complex object gets a mesh reconstructed by <a href="https://arxiv.org/abs/2511.16624" target="_blank" rel="noopener">SAM3D</a> from a reviewed reference frame.</p>
-      <p>The ground, or whatever surface supports the objects, is fitted as a plane to the estimated depth with <a href="https://doi.org/10.1145/358669.358692" target="_blank" rel="noopener">RANSAC</a>. Its normal defines the direction of gravity.</p>
+      <p><strong>Camera.</strong> A plane is fitted with <a href="https://doi.org/10.1145/358669.358692" target="_blank" rel="noopener">RANSAC</a> through the confident Pi3X points of a support surface in the first frame. It defines a world with the support at height zero and the up direction along its normal. The camera keeps Pi3X's focal length; the helper prints its height and pitch and an MJCF camera element. Other planes, such as ramps, tables or walls, are measured the same way.</p>
+      <p><strong>Objects.</strong> For each SAM3 object, helpers report the extent of its visible surface and its 3D path over the Pi3X samples, in this world.</p>
+      <p><strong>Moving camera.</strong> When the camera moves, Pi3X's camera motion gives one camera pose per frame. The run script uses these poses for rendering only; the simulation and the model parameters do not change.</p>
+      <p><strong>2D tracks.</strong> Besides SAM3 masks, tracks can come from colour ranges or from points read off frames. A track can be intersected with a plane to estimate an object's position and initial velocity.</p>
+      <p>There is no fitting tool: the agent writes its own parameter searches with MuJoCo and chooses what to fit.</p>
     </details>
   </article>
 
-  <!-- 02 Hypothesize -->
-  <article class="tool col" id="t-hypothesize">
+  <article class="tool col" id="t-check">
     <details>
     <summary>
-      <h3>Hypothesize: state the claim before the test</h3>
+      <h3>Simulation checks: a scene against the tracks</h3>
     </summary>
-      <p><strong>Process plan.</strong> Before submitting a scene, the agent declares the physical processes it expects (free motion, sustained contact, collision or constrained motion), together with the objects involved, the time windows in which they move and the contact events. The plan persists across rounds and is checked against the simulated rollout.</p>
-      <p><strong>Proposals.</strong> Each submission is a small scientific claim: a problem statement, a hypothesis, the parameters the change may touch, and measurable targets written before the result exists, for example that an object's trajectory error decreases while its coverage does not. The harness verifies that nothing outside the declared scope changed, then freezes the submission.</p>
-      <p>A lower error alone does not confirm a hypothesis. Feedback reports passed targets, metric changes and unresolved issues separately.</p>
+      <p>Any scene can be rolled out the way the delivered run script does: the initial state is set once at t = 0, and the simulation steps continuously to each frame time of the video. The rollout is rendered through the scene's camera, and each track is compared with the rendered mask of its bodies. The comparison reports the centroid distance in pixels over the video, frames in which the body is not visible, and IoU with the SAM3 mask. Where Pi3X 3D paths exist, it also reports the depth ratio between simulation and Pi3X and the 3D distance after one common scale.</p>
+      <p>An overlay draws the rendered outlines and the track centroids on video frames. These checks report numbers and images; they do not judge the scene or stop the agent.</p>
     </details>
   </article>
 
-  <!-- 03 Fit -->
-  <article class="tool col" id="t-fit">
-    <details>
-    <summary>
-      <h3>Fit: the agent writes its own optimizer</h3>
-    </summary>
-      <p>A coding agent's main advantage is speed: it can run thousands of simulations inside an optimization loop. Plumb keeps that advantage. In an isolated sandbox without network access, the agent has MuJoCo and a fitting library whose rollouts match the official evaluation exactly. It declares which parameters may change, including a single global scale, fits them to the SAM3 masks with any optimizer it chooses, checks the result against the official motion and event checks, and attaches a fitting report to the submission.</p>
-    </details>
-  </article>
-
-  <!-- 04 Evaluate -->
-  <article class="tool col" id="t-evaluate">
-    <details>
-    <summary>
-      <h3>Evaluate: one rollout over the whole video, outside the agent's reach</h3>
-    </summary>
-      <p>Each submitted candidate is simulated once from t = 0 over the entire video, rendered from the recovered camera and compared with the SAM3 tracks. The comparison reports per-object trajectory error (ADE, relative to the image diagonal), mask IoU, and how much of each observed object the prediction covers.</p>
-      <p>Acceptance checks cover every observed motion window of every object, whatever processes the agent declared, as well as each declared event and the initial state. Feedback names the earliest window where simulation and video diverge. When the comparison itself fails, the run stops at a checkpoint instead of asking the agent to change the physics.</p>
-      <p>When a candidate becomes the new best, an independent VLM reviewer, in a fresh session with no access to the agent's reasoning, compares its renders with the source frames. The review runs during discovery, so its findings reach the next proposal rather than arriving after the run ends.</p>
-    </details>
-  </article>
-
-  <!-- 05 Deliver -->
   <article class="tool col" id="t-deliver">
     <details>
     <summary>
-      <h3>Deliver: reproducible first, then accurate, then certified</h3>
+      <h3>Delivery: run script, preview and format check</h3>
     </summary>
-      <p>Candidates are ranked in three tiers. A candidate must first be reproduced by a plain fixed-timestep replay from its initial state. Accuracy comes next: trajectory error and mask IoU over the moving objects, with the primary object weighted twice and each measure judged against its own noise band. A candidate wins when one measure improves and the other does not regress; a trade-off goes to the larger relative change, and a candidate that covers less of an observed object cannot win. Only at equal accuracy do the review verdict and failed checks decide.</p>
-      <p>Stopping follows a rule as well. The agent may conclude only after two consecutive evaluations fail to improve the best candidate by 10%, or when less than 15% of the token budget remains, and not while a revision requested by the reviewer is still unaddressed. If the agent picks a round that is measurably worse than the best one, the best is delivered and the agent's choice is recorded.</p>
+      <p>The task asks for a scene, its initial state, the physical parameters, a run script and a preview video. A run-script template loads the scene and initial state once, steps continuously, records the state at the input frame times and renders the preview on the input's timeline.</p>
+      <p>A format check confirms that the required files exist and that the scene loads without actuators, motion-capture bodies or plugins, so its motion must come from passive physics. The initial state must match the model's dimensions and start at time zero. A full-length rollout must stay finite without MuJoCo warnings, and the preview must have the input's frame count and timestamps. The check also requires an identifiable preview camera, and a run script that does not read the input video, the tracks or an optimizer.</p>
     </details>
   </article>
 
 </section>
+-->
 
 <!-- ============================== WHAT'S NEXT ============================== -->
 <section class="block" id="whats-next">
   <div class="col">
     <h2>What's next</h2>
     <ul>
-      <li><strong>More 3D foundation models.</strong> Plumb shows that 3D tools are what let a coding agent measure a scene instead of guessing it. Next we will add more 3D tools built on foundation models, for example 3D trackers and object pose estimators, and compare the evidence each one adds.</li>
-      <li><strong>Richer evidence.</strong> Mask IoU and trajectory error alone are not precise enough to judge a reconstruction. More tools would give every round more varied evidence to iterate on.</li>
-      <li><strong>3D tools built for agents.</strong> SAM3 tracking makes initialization slow. We want to study 3D tools that suit an agent better, for example one that returns a quick, coarse scene initialization without chasing precision and leaves the refinement to the agent's own loop.</li>
-      <li><strong>Harder scenes.</strong> Plumb is currently limited to rigid-body motion. We want to take it to harder scenes, such as deformable objects, cloth and fluids.</li>
+      <li><strong>Compare 3D foundation models.</strong> Plumb currently takes its camera and depth from Pi3X. Ablations with other 3D models, such as <a href="https://arxiv.org/abs/2503.11651" target="_blank" rel="noopener">VGGT</a> and <a href="https://arxiv.org/abs/2511.10647" target="_blank" rel="noopener">Depth Anything 3</a>, would show how much the reconstruction depends on the choice of 3D model.</li>
+      <li><strong>Predict physical parameters better.</strong> Physical parameters are not yet predicted well: even with Plumb, only about a third of the physical quantities, such as restitution, deceleration and mass ratios, fall within a factor of 1.25 of the ground truth.</li>
+      <li><strong>Extend the scene models.</strong> The current system models rigid-body dynamics. Deformable objects, cloth and fluids would require additional representations, simulation tools and evaluation criteria.</li>
     </ul>
   </div>
 </section>
@@ -421,10 +381,14 @@
 <section class="block" id="related-work">
   <div class="col">
     <h2>Related work</h2>
-    <p><strong>Agentic real-to-sim with physical properties.</strong> These systems recover not only what a scene looks like but how it behaves: physical parameters or dynamics, checked against the observation or in simulation. From video, <a href="https://arxiv.org/abs/2411.08027" target="_blank" rel="noopener">LLMPhy</a> has a language model write simulator programs and refine their latent parameters against the reconstruction error, and <a href="https://arxiv.org/abs/2608.27549" target="_blank" rel="noopener">Code-as-World</a>, <a href="https://arxiv.org/abs/2608.04575" target="_blank" rel="noopener">PhysMind</a> and <a href="https://arxiv.org/abs/2609.39135" target="_blank" rel="noopener">Asking the World</a> build executable worlds whose dynamics are fitted to the video and then queried to answer physical questions; <a href="https://arxiv.org/abs/2512.11061" target="_blank" rel="noopener">VDAWorld</a> infers latent dynamics from a single image and caption. With a robot in the loop, <a href="https://arxiv.org/abs/2607.19190" target="_blank" rel="noopener">Agentic Real2Sim</a> turns recorded robot–object episodes into runnable MuJoCo twins with inferred physical parameters, <a href="https://arxiv.org/abs/2601.08454" target="_blank" rel="noopener">Adami et al.</a> generate behavior trees with which a robot probes missing mass and friction, <a href="https://arxiv.org/abs/2609.35047" target="_blank" rel="noopener">EMPIRIC</a> learns residual physics from its own experiments, and <a href="https://arxiv.org/abs/2602.19359" target="_blank" rel="noopener">Vid2Sid</a> and <a href="https://arxiv.org/abs/2603.20827" target="_blank" rel="noopener">Swim2Real</a> calibrate simulator parameters by comparing simulated and real videos. For objects, <a href="https://arxiv.org/abs/2609.37067" target="_blank" rel="noopener">FACT</a> fits articulated twins to passive-response videos; <a href="https://arxiv.org/abs/2609.36024" target="_blank" rel="noopener">CoDimRecon</a>, <a href="https://arxiv.org/abs/2609.18620" target="_blank" rel="noopener">DeformSmith</a> and <a href="https://arxiv.org/abs/2609.23103" target="_blank" rel="noopener">DiagGen</a> build deformable assets whose material behavior is revised through simulated tests; <a href="https://arxiv.org/abs/2609.35318" target="_blank" rel="noopener">DexAgent</a> reconstructs object properties from a human video for dexterous manipulation; and <a href="https://arxiv.org/abs/2608.24212" target="_blank" rel="noopener">NeoWorld-Pro</a> writes scene programs with physical properties that a physics engine checks in the loop. Plumb belongs to this group. It reconstructs a whole observed event, and it delivers a scene only after an independent rollout over the full video.</p>
-    <p><strong>Agentic real-to-sim without physical properties.</strong> Most agentic real-to-sim systems recover geometry, appearance, layout or articulation, and leave physics to defaults or stability checks. For scenes, <a href="https://kevinxu02.github.io/real2sim-indoor-site/" target="_blank" rel="noopener">AHa-3D</a> and <a href="https://arxiv.org/abs/2610.01863" target="_blank" rel="noopener">LiteReality-Agent</a> rebuild rooms from video or RGB-D scans with a coding agent inside a tool harness; <a href="https://arxiv.org/abs/2608.30821" target="_blank" rel="noopener">Lucida</a> places generated assets with a VLM policy that drives a 3D gizmo; <a href="https://arxiv.org/abs/2605.30338" target="_blank" rel="noopener">REST3D</a> and <a href="https://arxiv.org/abs/2609.31715" target="_blank" rel="noopener">Fysiverse</a> reconstruct stable scenes from a single image; <a href="https://arxiv.org/abs/2410.15536" target="_blank" rel="noopener">GRS</a>, <a href="https://arxiv.org/abs/2609.24563" target="_blank" rel="noopener">ARSTAG</a>, <a href="https://arxiv.org/abs/2609.37089" target="_blank" rel="noopener">Real2Gym</a>, <a href="https://arxiv.org/abs/2609.30249" target="_blank" rel="noopener">RAPID</a>, <a href="https://arxiv.org/abs/2609.33104" target="_blank" rel="noopener">VPTwin</a> and <a href="https://arxiv.org/abs/2610.02274" target="_blank" rel="noopener">Awomo-SimDataEngine</a> build simulation environments from images or demonstrations for robot learning; and <a href="https://arxiv.org/abs/2411.16027" target="_blank" rel="noopener">Miao et al.</a> turn dashcam footage into driving scenarios. For objects, <a href="https://arxiv.org/abs/2410.13882" target="_blank" rel="noopener">Articulate-Anything</a>, <a href="https://arxiv.org/abs/2605.15187" target="_blank" rel="noopener">Articraft</a> and <a href="https://arxiv.org/abs/2606.30608" target="_blank" rel="noopener">UnfoldArt</a> write articulated objects as code or URDF; <a href="https://arxiv.org/abs/2602.04672" target="_blank" rel="noopener">AGILE</a>, <a href="https://arxiv.org/abs/2609.24487" target="_blank" rel="noopener">AgentSTAR</a> and <a href="https://arxiv.org/abs/2606.28215" target="_blank" rel="noopener">HAT-4D</a> reconstruct objects and their motion from monocular video; and <a href="https://arxiv.org/abs/2609.38966" target="_blank" rel="noopener">Video2SwimFish</a> builds controllable fish models from multi-view video. Treating inverse graphics as coding, <a href="https://arxiv.org/abs/2601.11109" target="_blank" rel="noopener">VIGA</a>, <a href="https://arxiv.org/abs/2606.02580" target="_blank" rel="noopener">Thinking in Blender</a>, <a href="https://arxiv.org/abs/2609.36380" target="_blank" rel="noopener">LEGO-Anything</a> and <a href="https://arxiv.org/abs/2609.11499" target="_blank" rel="noopener">Recursive Code World Models</a> write and revise Blender programs against reference images.</p>
-    <p><strong>Benchmarks.</strong> <a href="https://arxiv.org/abs/2610.03715" target="_blank" rel="noopener">4DCodeBench</a>, <a href="https://arxiv.org/abs/2610.04432" target="_blank" rel="noopener">Video2World</a>, <a href="https://arxiv.org/abs/2609.15478" target="_blank" rel="noopener">BVB</a> and <a href="https://arxiv.org/abs/2506.23329" target="_blank" rel="noopener">IR3D-Bench</a> evaluate coding and vision-language agents on rebuilding scenes or dynamic events as programs or simulations. 4DCodeBench finds what we saw with Codex: agents reproduce RGB appearance far better than the physics behind the motion.</p>
-    <p><strong>Physical parameters from video, without an agent.</strong> <a href="https://galileo.csail.mit.edu/" target="_blank" rel="noopener">Galileo</a> and <a href="https://phys101.csail.mit.edu/" target="_blank" rel="noopener">Physics 101</a> infer mass and friction by fitting a physics engine to observed motion. Differentiable approaches such as <a href="https://arxiv.org/abs/2104.02646" target="_blank" rel="noopener">∇Sim</a> and <a href="https://arxiv.org/abs/2303.05512" target="_blank" rel="noopener">PAC-NeRF</a> recover parameters and geometry through gradients of a simulator and renderer, and <a href="https://arxiv.org/abs/2404.13026" target="_blank" rel="noopener">PhysDreamer</a> and <a href="https://arxiv.org/abs/2409.18964" target="_blank" rel="noopener">PhysGen</a> use video generation priors to animate a single image with physics. These methods fix the model structure in advance. In our setting the agent chooses the objects, shapes, contacts and processes, and the harness checks that choice.</p>
+    <p><strong>Agents for physical reconstruction.</strong> Several systems use agents to propose scene models or physical parameters and revise them using simulation feedback. From video, <a href="https://arxiv.org/abs/2411.08027" target="_blank" rel="noopener">LLMPhy</a> has a language model write simulator programs and refine their latent parameters against the reconstruction error, and <a href="https://arxiv.org/abs/2608.27549" target="_blank" rel="noopener">Code-as-World</a>, <a href="https://arxiv.org/abs/2608.04575" target="_blank" rel="noopener">PhysMind</a> and <a href="https://arxiv.org/abs/2609.39135" target="_blank" rel="noopener">Asking the World</a> build executable worlds whose dynamics are fitted to the video and then queried to answer physical questions; <a href="https://arxiv.org/abs/2512.11061" target="_blank" rel="noopener">VDAWorld</a> infers latent dynamics from a single image and caption.</p>
+    <p>With a robot in the loop, <a href="https://arxiv.org/abs/2607.19190" target="_blank" rel="noopener">Agentic Real2Sim</a> turns recorded robot–object episodes into runnable MuJoCo twins with inferred physical parameters, <a href="https://arxiv.org/abs/2601.08454" target="_blank" rel="noopener">Adami et al.</a> generate behavior trees with which a robot probes missing mass and friction, <a href="https://arxiv.org/abs/2609.35047" target="_blank" rel="noopener">EMPIRIC</a> learns residual physics from its own experiments, and <a href="https://arxiv.org/abs/2602.19359" target="_blank" rel="noopener">Vid2Sid</a> and <a href="https://arxiv.org/abs/2603.20827" target="_blank" rel="noopener">Swim2Real</a> calibrate simulator parameters by comparing simulated and real videos.</p>
+    <p>For objects, <a href="https://arxiv.org/abs/2609.37067" target="_blank" rel="noopener">FACT</a> fits articulated twins to passive-response videos; <a href="https://arxiv.org/abs/2609.36024" target="_blank" rel="noopener">CoDimRecon</a>, <a href="https://arxiv.org/abs/2609.18620" target="_blank" rel="noopener">DeformSmith</a> and <a href="https://arxiv.org/abs/2609.23103" target="_blank" rel="noopener">DiagGen</a> build deformable assets whose material behavior is revised through simulated tests; <a href="https://arxiv.org/abs/2609.35318" target="_blank" rel="noopener">DexAgent</a> reconstructs object properties from a human video for dexterous manipulation; and <a href="https://arxiv.org/abs/2608.24212" target="_blank" rel="noopener">NeoWorld-Pro</a> writes scene programs with physical properties that a physics engine checks in the loop. Plumb also uses simulation feedback, with separate local fitting and harness evaluation. Each submitted candidate is evaluated over the full input interval before it can be selected for delivery.</p>
+    <p><strong>Agents for scene and object reconstruction.</strong> A related line of work focuses on geometry, appearance, layout and articulation. Its objectives overlap with physical reconstruction, although the inferred properties and evaluation criteria vary by method. For scenes, <a href="https://kevinxu02.github.io/real2sim-indoor-site/" target="_blank" rel="noopener">AHa-3D</a> and <a href="https://arxiv.org/abs/2610.01863" target="_blank" rel="noopener">LiteReality-Agent</a> rebuild rooms from video or RGB-D scans with a coding agent inside a tool harness; <a href="https://arxiv.org/abs/2608.30821" target="_blank" rel="noopener">Lucida</a> places generated assets with a VLM policy that drives a 3D gizmo; <a href="https://arxiv.org/abs/2605.30338" target="_blank" rel="noopener">REST3D</a> and <a href="https://arxiv.org/abs/2609.31715" target="_blank" rel="noopener">Fysiverse</a> reconstruct stable scenes from a single image; <a href="https://arxiv.org/abs/2410.15536" target="_blank" rel="noopener">GRS</a>, <a href="https://arxiv.org/abs/2609.24563" target="_blank" rel="noopener">ARSTAG</a>, <a href="https://arxiv.org/abs/2609.37089" target="_blank" rel="noopener">Real2Gym</a>, <a href="https://arxiv.org/abs/2609.30249" target="_blank" rel="noopener">RAPID</a>, <a href="https://arxiv.org/abs/2609.33104" target="_blank" rel="noopener">VPTwin</a> and <a href="https://arxiv.org/abs/2610.02274" target="_blank" rel="noopener">Awomo-SimDataEngine</a> build simulation environments from images or demonstrations for robot learning; and <a href="https://arxiv.org/abs/2411.16027" target="_blank" rel="noopener">Miao et al.</a> turn dashcam footage into driving scenarios.</p>
+    <p>For objects, <a href="https://arxiv.org/abs/2410.13882" target="_blank" rel="noopener">Articulate-Anything</a>, <a href="https://arxiv.org/abs/2605.15187" target="_blank" rel="noopener">Articraft</a> and <a href="https://arxiv.org/abs/2606.30608" target="_blank" rel="noopener">UnfoldArt</a> write articulated objects as code or URDF; <a href="https://arxiv.org/abs/2602.04672" target="_blank" rel="noopener">AGILE</a>, <a href="https://arxiv.org/abs/2609.24487" target="_blank" rel="noopener">AgentSTAR</a> and <a href="https://arxiv.org/abs/2606.28215" target="_blank" rel="noopener">HAT-4D</a> reconstruct objects and their motion from monocular video; and <a href="https://arxiv.org/abs/2609.38966" target="_blank" rel="noopener">Video2SwimFish</a> builds controllable fish models from multi-view video.</p>
+    <p>Treating inverse graphics as coding, <a href="https://arxiv.org/abs/2601.11109" target="_blank" rel="noopener">VIGA</a>, <a href="https://arxiv.org/abs/2606.02580" target="_blank" rel="noopener">Thinking in Blender</a>, <a href="https://arxiv.org/abs/2609.36380" target="_blank" rel="noopener">LEGO-Anything</a> and <a href="https://arxiv.org/abs/2609.11499" target="_blank" rel="noopener">Recursive Code World Models</a> write and revise Blender programs against reference images.</p>
+    <p><strong>Benchmarks.</strong> <a href="https://arxiv.org/abs/2610.03715" target="_blank" rel="noopener">4DCodeBench</a>, <a href="https://arxiv.org/abs/2610.04432" target="_blank" rel="noopener">Video2World</a>, <a href="https://arxiv.org/abs/2609.15478" target="_blank" rel="noopener">BVB</a> and <a href="https://arxiv.org/abs/2506.23329" target="_blank" rel="noopener">IR3D-Bench</a> evaluate coding and vision-language agents on rebuilding scenes or dynamic events as programs or simulations. These benchmarks distinguish aspects of visual reconstruction and physical behavior that a single image-similarity measure can conflate.</p>
+    <p><strong>Physical parameters from video, without an agent.</strong> <a href="https://galileo.csail.mit.edu/" target="_blank" rel="noopener">Galileo</a> and <a href="https://phys101.csail.mit.edu/" target="_blank" rel="noopener">Physics 101</a> infer mass and friction by fitting a physics engine to observed motion. Differentiable approaches such as <a href="https://arxiv.org/abs/2104.02646" target="_blank" rel="noopener">∇Sim</a> and <a href="https://arxiv.org/abs/2303.05512" target="_blank" rel="noopener">PAC-NeRF</a> recover parameters and geometry through gradients of a simulator and renderer, while <a href="https://arxiv.org/abs/2404.13026" target="_blank" rel="noopener">PhysDreamer</a> uses video-generation priors to infer interactive dynamics for static 3D objects. <a href="https://arxiv.org/abs/2409.18964" target="_blank" rel="noopener">PhysGen</a> combines image understanding, rigid-body simulation and generative refinement to produce videos from an image and an applied force or torque. Plumb studies how an agent can revise object geometry, contacts and physical parameters within a reconstruction loop.</p>
   </div>
 </section>
 -->
@@ -455,9 +419,7 @@
 </div>
 </div>
 
-<script src="assets/site.js"></script>
-<script src="assets/walkthrough.js"></script>
+<script src="assets/site.js?v=2"></script>
 <script type="module" src="assets/replay.js"></script>
-<script type="module" src="assets/camviz.js"></script>
 </body>
 </html>

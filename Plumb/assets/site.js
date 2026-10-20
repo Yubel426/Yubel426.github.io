@@ -49,7 +49,7 @@
 
   // ---------- synchronized video pairs ----------
   // Videos with the same data-sync group autoplay muted and loop; followers are locked to the first
-  // video's clock. Clicking any of them pauses or resumes the group; groups pause off screen.
+  // video's clock. Clicking any of them pauses or resumes the group; a group pauses once none of its videos is on screen.
   const groups = {};
   document.querySelectorAll('video[data-sync]').forEach(v => (groups[v.dataset.sync] ||= []).push(v));
   const syncGroup = {};
@@ -68,10 +68,13 @@
       if (lead.paused) { userPaused = false; playAll(); } else { userPaused = true; pauseAll(); }
     }));
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(es => es.forEach(e => {
-        onScreen = e.isIntersecting;
-        if (onScreen && !userPaused) playAll(); else if (!onScreen) pauseAll();
-      }), { threshold: 0.25 }).observe(lead);
+      const seen = new Set();
+      const io = new IntersectionObserver(es => {
+        es.forEach(e => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
+        const was = onScreen; onScreen = seen.size > 0;
+        if (onScreen && !was && !userPaused) playAll(); else if (!onScreen && was) pauseAll();
+      }, { threshold: 0.25 });
+      vids.forEach(v => io.observe(v));
     }
     syncGroup[name] = { restart: () => { vids.forEach(v => { v.currentTime = 0; }); if (!userPaused) playAll(); } };
   });
@@ -102,6 +105,7 @@
     };
     fetch('data/showcase.json').then(r => (r.ok ? r.json() : Promise.reject(r.status))).then(cases => {
       tabs.innerHTML = '';
+      tabs.style.setProperty('--cols', String(Math.max(1, Math.ceil(cases.length / 2))));
       cases.forEach((c, i) => {
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'case-tab'; b.setAttribute('aria-pressed', String(i === 0));
@@ -122,6 +126,7 @@
     demoBtn.addEventListener('click', () => {
       frame.classList.add('playing');
       demo.controls = true;
+      demo.muted = false;   // the overview is narrated; a click allows sound
       const p = demo.play(); if (p && p.catch) p.catch(() => {});
       demo.focus({ preventScroll: true });
     });
@@ -137,6 +142,9 @@
   const gTabs = document.getElementById('gal-tabs');
   const gSrc = document.getElementById('gal-src'), gSim = document.getElementById('gal-sim'), gCodex = document.getElementById('gal-codex');
   const gPair = document.getElementById('gal-pair');
+  // second view: the camera the second-view metric scores, ground truth and both reconstructions
+  const svPair = document.getElementById('gal-sv-pair'), svReadout = document.getElementById('gal-sv-readout');
+  const svVids = { gt: document.getElementById('gal-sv-gt'), codex: document.getElementById('gal-sv-codex'), plumb: document.getElementById('gal-sv-plumb') };
   if (gTabs && gSrc && gSim) {
     const setSrc = (v, url, posterUrl) => { v.poster = posterUrl; v.src = url; v.load(); };
     const pick = (c, btn) => {
@@ -146,6 +154,14 @@
       setSrc(gSim, c.media.sim, c.media.sim_poster);
       const vids = [gSrc, gSim];
       if (gCodex) { setSrc(gCodex, c.media.codex, c.media.codex_poster); vids.push(gCodex); }
+      const sv = c.secondview;
+      if (svPair) svPair.hidden = !sv;
+      if (sv) {
+        Object.entries(svVids).forEach(([k, v]) => { if (v) { setSrc(v, c.media[`sv_${k}`], c.media[`sv_${k}_poster`]); vids.push(v); } });
+        const view = sv.synthetic ? `Virtual camera, ${Math.round(sv.angle_deg)}° from the input view, ground truth rebuilt in MuJoCo`
+          : `Held-out dataset camera, ${Math.round(sv.angle_deg)}° from the input view`;
+        if (svReadout) svReadout.textContent = `${c.dataset} · ${c.category} · ${view} · 2D ADE ${sv.codex.ade2d_px.toFixed(1)} px (Codex) vs ${sv.plumb.ade2d_px.toFixed(1)} px (Plumb) · IoU ${sv.codex.iou.toFixed(2)} vs ${sv.plumb.iou.toFixed(2)}`;
+      } else if (svReadout) svReadout.textContent = '';
       let ready = 0;
       const go = () => { if (++ready === vids.length) syncGroup.gallery?.restart(); };
       vids.forEach(v => v.addEventListener('loadeddata', go, { once: true }));
@@ -188,7 +204,7 @@
         const cls = f.delivered ? ' delivered' : f === best ? ' best-dot' : '';
         s += `<circle class="dot${cls}" cx="${X(f.minute)}" cy="${Y(f.rmse_px)}" r="${cls ? 7 : 5}"><title>Fit ${i + 1} of ${d.fits.length}: ${Math.round(f.rmse_px)} px at minute ${Math.round(f.minute)}${f.delivered ? ', delivered' : ''}</title></circle>`;
       });
-      s += `<text class="note" x="${X(best.minute)}" y="${Y(best.rmse_px) + 24}" text-anchor="middle">best: ${Math.round(best.rmse_px)} px</text>`;
+      s += `<text class="note" x="${X(best.minute)}" y="${Y(best.rmse_px) + 24}" text-anchor="middle">lowest RMSE: ${Math.round(best.rmse_px)} px</text>`;
       s += `<text class="note bad" x="${X(last.minute)}" y="${Y(last.rmse_px) - 14}" text-anchor="end">delivered: ${Math.round(last.rmse_px)} px</text>`;
       plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">${s}</svg>`;
     };

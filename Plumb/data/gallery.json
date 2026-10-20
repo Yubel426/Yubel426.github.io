@@ -1,222 +1,2002 @@
 [
  {
-  "slug": "dominoes-2mid",
-  "dataset": "Physion",
-  "category": "Dominoes",
-  "frames": 220,
-  "fps": 100.0,
-  "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/023_physion_v15_dominoes_pilot_dominoes_2mid_J025R30_tdwroom_0021",
-  "delivered_round": "round-001",
-  "accepted": false,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/023_physion_v15_dominoes_pilot_dominoes_2mid_J025R30_tdwroom_0021/001",
-  "media": {
-   "source": "media/gallery/dominoes-2mid/source.mp4",
-   "codex": "media/gallery/dominoes-2mid/codex.mp4",
-   "sim": "media/gallery/dominoes-2mid/sim.mp4",
-   "thumb": "media/gallery/dominoes-2mid/thumb.jpg",
-   "source_poster": "media/gallery/dominoes-2mid/source.jpg",
-   "sim_poster": "media/gallery/dominoes-2mid/sim.jpg",
-   "codex_poster": "media/gallery/dominoes-2mid/codex.jpg"
-  }
- },
- {
-  "slug": "link",
-  "dataset": "Physion",
-  "category": "Link",
-  "frames": 251,
-  "fps": 100.0,
-  "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/025_physion_v15_link_pilot_linking_nl1-8_mg000_aCyl_bCyl_tdwroom1_long_a_0006",
-  "delivered_round": "round-002",
-  "accepted": false,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/025_physion_v15_link_pilot_linking_nl1-8_mg000_aCyl_bCyl_tdwroom1_long_a_0006/001",
-  "media": {
-   "source": "media/gallery/link/source.mp4",
-   "codex": "media/gallery/link/codex.mp4",
-   "sim": "media/gallery/link/sim.mp4",
-   "thumb": "media/gallery/link/thumb.jpg",
-   "source_poster": "media/gallery/link/source.jpg",
-   "sim_poster": "media/gallery/link/sim.jpg",
-   "codex_poster": "media/gallery/link/codex.jpg"
-  }
- },
- {
-  "slug": "contain-vase",
-  "dataset": "Physion",
-  "category": "Contain",
-  "frames": 251,
-  "fps": 100.0,
-  "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/014_physion_v15_contain_pilot-containment-vase_torus_0045",
-  "delivered_round": "round-004",
-  "accepted": false,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/014_physion_v15_contain_pilot-containment-vase_torus_0045/001",
-  "media": {
-   "source": "media/gallery/contain-vase/source.mp4",
-   "codex": "media/gallery/contain-vase/codex.mp4",
-   "sim": "media/gallery/contain-vase/sim.mp4",
-   "thumb": "media/gallery/contain-vase/thumb.jpg",
-   "source_poster": "media/gallery/contain-vase/source.jpg",
-   "sim_poster": "media/gallery/contain-vase/sim.jpg",
-   "codex_poster": "media/gallery/contain-vase/codex.jpg"
-  }
- },
- {
-  "slug": "dominoes-4mid",
-  "dataset": "Physion",
-  "category": "Dominoes",
-  "frames": 221,
-  "fps": 100.0,
-  "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/041_physion_v15_dominoes_pilot_dominoes_4midRM1_tdwroom_2_0019",
-  "delivered_round": "round-004",
-  "accepted": true,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/041_physion_v15_dominoes_pilot_dominoes_4midRM1_tdwroom_2_0019/001",
-  "media": {
-   "source": "media/gallery/dominoes-4mid/source.mp4",
-   "codex": "media/gallery/dominoes-4mid/codex.mp4",
-   "sim": "media/gallery/dominoes-4mid/sim.mp4",
-   "thumb": "media/gallery/dominoes-4mid/thumb.jpg",
-   "source_poster": "media/gallery/dominoes-4mid/source.jpg",
-   "sim_poster": "media/gallery/dominoes-4mid/sim.jpg",
-   "codex_poster": "media/gallery/dominoes-4mid/codex.jpg"
-  }
- },
- {
-  "slug": "towers",
-  "dataset": "Physion",
-  "category": "Support",
-  "frames": 759,
-  "fps": 100.0,
-  "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/012_physion_v15_support_pilot_towers_nb4_SJ025_mono1_dis0_occ0_tdwroom_unstable_0006",
-  "delivered_round": "round-002",
-  "accepted": false,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/012_physion_v15_support_pilot_towers_nb4_SJ025_mono1_dis0_occ0_tdwroom_unstable_0006/001",
-  "media": {
-   "source": "media/gallery/towers/source.mp4",
-   "codex": "media/gallery/towers/codex.mp4",
-   "sim": "media/gallery/towers/sim.mp4",
-   "thumb": "media/gallery/towers/thumb.jpg",
-   "source_poster": "media/gallery/towers/source.jpg",
-   "sim_poster": "media/gallery/towers/sim.jpg",
-   "codex_poster": "media/gallery/towers/codex.jpg"
-  }
- },
- {
-  "slug": "double-pendulum",
+  "slug": "029-collision",
   "dataset": "PhysInOne",
-  "category": "Double pendulum",
-  "frames": 150,
-  "fps": 62.642,
-  "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/026_physinone_pendulum_DoublePendulum__bg063__MZob5h",
-  "delivered_round": "round-005",
-  "accepted": false,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/026_physinone_pendulum_DoublePendulum__bg063__MZob5h/001",
-  "media": {
-   "source": "media/gallery/double-pendulum/source.mp4",
-   "codex": "media/gallery/double-pendulum/codex.mp4",
-   "sim": "media/gallery/double-pendulum/sim.mp4",
-   "thumb": "media/gallery/double-pendulum/thumb.jpg",
-   "source_poster": "media/gallery/double-pendulum/source.jpg",
-   "sim_poster": "media/gallery/double-pendulum/sim.jpg",
-   "codex_poster": "media/gallery/double-pendulum/codex.jpg"
-  }
- },
- {
-  "slug": "contain-bowl",
-  "dataset": "Physion",
-  "category": "Contain",
-  "frames": 251,
-  "fps": 100.0,
-  "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/016_physion_v15_contain_pilot-containment-bowl_0046",
-  "delivered_round": "round-004",
-  "accepted": true,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/016_physion_v15_contain_pilot-containment-bowl_0046/001",
-  "media": {
-   "source": "media/gallery/contain-bowl/source.mp4",
-   "codex": "media/gallery/contain-bowl/codex.mp4",
-   "sim": "media/gallery/contain-bowl/sim.mp4",
-   "thumb": "media/gallery/contain-bowl/thumb.jpg",
-   "source_poster": "media/gallery/contain-bowl/source.jpg",
-   "sim_poster": "media/gallery/contain-bowl/sim.jpg",
-   "codex_poster": "media/gallery/contain-bowl/codex.jpg"
-  }
- },
- {
-  "slug": "friction-stop",
-  "dataset": "PhysInOne",
-  "category": "Friction stop",
-  "frames": 150,
-  "fps": 62.642,
-  "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/030_physinone_rotation_and_friction_FrictionStop__bg002__HUTmYY",
-  "delivered_round": "round-004",
-  "accepted": false,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/030_physinone_rotation_and_friction_FrictionStop__bg002__HUTmYY/001",
-  "media": {
-   "source": "media/gallery/friction-stop/source.mp4",
-   "codex": "media/gallery/friction-stop/codex.mp4",
-   "sim": "media/gallery/friction-stop/sim.mp4",
-   "thumb": "media/gallery/friction-stop/thumb.jpg",
-   "source_poster": "media/gallery/friction-stop/source.jpg",
-   "sim_poster": "media/gallery/friction-stop/sim.jpg",
-   "codex_poster": "media/gallery/friction-stop/codex.jpg"
-  }
- },
- {
-  "slug": "roll-up-slope",
-  "dataset": "PhysInOne",
-  "category": "Roll up slope",
-  "frames": 150,
-  "fps": 62.642,
-  "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/002_physinone_projectile_and_rolling_RollUpSlope__bg086__miH39t",
-  "delivered_round": "round-003",
-  "accepted": false,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/002_physinone_projectile_and_rolling_RollUpSlope__bg086__miH39t/001",
-  "media": {
-   "source": "media/gallery/roll-up-slope/source.mp4",
-   "codex": "media/gallery/roll-up-slope/codex.mp4",
-   "sim": "media/gallery/roll-up-slope/sim.mp4",
-   "thumb": "media/gallery/roll-up-slope/thumb.jpg",
-   "source_poster": "media/gallery/roll-up-slope/source.jpg",
-   "sim_poster": "media/gallery/roll-up-slope/sim.jpg",
-   "codex_poster": "media/gallery/roll-up-slope/codex.jpg"
-  }
- },
- {
-  "slug": "moving-hits-stationary",
-  "dataset": "PhysInOne",
-  "category": "Moving hits stationary",
+  "category": "Collision",
+  "sample": "MovingHitsStationary__bg127__FICCnn",
   "frames": 150,
   "fps": 62.707,
   "aspect": 1.0,
-  "run": "round-90-full44-retimed-03ba847/runs/029_physinone_collision_MovingHitsStationary__bg127__FICCnn",
-  "delivered_round": "round-005",
-  "accepted": false,
-  "sim_source": "re-render at 4x, 16k shadow map",
-  "codex_job": "full44_retimed_fast_20261004/jobs/029_physinone_collision_MovingHitsStationary__bg127__FICCnn/001",
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/029_physinone_collision_MovingHitsStationary__bg127__FICCnn/attempts/004",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/029_physinone_collision_MovingHitsStationary__bg127__FICCnn/attempts/004",
   "media": {
-   "source": "media/gallery/moving-hits-stationary/source.mp4",
-   "codex": "media/gallery/moving-hits-stationary/codex.mp4",
-   "sim": "media/gallery/moving-hits-stationary/sim.mp4",
-   "thumb": "media/gallery/moving-hits-stationary/thumb.jpg",
-   "source_poster": "media/gallery/moving-hits-stationary/source.jpg",
-   "sim_poster": "media/gallery/moving-hits-stationary/sim.jpg",
-   "codex_poster": "media/gallery/moving-hits-stationary/codex.jpg"
+   "source": "media/bench50/029-collision/source.mp4",
+   "codex": "media/bench50/029-collision/codex.mp4",
+   "sim": "media/bench50/029-collision/sim.mp4",
+   "thumb": "media/bench50/029-collision/thumb.jpg",
+   "source_poster": "media/bench50/029-collision/source.jpg",
+   "sim_poster": "media/bench50/029-collision/sim.jpg",
+   "codex_poster": "media/bench50/029-collision/codex.jpg",
+   "sv_gt": "media/bench50/029-collision/sv_gt.mp4",
+   "sv_codex": "media/bench50/029-collision/sv_codex.mp4",
+   "sv_plumb": "media/bench50/029-collision/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/029-collision/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/029-collision/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/029-collision/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_12",
+   "synthetic": false,
+   "angle_deg": 87.2,
+   "codex": {
+    "ade2d_px": 89.1,
+    "iou": 0.41
+   },
+   "plumb": {
+    "ade2d_px": 40.2,
+    "iou": 0.591
+   }
+  }
+ },
+ {
+  "slug": "038-collision",
+  "dataset": "PhysInOne",
+  "category": "Collision",
+  "sample": "MovingHitsStationary__bg127__wy9rl7",
+  "frames": 120,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/038_physinone_collision_MovingHitsStationary__bg127__wy9rl7/attempts/003",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/038_physinone_collision_MovingHitsStationary__bg127__wy9rl7/attempts/003",
+  "media": {
+   "source": "media/bench50/038-collision/source.mp4",
+   "codex": "media/bench50/038-collision/codex.mp4",
+   "sim": "media/bench50/038-collision/sim.mp4",
+   "thumb": "media/bench50/038-collision/thumb.jpg",
+   "source_poster": "media/bench50/038-collision/source.jpg",
+   "sim_poster": "media/bench50/038-collision/sim.jpg",
+   "codex_poster": "media/bench50/038-collision/codex.jpg",
+   "sv_gt": "media/bench50/038-collision/sv_gt.mp4",
+   "sv_codex": "media/bench50/038-collision/sv_codex.mp4",
+   "sv_plumb": "media/bench50/038-collision/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/038-collision/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/038-collision/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/038-collision/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_12",
+   "synthetic": false,
+   "angle_deg": 87.2,
+   "codex": {
+    "ade2d_px": 22.9,
+    "iou": 0.54
+   },
+   "plumb": {
+    "ade2d_px": 46.0,
+    "iou": 0.346
+   }
+  }
+ },
+ {
+  "slug": "101-collision",
+  "dataset": "PhysInOne",
+  "category": "Collision",
+  "sample": "MovingHitsFixed__bg001__Jp26kU",
+  "frames": 90,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/101_physinone_collision_MovingHitsFixed__bg001__Jp26kU/attempts/003",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/101_physinone_collision_MovingHitsFixed__bg001__Jp26kU/attempts/003",
+  "media": {
+   "source": "media/bench50/101-collision/source.mp4",
+   "codex": "media/bench50/101-collision/codex.mp4",
+   "sim": "media/bench50/101-collision/sim.mp4",
+   "thumb": "media/bench50/101-collision/thumb.jpg",
+   "source_poster": "media/bench50/101-collision/source.jpg",
+   "sim_poster": "media/bench50/101-collision/sim.jpg",
+   "codex_poster": "media/bench50/101-collision/codex.jpg",
+   "sv_gt": "media/bench50/101-collision/sv_gt.mp4",
+   "sv_codex": "media/bench50/101-collision/sv_codex.mp4",
+   "sv_plumb": "media/bench50/101-collision/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/101-collision/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/101-collision/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/101-collision/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_6",
+   "synthetic": false,
+   "angle_deg": 62.2,
+   "codex": {
+    "ade2d_px": 27.8,
+    "iou": 0.436
+   },
+   "plumb": {
+    "ade2d_px": 15.6,
+    "iou": 0.593
+   }
+  }
+ },
+ {
+  "slug": "102-collision",
+  "dataset": "PhysInOne",
+  "category": "Collision",
+  "sample": "MovingHitsFixed__bg001__Z5WPkC",
+  "frames": 90,
+  "fps": 62.618,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/102_physinone_collision_MovingHitsFixed__bg001__Z5WPkC/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/102_physinone_collision_MovingHitsFixed__bg001__Z5WPkC/attempts/001",
+  "media": {
+   "source": "media/bench50/102-collision/source.mp4",
+   "codex": "media/bench50/102-collision/codex.mp4",
+   "sim": "media/bench50/102-collision/sim.mp4",
+   "thumb": "media/bench50/102-collision/thumb.jpg",
+   "source_poster": "media/bench50/102-collision/source.jpg",
+   "sim_poster": "media/bench50/102-collision/sim.jpg",
+   "codex_poster": "media/bench50/102-collision/codex.jpg",
+   "sv_gt": "media/bench50/102-collision/sv_gt.mp4",
+   "sv_codex": "media/bench50/102-collision/sv_codex.mp4",
+   "sv_plumb": "media/bench50/102-collision/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/102-collision/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/102-collision/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/102-collision/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_6",
+   "synthetic": false,
+   "angle_deg": 62.2,
+   "codex": {
+    "ade2d_px": 20.5,
+    "iou": 0.609
+   },
+   "plumb": {
+    "ade2d_px": 18.1,
+    "iou": 0.592
+   }
+  }
+ },
+ {
+  "slug": "103-collision",
+  "dataset": "PhysInOne",
+  "category": "Collision",
+  "sample": "MovingHitsFixed__bg072__YdcZ3D",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/103_physinone_collision_MovingHitsFixed__bg072__YdcZ3D/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/103_physinone_collision_MovingHitsFixed__bg072__YdcZ3D/attempts/001",
+  "media": {
+   "source": "media/bench50/103-collision/source.mp4",
+   "codex": "media/bench50/103-collision/codex.mp4",
+   "sim": "media/bench50/103-collision/sim.mp4",
+   "thumb": "media/bench50/103-collision/thumb.jpg",
+   "source_poster": "media/bench50/103-collision/source.jpg",
+   "sim_poster": "media/bench50/103-collision/sim.jpg",
+   "codex_poster": "media/bench50/103-collision/codex.jpg",
+   "sv_gt": "media/bench50/103-collision/sv_gt.mp4",
+   "sv_codex": "media/bench50/103-collision/sv_codex.mp4",
+   "sv_plumb": "media/bench50/103-collision/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/103-collision/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/103-collision/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/103-collision/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_12",
+   "synthetic": false,
+   "angle_deg": 87.2,
+   "codex": {
+    "ade2d_px": 172.6,
+    "iou": 0.046
+   },
+   "plumb": {
+    "ade2d_px": 40.4,
+    "iou": 0.493
+   }
+  }
+ },
+ {
+  "slug": "104-collision",
+  "dataset": "PhysInOne",
+  "category": "Collision",
+  "sample": "MovingHitsMoving__bg001__rfugUb",
+  "frames": 180,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/104_physinone_collision_MovingHitsMoving__bg001__rfugUb/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/104_physinone_collision_MovingHitsMoving__bg001__rfugUb/attempts/001",
+  "media": {
+   "source": "media/bench50/104-collision/source.mp4",
+   "codex": "media/bench50/104-collision/codex.mp4",
+   "sim": "media/bench50/104-collision/sim.mp4",
+   "thumb": "media/bench50/104-collision/thumb.jpg",
+   "source_poster": "media/bench50/104-collision/source.jpg",
+   "sim_poster": "media/bench50/104-collision/sim.jpg",
+   "codex_poster": "media/bench50/104-collision/codex.jpg",
+   "sv_gt": "media/bench50/104-collision/sv_gt.mp4",
+   "sv_codex": "media/bench50/104-collision/sv_codex.mp4",
+   "sv_plumb": "media/bench50/104-collision/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/104-collision/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/104-collision/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/104-collision/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_11",
+   "synthetic": false,
+   "angle_deg": 53.6,
+   "codex": {
+    "ade2d_px": 66.9,
+    "iou": 0.195
+   },
+   "plumb": {
+    "ade2d_px": 34.7,
+    "iou": 0.495
+   }
+  }
+ },
+ {
+  "slug": "105-collision",
+  "dataset": "PhysInOne",
+  "category": "Collision",
+  "sample": "MovingHitsStationary__bg127__8Z3hWC",
+  "frames": 150,
+  "fps": 62.955,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/105_physinone_collision_MovingHitsStationary__bg127__8Z3hWC/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/105_physinone_collision_MovingHitsStationary__bg127__8Z3hWC/attempts/001",
+  "media": {
+   "source": "media/bench50/105-collision/source.mp4",
+   "codex": "media/bench50/105-collision/codex.mp4",
+   "sim": "media/bench50/105-collision/sim.mp4",
+   "thumb": "media/bench50/105-collision/thumb.jpg",
+   "source_poster": "media/bench50/105-collision/source.jpg",
+   "sim_poster": "media/bench50/105-collision/sim.jpg",
+   "codex_poster": "media/bench50/105-collision/codex.jpg",
+   "sv_gt": "media/bench50/105-collision/sv_gt.mp4",
+   "sv_codex": "media/bench50/105-collision/sv_codex.mp4",
+   "sv_plumb": "media/bench50/105-collision/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/105-collision/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/105-collision/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/105-collision/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_12",
+   "synthetic": false,
+   "angle_deg": 87.2,
+   "codex": {
+    "ade2d_px": 50.4,
+    "iou": 0.59
+   },
+   "plumb": {
+    "ade2d_px": 88.8,
+    "iou": 0.43
+   }
+  }
+ },
+ {
+  "slug": "010-pendulum",
+  "dataset": "PhysInOne",
+  "category": "Pendulum",
+  "sample": "DoublePendulum__bg001__RL8Puj",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/010_physinone_pendulum_DoublePendulum__bg001__RL8Puj/attempts/004",
+  "plumb_job": "rerun010_skill_v10_high_rep4_20261019/jobs/010_physinone_pendulum_DoublePendulum__bg001__RL8Puj/attempts/001",
+  "media": {
+   "source": "media/bench50/010-pendulum/source.mp4",
+   "codex": "media/bench50/010-pendulum/codex.mp4",
+   "sim": "media/bench50/010-pendulum/sim.mp4?v=2",
+   "thumb": "media/bench50/010-pendulum/thumb.jpg",
+   "source_poster": "media/bench50/010-pendulum/source.jpg",
+   "sim_poster": "media/bench50/010-pendulum/sim.jpg?v=2",
+   "codex_poster": "media/bench50/010-pendulum/codex.jpg",
+   "sv_gt": "media/bench50/010-pendulum/sv_gt.mp4",
+   "sv_codex": "media/bench50/010-pendulum/sv_codex.mp4",
+   "sv_plumb": "media/bench50/010-pendulum/sv_plumb.mp4?v=2",
+   "sv_gt_poster": "media/bench50/010-pendulum/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/010-pendulum/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/010-pendulum/sv_plumb.jpg?v=2"
+  },
+  "secondview": {
+   "camera": "CineCamera_9",
+   "synthetic": false,
+   "angle_deg": 84.6,
+   "codex": {
+    "ade2d_px": 148.1,
+    "iou": 0.0
+   },
+   "plumb": {
+    "ade2d_px": 49.7,
+    "iou": 0.361
+   }
+  }
+ },
+ {
+  "slug": "112-pendulum",
+  "dataset": "PhysInOne",
+  "category": "Pendulum",
+  "sample": "SimplePendulum__bg034__vd33pn",
+  "frames": 132,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/112_physinone_pendulum_SimplePendulum__bg034__vd33pn/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/112_physinone_pendulum_SimplePendulum__bg034__vd33pn/attempts/001",
+  "media": {
+   "source": "media/bench50/112-pendulum/source.mp4",
+   "codex": "media/bench50/112-pendulum/codex.mp4",
+   "sim": "media/bench50/112-pendulum/sim.mp4",
+   "thumb": "media/bench50/112-pendulum/thumb.jpg",
+   "source_poster": "media/bench50/112-pendulum/source.jpg",
+   "sim_poster": "media/bench50/112-pendulum/sim.jpg",
+   "codex_poster": "media/bench50/112-pendulum/codex.jpg",
+   "sv_gt": "media/bench50/112-pendulum/sv_gt.mp4",
+   "sv_codex": "media/bench50/112-pendulum/sv_codex.mp4",
+   "sv_plumb": "media/bench50/112-pendulum/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/112-pendulum/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/112-pendulum/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/112-pendulum/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_9",
+   "synthetic": false,
+   "angle_deg": 83.0,
+   "codex": {
+    "ade2d_px": 26.3,
+    "iou": 0.0
+   },
+   "plumb": {
+    "ade2d_px": 21.1,
+    "iou": 0.338
+   }
+  }
+ },
+ {
+  "slug": "113-pendulum",
+  "dataset": "PhysInOne",
+  "category": "Pendulum",
+  "sample": "SimplePendulum__bg002__5nqe1t",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/113_physinone_pendulum_SimplePendulum__bg002__5nqe1t/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/113_physinone_pendulum_SimplePendulum__bg002__5nqe1t/attempts/001",
+  "media": {
+   "source": "media/bench50/113-pendulum/source.mp4",
+   "codex": "media/bench50/113-pendulum/codex.mp4",
+   "sim": "media/bench50/113-pendulum/sim.mp4",
+   "thumb": "media/bench50/113-pendulum/thumb.jpg",
+   "source_poster": "media/bench50/113-pendulum/source.jpg",
+   "sim_poster": "media/bench50/113-pendulum/sim.jpg",
+   "codex_poster": "media/bench50/113-pendulum/codex.jpg",
+   "sv_gt": "media/bench50/113-pendulum/sv_gt.mp4",
+   "sv_codex": "media/bench50/113-pendulum/sv_codex.mp4",
+   "sv_plumb": "media/bench50/113-pendulum/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/113-pendulum/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/113-pendulum/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/113-pendulum/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_12",
+   "synthetic": false,
+   "angle_deg": 87.2,
+   "codex": {
+    "ade2d_px": 117.0,
+    "iou": 0.353
+   },
+   "plumb": {
+    "ade2d_px": 21.7,
+    "iou": 0.458
+   }
+  }
+ },
+ {
+  "slug": "114-pendulum",
+  "dataset": "PhysInOne",
+  "category": "Pendulum",
+  "sample": "DoublePendulum__bg071__2aFZqm",
+  "frames": 120,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/114_physinone_pendulum_DoublePendulum__bg071__2aFZqm/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/114_physinone_pendulum_DoublePendulum__bg071__2aFZqm/attempts/001",
+  "media": {
+   "source": "media/bench50/114-pendulum/source.mp4",
+   "codex": "media/bench50/114-pendulum/codex.mp4",
+   "sim": "media/bench50/114-pendulum/sim.mp4",
+   "thumb": "media/bench50/114-pendulum/thumb.jpg",
+   "source_poster": "media/bench50/114-pendulum/source.jpg",
+   "sim_poster": "media/bench50/114-pendulum/sim.jpg",
+   "codex_poster": "media/bench50/114-pendulum/codex.jpg",
+   "sv_gt": "media/bench50/114-pendulum/sv_gt.mp4",
+   "sv_codex": "media/bench50/114-pendulum/sv_codex.mp4",
+   "sv_plumb": "media/bench50/114-pendulum/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/114-pendulum/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/114-pendulum/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/114-pendulum/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_17",
+   "synthetic": false,
+   "angle_deg": 90.4,
+   "codex": {
+    "ade2d_px": 128.5,
+    "iou": 0.0
+   },
+   "plumb": {
+    "ade2d_px": 13.3,
+    "iou": 0.0
+   }
+  }
+ },
+ {
+  "slug": "106-projectile-and-rolling",
+  "dataset": "PhysInOne",
+  "category": "Projectile and rolling",
+  "sample": "ObliqueProjectile__bg067__Xa5FxY",
+  "frames": 120,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/106_physinone_projectile_and_rolling_ObliqueProjectile__bg067__Xa5FxY/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/106_physinone_projectile_and_rolling_ObliqueProjectile__bg067__Xa5FxY/attempts/001",
+  "media": {
+   "source": "media/bench50/106-projectile-and-rolling/source.mp4",
+   "codex": "media/bench50/106-projectile-and-rolling/codex.mp4",
+   "sim": "media/bench50/106-projectile-and-rolling/sim.mp4",
+   "thumb": "media/bench50/106-projectile-and-rolling/thumb.jpg",
+   "source_poster": "media/bench50/106-projectile-and-rolling/source.jpg",
+   "sim_poster": "media/bench50/106-projectile-and-rolling/sim.jpg",
+   "codex_poster": "media/bench50/106-projectile-and-rolling/codex.jpg",
+   "sv_gt": "media/bench50/106-projectile-and-rolling/sv_gt.mp4",
+   "sv_codex": "media/bench50/106-projectile-and-rolling/sv_codex.mp4",
+   "sv_plumb": "media/bench50/106-projectile-and-rolling/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/106-projectile-and-rolling/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/106-projectile-and-rolling/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/106-projectile-and-rolling/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_9",
+   "synthetic": false,
+   "angle_deg": 83.0,
+   "codex": {
+    "ade2d_px": 848.6,
+    "iou": 0.092
+   },
+   "plumb": {
+    "ade2d_px": 35.7,
+    "iou": 0.492
+   }
+  }
+ },
+ {
+  "slug": "107-projectile-and-rolling",
+  "dataset": "PhysInOne",
+  "category": "Projectile and rolling",
+  "sample": "ObliqueProjectile__bg067__uKciRp",
+  "frames": 120,
+  "fps": 62.589,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/107_physinone_projectile_and_rolling_ObliqueProjectile__bg067__uKciRp/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/107_physinone_projectile_and_rolling_ObliqueProjectile__bg067__uKciRp/attempts/001",
+  "media": {
+   "source": "media/bench50/107-projectile-and-rolling/source.mp4",
+   "codex": "media/bench50/107-projectile-and-rolling/codex.mp4",
+   "sim": "media/bench50/107-projectile-and-rolling/sim.mp4",
+   "thumb": "media/bench50/107-projectile-and-rolling/thumb.jpg",
+   "source_poster": "media/bench50/107-projectile-and-rolling/source.jpg",
+   "sim_poster": "media/bench50/107-projectile-and-rolling/sim.jpg",
+   "codex_poster": "media/bench50/107-projectile-and-rolling/codex.jpg",
+   "sv_gt": "media/bench50/107-projectile-and-rolling/sv_gt.mp4",
+   "sv_codex": "media/bench50/107-projectile-and-rolling/sv_codex.mp4",
+   "sv_plumb": "media/bench50/107-projectile-and-rolling/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/107-projectile-and-rolling/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/107-projectile-and-rolling/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/107-projectile-and-rolling/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_4",
+   "synthetic": false,
+   "angle_deg": 73.6,
+   "codex": {
+    "ade2d_px": 16.8,
+    "iou": 0.71
+   },
+   "plumb": {
+    "ade2d_px": 104.5,
+    "iou": 0.129
+   }
+  }
+ },
+ {
+  "slug": "108-projectile-and-rolling",
+  "dataset": "PhysInOne",
+  "category": "Projectile and rolling",
+  "sample": "VerticalFall__bg062__5YVQeG",
+  "frames": 180,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/108_physinone_projectile_and_rolling_VerticalFall__bg062__5YVQeG/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/108_physinone_projectile_and_rolling_VerticalFall__bg062__5YVQeG/attempts/001",
+  "media": {
+   "source": "media/bench50/108-projectile-and-rolling/source.mp4",
+   "codex": "media/bench50/108-projectile-and-rolling/codex.mp4",
+   "sim": "media/bench50/108-projectile-and-rolling/sim.mp4",
+   "thumb": "media/bench50/108-projectile-and-rolling/thumb.jpg",
+   "source_poster": "media/bench50/108-projectile-and-rolling/source.jpg",
+   "sim_poster": "media/bench50/108-projectile-and-rolling/sim.jpg",
+   "codex_poster": "media/bench50/108-projectile-and-rolling/codex.jpg",
+   "sv_gt": "media/bench50/108-projectile-and-rolling/sv_gt.mp4",
+   "sv_codex": "media/bench50/108-projectile-and-rolling/sv_codex.mp4",
+   "sv_plumb": "media/bench50/108-projectile-and-rolling/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/108-projectile-and-rolling/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/108-projectile-and-rolling/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/108-projectile-and-rolling/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_12",
+   "synthetic": false,
+   "angle_deg": 87.2,
+   "codex": {
+    "ade2d_px": 23.5,
+    "iou": 0.714
+   },
+   "plumb": {
+    "ade2d_px": 44.3,
+    "iou": 0.621
+   }
+  }
+ },
+ {
+  "slug": "109-projectile-and-rolling",
+  "dataset": "PhysInOne",
+  "category": "Projectile and rolling",
+  "sample": "RollDownSlope__bg071__4j3vxm",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/109_physinone_projectile_and_rolling_RollDownSlope__bg071__4j3vxm/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/109_physinone_projectile_and_rolling_RollDownSlope__bg071__4j3vxm/attempts/001",
+  "media": {
+   "source": "media/bench50/109-projectile-and-rolling/source.mp4",
+   "codex": "media/bench50/109-projectile-and-rolling/codex.mp4",
+   "sim": "media/bench50/109-projectile-and-rolling/sim.mp4",
+   "thumb": "media/bench50/109-projectile-and-rolling/thumb.jpg",
+   "source_poster": "media/bench50/109-projectile-and-rolling/source.jpg",
+   "sim_poster": "media/bench50/109-projectile-and-rolling/sim.jpg",
+   "codex_poster": "media/bench50/109-projectile-and-rolling/codex.jpg",
+   "sv_gt": "media/bench50/109-projectile-and-rolling/sv_gt.mp4",
+   "sv_codex": "media/bench50/109-projectile-and-rolling/sv_codex.mp4",
+   "sv_plumb": "media/bench50/109-projectile-and-rolling/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/109-projectile-and-rolling/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/109-projectile-and-rolling/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/109-projectile-and-rolling/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_11",
+   "synthetic": false,
+   "angle_deg": 88.1,
+   "codex": {
+    "ade2d_px": 25.9,
+    "iou": 0.539
+   },
+   "plumb": {
+    "ade2d_px": 13.9,
+    "iou": 0.692
+   }
+  }
+ },
+ {
+  "slug": "110-projectile-and-rolling",
+  "dataset": "PhysInOne",
+  "category": "Projectile and rolling",
+  "sample": "RollDownSlope__bg140__JKzu2V",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/110_physinone_projectile_and_rolling_RollDownSlope__bg140__JKzu2V/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/110_physinone_projectile_and_rolling_RollDownSlope__bg140__JKzu2V/attempts/001",
+  "media": {
+   "source": "media/bench50/110-projectile-and-rolling/source.mp4",
+   "codex": "media/bench50/110-projectile-and-rolling/codex.mp4",
+   "sim": "media/bench50/110-projectile-and-rolling/sim.mp4",
+   "thumb": "media/bench50/110-projectile-and-rolling/thumb.jpg",
+   "source_poster": "media/bench50/110-projectile-and-rolling/source.jpg",
+   "sim_poster": "media/bench50/110-projectile-and-rolling/sim.jpg",
+   "codex_poster": "media/bench50/110-projectile-and-rolling/codex.jpg",
+   "sv_gt": "media/bench50/110-projectile-and-rolling/sv_gt.mp4",
+   "sv_codex": "media/bench50/110-projectile-and-rolling/sv_codex.mp4",
+   "sv_plumb": "media/bench50/110-projectile-and-rolling/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/110-projectile-and-rolling/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/110-projectile-and-rolling/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/110-projectile-and-rolling/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_12",
+   "synthetic": false,
+   "angle_deg": 80.2,
+   "codex": {
+    "ade2d_px": 39.2,
+    "iou": 0.0
+   },
+   "plumb": {
+    "ade2d_px": 16.2,
+    "iou": 0.313
+   }
+  }
+ },
+ {
+  "slug": "111-projectile-and-rolling",
+  "dataset": "PhysInOne",
+  "category": "Projectile and rolling",
+  "sample": "RollDownSlope__bg139__5aed4T",
+  "frames": 90,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/111_physinone_projectile_and_rolling_RollDownSlope__bg139__5aed4T/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/111_physinone_projectile_and_rolling_RollDownSlope__bg139__5aed4T/attempts/001",
+  "media": {
+   "source": "media/bench50/111-projectile-and-rolling/source.mp4",
+   "codex": "media/bench50/111-projectile-and-rolling/codex.mp4",
+   "sim": "media/bench50/111-projectile-and-rolling/sim.mp4",
+   "thumb": "media/bench50/111-projectile-and-rolling/thumb.jpg",
+   "source_poster": "media/bench50/111-projectile-and-rolling/source.jpg",
+   "sim_poster": "media/bench50/111-projectile-and-rolling/sim.jpg",
+   "codex_poster": "media/bench50/111-projectile-and-rolling/codex.jpg",
+   "sv_gt": "media/bench50/111-projectile-and-rolling/sv_gt.mp4",
+   "sv_codex": "media/bench50/111-projectile-and-rolling/sv_codex.mp4",
+   "sv_plumb": "media/bench50/111-projectile-and-rolling/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/111-projectile-and-rolling/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/111-projectile-and-rolling/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/111-projectile-and-rolling/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_11",
+   "synthetic": false,
+   "angle_deg": 53.6,
+   "codex": {
+    "ade2d_px": 58.3,
+    "iou": 0.045
+   },
+   "plumb": {
+    "ade2d_px": 26.4,
+    "iou": 0.187
+   }
+  }
+ },
+ {
+  "slug": "030-rotation-and-friction",
+  "dataset": "PhysInOne",
+  "category": "Rotation and friction",
+  "sample": "FrictionStop__bg002__HUTmYY",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/030_physinone_rotation_and_friction_FrictionStop__bg002__HUTmYY/attempts/004",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/030_physinone_rotation_and_friction_FrictionStop__bg002__HUTmYY/attempts/004",
+  "media": {
+   "source": "media/bench50/030-rotation-and-friction/source.mp4",
+   "codex": "media/bench50/030-rotation-and-friction/codex.mp4",
+   "sim": "media/bench50/030-rotation-and-friction/sim.mp4",
+   "thumb": "media/bench50/030-rotation-and-friction/thumb.jpg",
+   "source_poster": "media/bench50/030-rotation-and-friction/source.jpg",
+   "sim_poster": "media/bench50/030-rotation-and-friction/sim.jpg",
+   "codex_poster": "media/bench50/030-rotation-and-friction/codex.jpg",
+   "sv_gt": "media/bench50/030-rotation-and-friction/sv_gt.mp4",
+   "sv_codex": "media/bench50/030-rotation-and-friction/sv_codex.mp4",
+   "sv_plumb": "media/bench50/030-rotation-and-friction/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/030-rotation-and-friction/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/030-rotation-and-friction/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/030-rotation-and-friction/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_4",
+   "synthetic": false,
+   "angle_deg": 71.9,
+   "codex": {
+    "ade2d_px": 200.9,
+    "iou": 0.248
+   },
+   "plumb": {
+    "ade2d_px": 115.6,
+    "iou": 0.344
+   }
+  }
+ },
+ {
+  "slug": "115-rotation-and-friction",
+  "dataset": "PhysInOne",
+  "category": "Rotation and friction",
+  "sample": "FrictionStop__bg110__AJ9JO5",
+  "frames": 300,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/115_physinone_rotation_and_friction_FrictionStop__bg110__AJ9JO5/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/115_physinone_rotation_and_friction_FrictionStop__bg110__AJ9JO5/attempts/001",
+  "media": {
+   "source": "media/bench50/115-rotation-and-friction/source.mp4",
+   "codex": "media/bench50/115-rotation-and-friction/codex.mp4",
+   "sim": "media/bench50/115-rotation-and-friction/sim.mp4",
+   "thumb": "media/bench50/115-rotation-and-friction/thumb.jpg",
+   "source_poster": "media/bench50/115-rotation-and-friction/source.jpg",
+   "sim_poster": "media/bench50/115-rotation-and-friction/sim.jpg",
+   "codex_poster": "media/bench50/115-rotation-and-friction/codex.jpg",
+   "sv_gt": "media/bench50/115-rotation-and-friction/sv_gt.mp4",
+   "sv_codex": "media/bench50/115-rotation-and-friction/sv_codex.mp4",
+   "sv_plumb": "media/bench50/115-rotation-and-friction/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/115-rotation-and-friction/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/115-rotation-and-friction/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/115-rotation-and-friction/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_9",
+   "synthetic": false,
+   "angle_deg": 84.6,
+   "codex": {
+    "ade2d_px": 12.9,
+    "iou": 0.72
+   },
+   "plumb": {
+    "ade2d_px": 23.5,
+    "iou": 0.628
+   }
+  }
+ },
+ {
+  "slug": "116-rotation-and-friction",
+  "dataset": "PhysInOne",
+  "category": "Rotation and friction",
+  "sample": "UniformConcaveSpin__bg135__8dF4G9",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/116_physinone_rotation_and_friction_UniformConcaveSpin__bg135__8dF4G9/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/116_physinone_rotation_and_friction_UniformConcaveSpin__bg135__8dF4G9/attempts/001",
+  "media": {
+   "source": "media/bench50/116-rotation-and-friction/source.mp4",
+   "codex": "media/bench50/116-rotation-and-friction/codex.mp4",
+   "sim": "media/bench50/116-rotation-and-friction/sim.mp4",
+   "thumb": "media/bench50/116-rotation-and-friction/thumb.jpg",
+   "source_poster": "media/bench50/116-rotation-and-friction/source.jpg",
+   "sim_poster": "media/bench50/116-rotation-and-friction/sim.jpg",
+   "codex_poster": "media/bench50/116-rotation-and-friction/codex.jpg",
+   "sv_gt": "media/bench50/116-rotation-and-friction/sv_gt.mp4",
+   "sv_codex": "media/bench50/116-rotation-and-friction/sv_codex.mp4",
+   "sv_plumb": "media/bench50/116-rotation-and-friction/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/116-rotation-and-friction/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/116-rotation-and-friction/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/116-rotation-and-friction/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_9",
+   "synthetic": false,
+   "angle_deg": 84.6,
+   "codex": {
+    "ade2d_px": 52.0,
+    "iou": 0.592
+   },
+   "plumb": {
+    "ade2d_px": 54.5,
+    "iou": 0.221
+   }
+  }
+ },
+ {
+  "slug": "117-rotation-and-friction",
+  "dataset": "PhysInOne",
+  "category": "Rotation and friction",
+  "sample": "UniformPanelSpin__bg025__58TXXw",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/117_physinone_rotation_and_friction_UniformPanelSpin__bg025__58TXXw/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/117_physinone_rotation_and_friction_UniformPanelSpin__bg025__58TXXw/attempts/001",
+  "media": {
+   "source": "media/bench50/117-rotation-and-friction/source.mp4",
+   "codex": "media/bench50/117-rotation-and-friction/codex.mp4",
+   "sim": "media/bench50/117-rotation-and-friction/sim.mp4",
+   "thumb": "media/bench50/117-rotation-and-friction/thumb.jpg",
+   "source_poster": "media/bench50/117-rotation-and-friction/source.jpg",
+   "sim_poster": "media/bench50/117-rotation-and-friction/sim.jpg",
+   "codex_poster": "media/bench50/117-rotation-and-friction/codex.jpg",
+   "sv_gt": "media/bench50/117-rotation-and-friction/sv_gt.mp4",
+   "sv_codex": "media/bench50/117-rotation-and-friction/sv_codex.mp4",
+   "sv_plumb": "media/bench50/117-rotation-and-friction/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/117-rotation-and-friction/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/117-rotation-and-friction/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/117-rotation-and-friction/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_9",
+   "synthetic": false,
+   "angle_deg": 84.6,
+   "codex": {
+    "ade2d_px": 1.9,
+    "iou": 0.948
+   },
+   "plumb": {
+    "ade2d_px": 1.7,
+    "iou": 0.955
+   }
+  }
+ },
+ {
+  "slug": "118-rotation-and-friction",
+  "dataset": "PhysInOne",
+  "category": "Rotation and friction",
+  "sample": "UniformSurfaceSpin__bg130__4Ha0wa",
+  "frames": 90,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/118_physinone_rotation_and_friction_UniformSurfaceSpin__bg130__4Ha0wa/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/118_physinone_rotation_and_friction_UniformSurfaceSpin__bg130__4Ha0wa/attempts/001",
+  "media": {
+   "source": "media/bench50/118-rotation-and-friction/source.mp4",
+   "codex": "media/bench50/118-rotation-and-friction/codex.mp4",
+   "sim": "media/bench50/118-rotation-and-friction/sim.mp4",
+   "thumb": "media/bench50/118-rotation-and-friction/thumb.jpg",
+   "source_poster": "media/bench50/118-rotation-and-friction/source.jpg",
+   "sim_poster": "media/bench50/118-rotation-and-friction/sim.jpg",
+   "codex_poster": "media/bench50/118-rotation-and-friction/codex.jpg",
+   "sv_gt": "media/bench50/118-rotation-and-friction/sv_gt.mp4",
+   "sv_codex": "media/bench50/118-rotation-and-friction/sv_codex.mp4",
+   "sv_plumb": "media/bench50/118-rotation-and-friction/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/118-rotation-and-friction/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/118-rotation-and-friction/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/118-rotation-and-friction/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_9",
+   "synthetic": false,
+   "angle_deg": 84.6,
+   "codex": {
+    "ade2d_px": 108.4,
+    "iou": 0.236
+   },
+   "plumb": {
+    "ade2d_px": 75.9,
+    "iou": 0.458
+   }
+  }
+ },
+ {
+  "slug": "119-structural-stability",
+  "dataset": "PhysInOne",
+  "category": "Structural stability",
+  "sample": "BlockWallCollapse__bg001__uExwgs",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/119_physinone_structural_stability_BlockWallCollapse__bg001__uExwgs/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/119_physinone_structural_stability_BlockWallCollapse__bg001__uExwgs/attempts/001",
+  "media": {
+   "source": "media/bench50/119-structural-stability/source.mp4",
+   "codex": "media/bench50/119-structural-stability/codex.mp4",
+   "sim": "media/bench50/119-structural-stability/sim.mp4",
+   "thumb": "media/bench50/119-structural-stability/thumb.jpg",
+   "source_poster": "media/bench50/119-structural-stability/source.jpg",
+   "sim_poster": "media/bench50/119-structural-stability/sim.jpg",
+   "codex_poster": "media/bench50/119-structural-stability/codex.jpg",
+   "sv_gt": "media/bench50/119-structural-stability/sv_gt.mp4",
+   "sv_codex": "media/bench50/119-structural-stability/sv_codex.mp4",
+   "sv_plumb": "media/bench50/119-structural-stability/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/119-structural-stability/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/119-structural-stability/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/119-structural-stability/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_2",
+   "synthetic": false,
+   "angle_deg": 45.6,
+   "codex": {
+    "ade2d_px": 1050.3,
+    "iou": 0.013
+   },
+   "plumb": {
+    "ade2d_px": 1042.8,
+    "iou": 0.056
+   }
+  }
+ },
+ {
+  "slug": "120-structural-stability",
+  "dataset": "PhysInOne",
+  "category": "Structural stability",
+  "sample": "StickSupportFail__bg073__LvvPiF",
+  "frames": 150,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/120_physinone_structural_stability_StickSupportFail__bg073__LvvPiF/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/120_physinone_structural_stability_StickSupportFail__bg073__LvvPiF/attempts/001",
+  "media": {
+   "source": "media/bench50/120-structural-stability/source.mp4",
+   "codex": "media/bench50/120-structural-stability/codex.mp4",
+   "sim": "media/bench50/120-structural-stability/sim.mp4",
+   "thumb": "media/bench50/120-structural-stability/thumb.jpg",
+   "source_poster": "media/bench50/120-structural-stability/source.jpg",
+   "sim_poster": "media/bench50/120-structural-stability/sim.jpg",
+   "codex_poster": "media/bench50/120-structural-stability/codex.jpg",
+   "sv_gt": "media/bench50/120-structural-stability/sv_gt.mp4",
+   "sv_codex": "media/bench50/120-structural-stability/sv_codex.mp4",
+   "sv_plumb": "media/bench50/120-structural-stability/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/120-structural-stability/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/120-structural-stability/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/120-structural-stability/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_6",
+   "synthetic": false,
+   "angle_deg": 61.1,
+   "codex": {
+    "ade2d_px": 801.6,
+    "iou": 0.242
+   },
+   "plumb": {
+    "ade2d_px": 817.1,
+    "iou": 0.087
+   }
+  }
+ },
+ {
+  "slug": "121-structural-stability",
+  "dataset": "PhysInOne",
+  "category": "Structural stability",
+  "sample": "StickSupportFail__bg139__lLUFuy",
+  "frames": 300,
+  "fps": 62.642,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/121_physinone_structural_stability_StickSupportFail__bg139__lLUFuy/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/121_physinone_structural_stability_StickSupportFail__bg139__lLUFuy/attempts/001",
+  "media": {
+   "source": "media/bench50/121-structural-stability/source.mp4",
+   "codex": "media/bench50/121-structural-stability/codex.mp4",
+   "sim": "media/bench50/121-structural-stability/sim.mp4",
+   "thumb": "media/bench50/121-structural-stability/thumb.jpg",
+   "source_poster": "media/bench50/121-structural-stability/source.jpg",
+   "sim_poster": "media/bench50/121-structural-stability/sim.jpg",
+   "codex_poster": "media/bench50/121-structural-stability/codex.jpg",
+   "sv_gt": "media/bench50/121-structural-stability/sv_gt.mp4",
+   "sv_codex": "media/bench50/121-structural-stability/sv_codex.mp4",
+   "sv_plumb": "media/bench50/121-structural-stability/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/121-structural-stability/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/121-structural-stability/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/121-structural-stability/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "CineCamera_7",
+   "synthetic": false,
+   "angle_deg": 67.9,
+   "codex": {
+    "ade2d_px": 826.5,
+    "iou": 0.156
+   },
+   "plumb": {
+    "ade2d_px": 822.0,
+    "iou": 0.232
+   }
+  }
+ },
+ {
+  "slug": "005-collide",
+  "dataset": "Physion",
+  "category": "Collide",
+  "sample": "pilot_it2_collision_non-sphere_box_0003",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/005_physion_v15_collide_pilot_it2_collision_non-sphere_box_0003/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/005_physion_v15_collide_pilot_it2_collision_non-sphere_box_0003/attempts/001",
+  "media": {
+   "source": "media/bench50/005-collide/source.mp4",
+   "codex": "media/bench50/005-collide/codex.mp4",
+   "sim": "media/bench50/005-collide/sim.mp4",
+   "thumb": "media/bench50/005-collide/thumb.jpg",
+   "source_poster": "media/bench50/005-collide/source.jpg",
+   "sim_poster": "media/bench50/005-collide/sim.jpg",
+   "codex_poster": "media/bench50/005-collide/codex.jpg",
+   "sv_gt": "media/bench50/005-collide/sv_gt.mp4",
+   "sv_codex": "media/bench50/005-collide/sv_codex.mp4",
+   "sv_plumb": "media/bench50/005-collide/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/005-collide/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/005-collide/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/005-collide/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 51.6,
+   "codex": {
+    "ade2d_px": 50.9,
+    "iou": 0.289
+   },
+   "plumb": {
+    "ade2d_px": 20.2,
+    "iou": 0.488
+   }
+  }
+ },
+ {
+  "slug": "028-collide",
+  "dataset": "Physion",
+  "category": "Collide",
+  "sample": "pilot_it2_collision_non-sphere_box_0017",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/028_physion_v15_collide_pilot_it2_collision_non-sphere_box_0017/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/028_physion_v15_collide_pilot_it2_collision_non-sphere_box_0017/attempts/001",
+  "media": {
+   "source": "media/bench50/028-collide/source.mp4",
+   "codex": "media/bench50/028-collide/codex.mp4",
+   "sim": "media/bench50/028-collide/sim.mp4",
+   "thumb": "media/bench50/028-collide/thumb.jpg",
+   "source_poster": "media/bench50/028-collide/source.jpg",
+   "sim_poster": "media/bench50/028-collide/sim.jpg",
+   "codex_poster": "media/bench50/028-collide/codex.jpg",
+   "sv_gt": "media/bench50/028-collide/sv_gt.mp4",
+   "sv_codex": "media/bench50/028-collide/sv_codex.mp4",
+   "sv_plumb": "media/bench50/028-collide/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/028-collide/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/028-collide/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/028-collide/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 53.0,
+   "codex": {
+    "ade2d_px": 162.9,
+    "iou": 0.003
+   },
+   "plumb": {
+    "ade2d_px": 71.9,
+    "iou": 0.309
+   }
+  }
+ },
+ {
+  "slug": "122-collide",
+  "dataset": "Physion",
+  "category": "Collide",
+  "sample": "pilot_it2_collision_tiny_ball_box_0002",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/122_physion_v15_collide_pilot_it2_collision_tiny_ball_box_0002/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/122_physion_v15_collide_pilot_it2_collision_tiny_ball_box_0002/attempts/001",
+  "media": {
+   "source": "media/bench50/122-collide/source.mp4",
+   "codex": "media/bench50/122-collide/codex.mp4",
+   "sim": "media/bench50/122-collide/sim.mp4",
+   "thumb": "media/bench50/122-collide/thumb.jpg",
+   "source_poster": "media/bench50/122-collide/source.jpg",
+   "sim_poster": "media/bench50/122-collide/sim.jpg",
+   "codex_poster": "media/bench50/122-collide/codex.jpg",
+   "sv_gt": "media/bench50/122-collide/sv_gt.mp4",
+   "sv_codex": "media/bench50/122-collide/sv_codex.mp4",
+   "sv_plumb": "media/bench50/122-collide/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/122-collide/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/122-collide/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/122-collide/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 54.7,
+   "codex": {
+    "ade2d_px": 9.7,
+    "iou": 0.762
+   },
+   "plumb": {
+    "ade2d_px": 12.4,
+    "iou": 0.672
+   }
+  }
+ },
+ {
+  "slug": "123-collide",
+  "dataset": "Physion",
+  "category": "Collide",
+  "sample": "pilot_it2_collision_assorted_targets_box_0003",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/123_physion_v15_collide_pilot_it2_collision_assorted_targets_box_0003/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/123_physion_v15_collide_pilot_it2_collision_assorted_targets_box_0003/attempts/001",
+  "media": {
+   "source": "media/bench50/123-collide/source.mp4",
+   "codex": "media/bench50/123-collide/codex.mp4",
+   "sim": "media/bench50/123-collide/sim.mp4",
+   "thumb": "media/bench50/123-collide/thumb.jpg",
+   "source_poster": "media/bench50/123-collide/source.jpg",
+   "sim_poster": "media/bench50/123-collide/sim.jpg",
+   "codex_poster": "media/bench50/123-collide/codex.jpg",
+   "sv_gt": "media/bench50/123-collide/sv_gt.mp4",
+   "sv_codex": "media/bench50/123-collide/sv_codex.mp4",
+   "sv_plumb": "media/bench50/123-collide/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/123-collide/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/123-collide/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/123-collide/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn -45 deg",
+   "synthetic": true,
+   "angle_deg": 37.6,
+   "codex": {
+    "ade2d_px": 126.4,
+    "iou": 0.018
+   },
+   "plumb": {
+    "ade2d_px": 117.7,
+    "iou": 0.017
+   }
+  }
+ },
+ {
+  "slug": "016-contain",
+  "dataset": "Physion",
+  "category": "Contain",
+  "sample": "pilot-containment-bowl_0046",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/016_physion_v15_contain_pilot-containment-bowl_0046/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/016_physion_v15_contain_pilot-containment-bowl_0046/attempts/001",
+  "media": {
+   "source": "media/bench50/016-contain/source.mp4",
+   "codex": "media/bench50/016-contain/codex.mp4",
+   "sim": "media/bench50/016-contain/sim.mp4",
+   "thumb": "media/bench50/016-contain/thumb.jpg",
+   "source_poster": "media/bench50/016-contain/source.jpg",
+   "sim_poster": "media/bench50/016-contain/sim.jpg",
+   "codex_poster": "media/bench50/016-contain/codex.jpg",
+   "sv_gt": "media/bench50/016-contain/sv_gt.mp4",
+   "sv_codex": "media/bench50/016-contain/sv_codex.mp4",
+   "sv_plumb": "media/bench50/016-contain/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/016-contain/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/016-contain/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/016-contain/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 73.4,
+   "codex": {
+    "ade2d_px": 94.4,
+    "iou": 0.353
+   },
+   "plumb": {
+    "ade2d_px": 60.2,
+    "iou": 0.349
+   }
+  }
+ },
+ {
+  "slug": "124-contain",
+  "dataset": "Physion",
+  "category": "Contain",
+  "sample": "pilot-containment-cylinder-bowl_0011",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/124_physion_v15_contain_pilot-containment-cylinder-bowl_0011/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/124_physion_v15_contain_pilot-containment-cylinder-bowl_0011/attempts/001",
+  "media": {
+   "source": "media/bench50/124-contain/source.mp4",
+   "codex": "media/bench50/124-contain/codex.mp4",
+   "sim": "media/bench50/124-contain/sim.mp4",
+   "thumb": "media/bench50/124-contain/thumb.jpg",
+   "source_poster": "media/bench50/124-contain/source.jpg",
+   "sim_poster": "media/bench50/124-contain/sim.jpg",
+   "codex_poster": "media/bench50/124-contain/codex.jpg",
+   "sv_gt": "media/bench50/124-contain/sv_gt.mp4",
+   "sv_codex": "media/bench50/124-contain/sv_codex.mp4",
+   "sv_plumb": "media/bench50/124-contain/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/124-contain/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/124-contain/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/124-contain/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 78.4,
+   "codex": {
+    "ade2d_px": 111.8,
+    "iou": 0.081
+   },
+   "plumb": {
+    "ade2d_px": 164.1,
+    "iou": 0.323
+   }
+  }
+ },
+ {
+  "slug": "125-contain",
+  "dataset": "Physion",
+  "category": "Contain",
+  "sample": "pilot-containment-multi-bowl_0006",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/125_physion_v15_contain_pilot-containment-multi-bowl_0006/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/125_physion_v15_contain_pilot-containment-multi-bowl_0006/attempts/001",
+  "media": {
+   "source": "media/bench50/125-contain/source.mp4",
+   "codex": "media/bench50/125-contain/codex.mp4",
+   "sim": "media/bench50/125-contain/sim.mp4",
+   "thumb": "media/bench50/125-contain/thumb.jpg",
+   "source_poster": "media/bench50/125-contain/source.jpg",
+   "sim_poster": "media/bench50/125-contain/sim.jpg",
+   "codex_poster": "media/bench50/125-contain/codex.jpg",
+   "sv_gt": "media/bench50/125-contain/sv_gt.mp4",
+   "sv_codex": "media/bench50/125-contain/sv_codex.mp4",
+   "sv_plumb": "media/bench50/125-contain/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/125-contain/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/125-contain/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/125-contain/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn -90 deg",
+   "synthetic": true,
+   "angle_deg": 70.4,
+   "codex": {
+    "ade2d_px": 345.2,
+    "iou": 0.061
+   },
+   "plumb": {
+    "ade2d_px": 109.9,
+    "iou": 0.169
+   }
+  }
+ },
+ {
+  "slug": "126-contain",
+  "dataset": "Physion",
+  "category": "Contain",
+  "sample": "pilot-containment-vase_0043",
+  "frames": 246,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/126_physion_v15_contain_pilot-containment-vase_0043/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/126_physion_v15_contain_pilot-containment-vase_0043/attempts/001",
+  "media": {
+   "source": "media/bench50/126-contain/source.mp4",
+   "codex": "media/bench50/126-contain/codex.mp4",
+   "sim": "media/bench50/126-contain/sim.mp4",
+   "thumb": "media/bench50/126-contain/thumb.jpg",
+   "source_poster": "media/bench50/126-contain/source.jpg",
+   "sim_poster": "media/bench50/126-contain/sim.jpg",
+   "codex_poster": "media/bench50/126-contain/codex.jpg",
+   "sv_gt": "media/bench50/126-contain/sv_gt.mp4",
+   "sv_codex": "media/bench50/126-contain/sv_codex.mp4",
+   "sv_plumb": "media/bench50/126-contain/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/126-contain/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/126-contain/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/126-contain/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn -105 deg",
+   "synthetic": true,
+   "angle_deg": 81.6,
+   "codex": {
+    "ade2d_px": 191.2,
+    "iou": 0.096
+   },
+   "plumb": {
+    "ade2d_px": 85.0,
+    "iou": 0.291
+   }
+  }
+ },
+ {
+  "slug": "127-dominoes",
+  "dataset": "Physion",
+  "category": "Dominoes",
+  "sample": "pilot_dominoes_4midRM1_tdwroom_2_0001",
+  "frames": 195,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/127_physion_v15_dominoes_pilot_dominoes_4midRM1_tdwroom_2_0001/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/127_physion_v15_dominoes_pilot_dominoes_4midRM1_tdwroom_2_0001/attempts/001",
+  "media": {
+   "source": "media/bench50/127-dominoes/source.mp4",
+   "codex": "media/bench50/127-dominoes/codex.mp4",
+   "sim": "media/bench50/127-dominoes/sim.mp4",
+   "thumb": "media/bench50/127-dominoes/thumb.jpg",
+   "source_poster": "media/bench50/127-dominoes/source.jpg",
+   "sim_poster": "media/bench50/127-dominoes/sim.jpg",
+   "codex_poster": "media/bench50/127-dominoes/codex.jpg",
+   "sv_gt": "media/bench50/127-dominoes/sv_gt.mp4",
+   "sv_codex": "media/bench50/127-dominoes/sv_codex.mp4",
+   "sv_plumb": "media/bench50/127-dominoes/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/127-dominoes/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/127-dominoes/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/127-dominoes/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 78.0,
+   "codex": {
+    "ade2d_px": 20.4,
+    "iou": 0.366
+   },
+   "plumb": {
+    "ade2d_px": 23.6,
+    "iou": 0.311
+   }
+  }
+ },
+ {
+  "slug": "128-dominoes",
+  "dataset": "Physion",
+  "category": "Dominoes",
+  "sample": "pilot_dominoes_default_boxroom_0017",
+  "frames": 164,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/128_physion_v15_dominoes_pilot_dominoes_default_boxroom_0017/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/128_physion_v15_dominoes_pilot_dominoes_default_boxroom_0017/attempts/001",
+  "media": {
+   "source": "media/bench50/128-dominoes/source.mp4",
+   "codex": "media/bench50/128-dominoes/codex.mp4",
+   "sim": "media/bench50/128-dominoes/sim.mp4",
+   "thumb": "media/bench50/128-dominoes/thumb.jpg",
+   "source_poster": "media/bench50/128-dominoes/source.jpg",
+   "sim_poster": "media/bench50/128-dominoes/sim.jpg",
+   "codex_poster": "media/bench50/128-dominoes/codex.jpg",
+   "sv_gt": "media/bench50/128-dominoes/sv_gt.mp4",
+   "sv_codex": "media/bench50/128-dominoes/sv_codex.mp4",
+   "sv_plumb": "media/bench50/128-dominoes/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/128-dominoes/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/128-dominoes/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/128-dominoes/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 79.6,
+   "codex": {
+    "ade2d_px": 24.5,
+    "iou": 0.46
+   },
+   "plumb": {
+    "ade2d_px": 17.2,
+    "iou": 0.614
+   }
+  }
+ },
+ {
+  "slug": "129-dominoes",
+  "dataset": "Physion",
+  "category": "Dominoes",
+  "sample": "pilot_dominoes_0mid_d3chairs_o1plants_tdwroom_0012",
+  "frames": 130,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/129_physion_v15_dominoes_pilot_dominoes_0mid_d3chairs_o1plants_tdwroom_0012/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/129_physion_v15_dominoes_pilot_dominoes_0mid_d3chairs_o1plants_tdwroom_0012/attempts/001",
+  "media": {
+   "source": "media/bench50/129-dominoes/source.mp4",
+   "codex": "media/bench50/129-dominoes/codex.mp4",
+   "sim": "media/bench50/129-dominoes/sim.mp4",
+   "thumb": "media/bench50/129-dominoes/thumb.jpg",
+   "source_poster": "media/bench50/129-dominoes/source.jpg",
+   "sim_poster": "media/bench50/129-dominoes/sim.jpg",
+   "codex_poster": "media/bench50/129-dominoes/codex.jpg",
+   "sv_gt": "media/bench50/129-dominoes/sv_gt.mp4",
+   "sv_codex": "media/bench50/129-dominoes/sv_codex.mp4",
+   "sv_plumb": "media/bench50/129-dominoes/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/129-dominoes/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/129-dominoes/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/129-dominoes/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 64.2,
+   "codex": {
+    "ade2d_px": 51.6,
+    "iou": 0.277
+   },
+   "plumb": {
+    "ade2d_px": 43.0,
+    "iou": 0.381
+   }
+  }
+ },
+ {
+  "slug": "006-drop",
+  "dataset": "Physion",
+  "category": "Drop",
+  "sample": "pilot_it2_drop_all_bowls_tdw_1_dis_1_occ_0027",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/006_physion_v15_drop_pilot_it2_drop_all_bowls_tdw_1_dis_1_occ_0027/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/006_physion_v15_drop_pilot_it2_drop_all_bowls_tdw_1_dis_1_occ_0027/attempts/001",
+  "media": {
+   "source": "media/bench50/006-drop/source.mp4",
+   "codex": "media/bench50/006-drop/codex.mp4",
+   "sim": "media/bench50/006-drop/sim.mp4",
+   "thumb": "media/bench50/006-drop/thumb.jpg",
+   "source_poster": "media/bench50/006-drop/source.jpg",
+   "sim_poster": "media/bench50/006-drop/sim.jpg",
+   "codex_poster": "media/bench50/006-drop/codex.jpg",
+   "sv_gt": "media/bench50/006-drop/sv_gt.mp4",
+   "sv_codex": "media/bench50/006-drop/sv_codex.mp4",
+   "sv_plumb": "media/bench50/006-drop/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/006-drop/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/006-drop/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/006-drop/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 79.0,
+   "codex": {
+    "ade2d_px": 64.5,
+    "iou": 0.425
+   },
+   "plumb": {
+    "ade2d_px": 39.7,
+    "iou": 0.588
+   }
+  }
+ },
+ {
+  "slug": "036-drop",
+  "dataset": "Physion",
+  "category": "Drop",
+  "sample": "pilot_it2_drop_simple_tdw_1_dis_1_occ_0032",
+  "frames": 148,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/036_physion_v15_drop_pilot_it2_drop_simple_tdw_1_dis_1_occ_0032/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/036_physion_v15_drop_pilot_it2_drop_simple_tdw_1_dis_1_occ_0032/attempts/001",
+  "media": {
+   "source": "media/bench50/036-drop/source.mp4",
+   "codex": "media/bench50/036-drop/codex.mp4",
+   "sim": "media/bench50/036-drop/sim.mp4",
+   "thumb": "media/bench50/036-drop/thumb.jpg",
+   "source_poster": "media/bench50/036-drop/source.jpg",
+   "sim_poster": "media/bench50/036-drop/sim.jpg",
+   "codex_poster": "media/bench50/036-drop/codex.jpg",
+   "sv_gt": "media/bench50/036-drop/sv_gt.mp4",
+   "sv_codex": "media/bench50/036-drop/sv_codex.mp4",
+   "sv_plumb": "media/bench50/036-drop/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/036-drop/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/036-drop/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/036-drop/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 82.0,
+   "codex": {
+    "ade2d_px": 25.5,
+    "iou": 0.611
+   },
+   "plumb": {
+    "ade2d_px": 19.1,
+    "iou": 0.62
+   }
+  }
+ },
+ {
+  "slug": "130-drop",
+  "dataset": "Physion",
+  "category": "Drop",
+  "sample": "pilot_it2_drop_sizes_box_0024",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/130_physion_v15_drop_pilot_it2_drop_sizes_box_0024/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/130_physion_v15_drop_pilot_it2_drop_sizes_box_0024/attempts/001",
+  "media": {
+   "source": "media/bench50/130-drop/source.mp4",
+   "codex": "media/bench50/130-drop/codex.mp4",
+   "sim": "media/bench50/130-drop/sim.mp4",
+   "thumb": "media/bench50/130-drop/thumb.jpg",
+   "source_poster": "media/bench50/130-drop/source.jpg",
+   "sim_poster": "media/bench50/130-drop/sim.jpg",
+   "codex_poster": "media/bench50/130-drop/codex.jpg",
+   "sv_gt": "media/bench50/130-drop/sv_gt.mp4",
+   "sv_codex": "media/bench50/130-drop/sv_codex.mp4",
+   "sv_plumb": "media/bench50/130-drop/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/130-drop/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/130-drop/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/130-drop/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 81.7,
+   "codex": {
+    "ade2d_px": 140.0,
+    "iou": 0.005
+   },
+   "plumb": {
+    "ade2d_px": 51.8,
+    "iou": 0.384
+   }
+  }
+ },
+ {
+  "slug": "131-drop",
+  "dataset": "Physion",
+  "category": "Drop",
+  "sample": "pilot_it2_drop_simple_box_0003",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/131_physion_v15_drop_pilot_it2_drop_simple_box_0003/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/131_physion_v15_drop_pilot_it2_drop_simple_box_0003/attempts/001",
+  "media": {
+   "source": "media/bench50/131-drop/source.mp4",
+   "codex": "media/bench50/131-drop/codex.mp4",
+   "sim": "media/bench50/131-drop/sim.mp4",
+   "thumb": "media/bench50/131-drop/thumb.jpg",
+   "source_poster": "media/bench50/131-drop/source.jpg",
+   "sim_poster": "media/bench50/131-drop/sim.jpg",
+   "codex_poster": "media/bench50/131-drop/codex.jpg",
+   "sv_gt": "media/bench50/131-drop/sv_gt.mp4",
+   "sv_codex": "media/bench50/131-drop/sv_codex.mp4",
+   "sv_plumb": "media/bench50/131-drop/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/131-drop/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/131-drop/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/131-drop/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn -90 deg",
+   "synthetic": true,
+   "angle_deg": 74.5,
+   "codex": {
+    "ade2d_px": 79.8,
+    "iou": 0.523
+   },
+   "plumb": {
+    "ade2d_px": 126.4,
+    "iou": 0.47
+   }
+  }
+ },
+ {
+  "slug": "001-link",
+  "dataset": "Physion",
+  "category": "Link",
+  "sample": "pilot_linking_nl1-8_mg000_aCyl_bCyl_tdwroom1_0026",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/001_physion_v15_link_pilot_linking_nl1-8_mg000_aCyl_bCyl_tdwroom1_0026/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/001_physion_v15_link_pilot_linking_nl1-8_mg000_aCyl_bCyl_tdwroom1_0026/attempts/001",
+  "media": {
+   "source": "media/bench50/001-link/source.mp4",
+   "codex": "media/bench50/001-link/codex.mp4",
+   "sim": "media/bench50/001-link/sim.mp4",
+   "thumb": "media/bench50/001-link/thumb.jpg",
+   "source_poster": "media/bench50/001-link/source.jpg",
+   "sim_poster": "media/bench50/001-link/sim.jpg",
+   "codex_poster": "media/bench50/001-link/codex.jpg",
+   "sv_gt": "media/bench50/001-link/sv_gt.mp4",
+   "sv_codex": "media/bench50/001-link/sv_codex.mp4",
+   "sv_plumb": "media/bench50/001-link/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/001-link/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/001-link/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/001-link/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 79.0,
+   "codex": {
+    "ade2d_px": 347.8,
+    "iou": 0.19
+   },
+   "plumb": {
+    "ade2d_px": 351.9,
+    "iou": 0.174
+   }
+  }
+ },
+ {
+  "slug": "025-link",
+  "dataset": "Physion",
+  "category": "Link",
+  "sample": "pilot_linking_nl1-8_mg000_aCyl_bCyl_tdwroom1_long_a_0006",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/025_physion_v15_link_pilot_linking_nl1-8_mg000_aCyl_bCyl_tdwroom1_long_a_0006/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/025_physion_v15_link_pilot_linking_nl1-8_mg000_aCyl_bCyl_tdwroom1_long_a_0006/attempts/001",
+  "media": {
+   "source": "media/bench50/025-link/source.mp4",
+   "codex": "media/bench50/025-link/codex.mp4",
+   "sim": "media/bench50/025-link/sim.mp4",
+   "thumb": "media/bench50/025-link/thumb.jpg",
+   "source_poster": "media/bench50/025-link/source.jpg",
+   "sim_poster": "media/bench50/025-link/sim.jpg",
+   "codex_poster": "media/bench50/025-link/codex.jpg",
+   "sv_gt": "media/bench50/025-link/sv_gt.mp4",
+   "sv_codex": "media/bench50/025-link/sv_codex.mp4",
+   "sv_plumb": "media/bench50/025-link/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/025-link/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/025-link/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/025-link/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 52.3,
+   "codex": {
+    "ade2d_px": 806.3,
+    "iou": 0.015
+   },
+   "plumb": {
+    "ade2d_px": 731.7,
+    "iou": 0.338
+   }
+  }
+ },
+ {
+  "slug": "132-link",
+  "dataset": "Physion",
+  "category": "Link",
+  "sample": "pilot_linking_nl2-3_mg01_aCone_bCyl_boxroom_0025",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/132_physion_v15_link_pilot_linking_nl2-3_mg01_aCone_bCyl_boxroom_0025/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/132_physion_v15_link_pilot_linking_nl2-3_mg01_aCone_bCyl_boxroom_0025/attempts/001",
+  "media": {
+   "source": "media/bench50/132-link/source.mp4",
+   "codex": "media/bench50/132-link/codex.mp4",
+   "sim": "media/bench50/132-link/sim.mp4",
+   "thumb": "media/bench50/132-link/thumb.jpg",
+   "source_poster": "media/bench50/132-link/source.jpg",
+   "sim_poster": "media/bench50/132-link/sim.jpg",
+   "codex_poster": "media/bench50/132-link/codex.jpg",
+   "sv_gt": "media/bench50/132-link/sv_gt.mp4",
+   "sv_codex": "media/bench50/132-link/sv_codex.mp4",
+   "sv_plumb": "media/bench50/132-link/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/132-link/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/132-link/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/132-link/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 73.1,
+   "codex": {
+    "ade2d_px": 308.7,
+    "iou": 0.109
+   },
+   "plumb": {
+    "ade2d_px": 285.5,
+    "iou": 0.237
+   }
+  }
+ },
+ {
+  "slug": "032-roll",
+  "dataset": "Physion",
+  "category": "Roll",
+  "sample": "pilot_it2_rollingSliding_simple_ledge_tdw_1_dis_1_occ_sphere_small_zone_0023",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/032_physion_v15_roll_pilot_it2_rollingSliding_simple_ledge_tdw_1_dis_1_occ_sphere_small_zone_0023/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/032_physion_v15_roll_pilot_it2_rollingSliding_simple_ledge_tdw_1_dis_1_occ_sphere_small_zone_0023/attempts/001",
+  "media": {
+   "source": "media/bench50/032-roll/source.mp4",
+   "codex": "media/bench50/032-roll/codex.mp4",
+   "sim": "media/bench50/032-roll/sim.mp4",
+   "thumb": "media/bench50/032-roll/thumb.jpg",
+   "source_poster": "media/bench50/032-roll/source.jpg",
+   "sim_poster": "media/bench50/032-roll/sim.jpg",
+   "codex_poster": "media/bench50/032-roll/codex.jpg",
+   "sv_gt": "media/bench50/032-roll/sv_gt.mp4",
+   "sv_codex": "media/bench50/032-roll/sv_codex.mp4",
+   "sv_plumb": "media/bench50/032-roll/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/032-roll/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/032-roll/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/032-roll/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 51.3,
+   "codex": {
+    "ade2d_px": 11.9,
+    "iou": 0.617
+   },
+   "plumb": {
+    "ade2d_px": 33.2,
+    "iou": 0.3
+   }
+  }
+ },
+ {
+  "slug": "033-roll",
+  "dataset": "Physion",
+  "category": "Roll",
+  "sample": "pilot_it2_rollingSliding_simple_ledge_box_0019",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/033_physion_v15_roll_pilot_it2_rollingSliding_simple_ledge_box_0019/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/033_physion_v15_roll_pilot_it2_rollingSliding_simple_ledge_box_0019/attempts/001",
+  "media": {
+   "source": "media/bench50/033-roll/source.mp4",
+   "codex": "media/bench50/033-roll/codex.mp4",
+   "sim": "media/bench50/033-roll/sim.mp4",
+   "thumb": "media/bench50/033-roll/thumb.jpg",
+   "source_poster": "media/bench50/033-roll/source.jpg",
+   "sim_poster": "media/bench50/033-roll/sim.jpg",
+   "codex_poster": "media/bench50/033-roll/codex.jpg",
+   "sv_gt": "media/bench50/033-roll/sv_gt.mp4",
+   "sv_codex": "media/bench50/033-roll/sv_codex.mp4",
+   "sv_plumb": "media/bench50/033-roll/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/033-roll/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/033-roll/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/033-roll/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 66.8,
+   "codex": {
+    "ade2d_px": 49.4,
+    "iou": 0.145
+   },
+   "plumb": {
+    "ade2d_px": 18.7,
+    "iou": 0.517
+   }
+  }
+ },
+ {
+  "slug": "133-roll",
+  "dataset": "Physion",
+  "category": "Roll",
+  "sample": "pilot_it2_rollingSliding_simple_ramp_box_zone_away_0018",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/133_physion_v15_roll_pilot_it2_rollingSliding_simple_ramp_box_zone_away_0018/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/133_physion_v15_roll_pilot_it2_rollingSliding_simple_ramp_box_zone_away_0018/attempts/001",
+  "media": {
+   "source": "media/bench50/133-roll/source.mp4",
+   "codex": "media/bench50/133-roll/codex.mp4",
+   "sim": "media/bench50/133-roll/sim.mp4",
+   "thumb": "media/bench50/133-roll/thumb.jpg",
+   "source_poster": "media/bench50/133-roll/source.jpg",
+   "sim_poster": "media/bench50/133-roll/sim.jpg",
+   "codex_poster": "media/bench50/133-roll/codex.jpg",
+   "sv_gt": "media/bench50/133-roll/sv_gt.mp4",
+   "sv_codex": "media/bench50/133-roll/sv_codex.mp4",
+   "sv_plumb": "media/bench50/133-roll/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/133-roll/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/133-roll/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/133-roll/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 54.5,
+   "codex": {
+    "ade2d_px": 22.9,
+    "iou": 0.483
+   },
+   "plumb": {
+    "ade2d_px": 22.0,
+    "iou": 0.493
+   }
+  }
+ },
+ {
+  "slug": "134-roll",
+  "dataset": "Physion",
+  "category": "Roll",
+  "sample": "pilot_it2_rollingSliding_simple_collision_tdw_1_dis_1_occ_0000",
+  "frames": 251,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/134_physion_v15_roll_pilot_it2_rollingSliding_simple_collision_tdw_1_dis_1_occ_0000/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/134_physion_v15_roll_pilot_it2_rollingSliding_simple_collision_tdw_1_dis_1_occ_0000/attempts/001",
+  "media": {
+   "source": "media/bench50/134-roll/source.mp4",
+   "codex": "media/bench50/134-roll/codex.mp4",
+   "sim": "media/bench50/134-roll/sim.mp4",
+   "thumb": "media/bench50/134-roll/thumb.jpg",
+   "source_poster": "media/bench50/134-roll/source.jpg",
+   "sim_poster": "media/bench50/134-roll/sim.jpg",
+   "codex_poster": "media/bench50/134-roll/codex.jpg",
+   "sv_gt": "media/bench50/134-roll/sv_gt.mp4",
+   "sv_codex": "media/bench50/134-roll/sv_codex.mp4",
+   "sv_plumb": "media/bench50/134-roll/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/134-roll/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/134-roll/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/134-roll/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 73.6,
+   "codex": {
+    "ade2d_px": 87.5,
+    "iou": 0.024
+   },
+   "plumb": {
+    "ade2d_px": 86.4,
+    "iou": 0.028
+   }
+  }
+ },
+ {
+  "slug": "012-support",
+  "dataset": "Physion",
+  "category": "Support",
+  "sample": "pilot_towers_nb4_SJ025_mono1_dis0_occ0_tdwroom_unstable_0006",
+  "frames": 759,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/012_physion_v15_support_pilot_towers_nb4_SJ025_mono1_dis0_occ0_tdwroom_unstable_0006/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/012_physion_v15_support_pilot_towers_nb4_SJ025_mono1_dis0_occ0_tdwroom_unstable_0006/attempts/001",
+  "media": {
+   "source": "media/bench50/012-support/source.mp4",
+   "codex": "media/bench50/012-support/codex.mp4",
+   "sim": "media/bench50/012-support/sim.mp4",
+   "thumb": "media/bench50/012-support/thumb.jpg",
+   "source_poster": "media/bench50/012-support/source.jpg",
+   "sim_poster": "media/bench50/012-support/sim.jpg",
+   "codex_poster": "media/bench50/012-support/codex.jpg",
+   "sv_gt": "media/bench50/012-support/sv_gt.mp4",
+   "sv_codex": "media/bench50/012-support/sv_codex.mp4",
+   "sv_plumb": "media/bench50/012-support/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/012-support/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/012-support/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/012-support/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 86.0,
+   "codex": {
+    "ade2d_px": 166.5,
+    "iou": 0.034
+   },
+   "plumb": {
+    "ade2d_px": 172.7,
+    "iou": 0.104
+   }
+  }
+ },
+ {
+  "slug": "019-support",
+  "dataset": "Physion",
+  "category": "Support",
+  "sample": "pilot_towers_nb2_fr015_SJ010_mono0_dis0_occ0_tdwroom_stable_0030",
+  "frames": 442,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/019_physion_v15_support_pilot_towers_nb2_fr015_SJ010_mono0_dis0_occ0_tdwroom_stable_0030/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/019_physion_v15_support_pilot_towers_nb2_fr015_SJ010_mono0_dis0_occ0_tdwroom_stable_0030/attempts/001",
+  "media": {
+   "source": "media/bench50/019-support/source.mp4",
+   "codex": "media/bench50/019-support/codex.mp4",
+   "sim": "media/bench50/019-support/sim.mp4",
+   "thumb": "media/bench50/019-support/thumb.jpg",
+   "source_poster": "media/bench50/019-support/source.jpg",
+   "sim_poster": "media/bench50/019-support/sim.jpg",
+   "codex_poster": "media/bench50/019-support/codex.jpg",
+   "sv_gt": "media/bench50/019-support/sv_gt.mp4",
+   "sv_codex": "media/bench50/019-support/sv_codex.mp4",
+   "sv_plumb": "media/bench50/019-support/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/019-support/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/019-support/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/019-support/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 90 deg",
+   "synthetic": true,
+   "angle_deg": 79.6,
+   "codex": {
+    "ade2d_px": 52.9,
+    "iou": 0.495
+   },
+   "plumb": {
+    "ade2d_px": 34.2,
+    "iou": 0.566
+   }
+  }
+ },
+ {
+  "slug": "135-support",
+  "dataset": "Physion",
+  "category": "Support",
+  "sample": "pilot_towers_nb5_fr015_SJ030_mono0_dis0_occ0_boxroom_unstable_0005",
+  "frames": 370,
+  "fps": 100.0,
+  "aspect": 1.0,
+  "sim_source": "preview.mp4 rendered by the agent of its delivered scene",
+  "codex_job": "bench50_noskill_high_rep1_20261015/jobs/135_physion_v15_support_pilot_towers_nb5_fr015_SJ030_mono0_dis0_occ0_boxroom_unstable_0005/attempts/001",
+  "plumb_job": "bench50_skill_v10_high_rep1_20261015/jobs/135_physion_v15_support_pilot_towers_nb5_fr015_SJ030_mono0_dis0_occ0_boxroom_unstable_0005/attempts/001",
+  "media": {
+   "source": "media/bench50/135-support/source.mp4",
+   "codex": "media/bench50/135-support/codex.mp4",
+   "sim": "media/bench50/135-support/sim.mp4",
+   "thumb": "media/bench50/135-support/thumb.jpg",
+   "source_poster": "media/bench50/135-support/source.jpg",
+   "sim_poster": "media/bench50/135-support/sim.jpg",
+   "codex_poster": "media/bench50/135-support/codex.jpg",
+   "sv_gt": "media/bench50/135-support/sv_gt.mp4",
+   "sv_codex": "media/bench50/135-support/sv_codex.mp4",
+   "sv_plumb": "media/bench50/135-support/sv_plumb.mp4",
+   "sv_gt_poster": "media/bench50/135-support/sv_gt.jpg",
+   "sv_codex_poster": "media/bench50/135-support/sv_codex.jpg",
+   "sv_plumb_poster": "media/bench50/135-support/sv_plumb.jpg"
+  },
+  "secondview": {
+   "camera": "virtual turn 75 deg",
+   "synthetic": true,
+   "angle_deg": 64.8,
+   "codex": {
+    "ade2d_px": 203.4,
+    "iou": 0.024
+   },
+   "plumb": {
+    "ade2d_px": 74.0,
+    "iou": 0.299
+   }
   }
  }
 ]
