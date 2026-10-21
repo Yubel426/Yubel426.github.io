@@ -21,13 +21,14 @@
   --s-r90: #2a78d6;
   --s-r96: #2a78d6;
   --text: #2b3637;     /* prose, a step below --ink */
-  --accent: #18705d;   /* section numbers, run-in heads, list markers (the S ball's teal, darkened for text) */
-  /* wordmark cradle (assets/cradle.js): steel is a sky-to-floor reflection with a horizon just below the middle */
-  --cr-steel-1: #fdfefe; --cr-steel-2: #ccd5d3; --cr-steel-3: #7b8886; --cr-steel-4: #a6b2b0; --cr-steel-5: #e3e9e7;
-  --cr-engrave: #14262a; --cr-engrave-hi: rgba(255, 255, 255, .75);
+  --accent: #18705d;   /* section numbers, run-in heads and list markers */
+  /* Wordmark: softly shaded silver, with a muted teal finish on the first swinging ball. */
+  --cr-steel-1: #f5f7f6; --cr-steel-2: #dbe2df; --cr-steel-3: #b9c5c0; --cr-steel-4: #96a69e;
+  --cr-accent-1: #abc5bb; --cr-accent-2: #779d8e; --cr-accent-3: #557b6c; --cr-accent-4: #3c6053;
+  --cr-engrave: #263b34; --cr-accent-letter: #f5f8f6;
   --cr-metal-1: #a3afad; --cr-metal-2: #566362; --cr-metal-3: #273130;
   --cr-string: #7d8b89; --cr-shadow: #0b1a1c;
-  --cr-teal: #33c9a6; --cr-amber: #f6b840; --cr-blue: #5ba6f5; --cr-pink: #f47ba8; --cr-green: #86cc5c;   /* ball tints, both themes */
+  --cr-teal: #33c9a6; --cr-amber: #f6b840; --cr-blue: #5ba6f5; --cr-pink: #f47ba8; --cr-green: #86cc5c;   /* legacy wordmark lab palettes */
 
   --display: "Newsreader", "Iowan Old Style", Georgia, serif;
   --body: "IBM Plex Sans", -apple-system, "Segoe UI", system-ui, sans-serif;
@@ -46,8 +47,9 @@
     --good: #6cc492; --bad: #ef8282; --warn: #dcb25e; --placeholder: #b79be0; --cam2: #b294ee;
     --s-codex: #d95926; --s-r90: #3987e5; --s-r96: #3987e5;
     --text: #c9d3d1; --accent: #5cc7ab;
-    --cr-steel-1: #f1f5f4; --cr-steel-2: #b3bfbd; --cr-steel-3: #566361; --cr-steel-4: #7e8c8a; --cr-steel-5: #c3cdcb;
-    --cr-engrave: #0f1d20; --cr-engrave-hi: rgba(255, 255, 255, .45);
+    --cr-steel-1: #dce4e0; --cr-steel-2: #bbc9c2; --cr-steel-3: #9aada2; --cr-steel-4: #788d80;
+    --cr-accent-1: #b5cdc2; --cr-accent-2: #85aa99; --cr-accent-3: #608673; --cr-accent-4: #466a58;
+    --cr-engrave: #1d3027;
     --cr-metal-1: #8d9b99; --cr-metal-2: #3f4c4b; --cr-metal-3: #1a2223;
     --cr-string: #6c7c79; --cr-shadow: #000;
     color-scheme: dark;
@@ -59,8 +61,9 @@
   --good: #6cc492; --bad: #ef8282; --warn: #dcb25e; --placeholder: #b79be0; --cam2: #b294ee;
   --s-codex: #d95926; --s-r90: #3987e5; --s-r96: #3987e5;
   --text: #c9d3d1; --accent: #5cc7ab;
-  --cr-steel-1: #f1f5f4; --cr-steel-2: #b3bfbd; --cr-steel-3: #566361; --cr-steel-4: #7e8c8a; --cr-steel-5: #c3cdcb;
-  --cr-engrave: #0f1d20; --cr-engrave-hi: rgba(255, 255, 255, .45);
+  --cr-steel-1: #dce4e0; --cr-steel-2: #bbc9c2; --cr-steel-3: #9aada2; --cr-steel-4: #788d80;
+  --cr-accent-1: #b5cdc2; --cr-accent-2: #85aa99; --cr-accent-3: #608673; --cr-accent-4: #466a58;
+  --cr-engrave: #1d3027;
   --cr-metal-1: #8d9b99; --cr-metal-2: #3f4c4b; --cr-metal-3: #1a2223;
   --cr-string: #6c7c79; --cr-shadow: #000;
   color-scheme: dark;
@@ -140,15 +143,15 @@ h1 { margin: 0; font: 400 clamp(22px, 3.2vw, 36px)/1.15 var(--display); letter-s
 .cradle { display: block; width: min(100%, 320px); height: auto; overflow: visible; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .cr-ball { cursor: grab; touch-action: none; }
 .cradle.dragging, .cradle.dragging .cr-ball { cursor: grabbing; }
-.cr-letter { font: 600 34px var(--body); text-anchor: middle; fill: rgba(255, 255, 255, .93); stroke-width: 1.4; paint-order: stroke; stroke-linejoin: round; }
-.cr-rim { fill: none; stroke: #000; stroke-opacity: .18; stroke-width: .8; }
+.cr-letter { font: 500 34px var(--body); text-anchor: middle; fill: var(--cr-engrave); }
+.cr-ball-accent .cr-letter { fill: var(--cr-accent-letter); }
+.cr-rim { fill: none; stroke: var(--cr-engrave); stroke-opacity: .16; stroke-width: .7; }
 .cr-eye { fill: var(--cr-metal-2); }
 .cr-eye-ring { fill: none; stroke: var(--cr-metal-2); stroke-width: 1.6; }
 .cr-string { stroke: var(--cr-string); stroke-width: 1.3; }
 @media (max-width: 640px) { .cradle { width: min(72%, 320px); margin-inline: auto; } }
-.cr-ball-shadow { opacity: .3; }
-.cr-caustic { opacity: .75; }
-.cr-string-shadow { stroke: var(--cr-shadow); stroke-width: 1.3; opacity: .07; }
+.cr-ball-shadow { fill: var(--cr-shadow); opacity: .11; }
+.cr-string-shadow { stroke: var(--cr-shadow); stroke-width: 1.3; opacity: .04; }
 .cradle-ctl { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; font: 12px/1.4 var(--mono); color: var(--muted); }
 .cradle-ctl button { font: inherit; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; cursor: pointer; }
 .cradle-ctl button:hover { border-color: var(--muted); }

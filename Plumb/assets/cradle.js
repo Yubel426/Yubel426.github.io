@@ -11,7 +11,7 @@
   const NS = "http://www.w3.org/2000/svg", DEG = Math.PI / 180;
   const N = 5, R = 34, D = 2 * R, REST = 160;          // ball radius; height of the ball centres at rest (svg units)
   const VW = N * D, VH = REST + R + 22;                 // the box holds the row at rest; strings and swings overflow it
-  const DROP = [10, 15];                                // offset of the shadows on the page
+  const DROP = [5, 8];                                 // offset of the soft neutral shadows on the page
   const W2 = (2 * Math.PI / 1.0) ** 2;   // g / L for a 1 s period
   const AIR = 0.06, E = 0.997;            // air drag (1/s); restitution of a ball-ball contact
   const SUB = 1 / 1000, MAX_DRAG = 50 * DEG;
@@ -27,26 +27,20 @@
   let pivot = 0, L = REST, room = 1;
 
   svg.setAttribute("viewBox", `0 0 ${VW} ${VH}`);
-  // Each ball in the colour of one SAM3 mask in the overview video, as a tinted glass marble with its letter inside:
-  // clear in the middle and deeper at the rim (glass reflects more at grazing angles), a glow low on the far side where
-  // the sphere focuses the light from the upper left, a sharp highlight and a thin bright rim. Its shadow on the page is
-  // tinted, with a bright spot of focused light. It hangs from a small screw eye.
-  const TINT = ["--cr-teal", "--cr-amber", "--cr-blue", "--cr-pink", "--cr-green"];
+  // Four silver balls and a muted teal P, the first ball lifted on load. A broad reflection and a restrained
+  // edge shade describe the solid spheres; all five cast neutral shadows and carry clean, unoutlined letters.
   const stops = (...c) => c.map(([o, v, a = 1]) => `<stop offset="${o}" style="stop-color: ${v}" stop-opacity="${a}"/>`).join("");
-  const mix = (v, p, w) => `color-mix(in oklab, var(${v}) ${p}%, ${w})`;
   svg.innerHTML = `<defs>
-      ${TINT.map((v, i) => `<radialGradient id="cr-ball-${i}" cx=".5" cy=".5" r=".5">${
-        stops([0, `var(${v})`, .26], [.58, `var(${v})`, .42], [.86, mix(v, 76, "black"), .8], [1, mix(v, 52, "black"), .96])
+      ${["steel", "accent"].map(finish => `<linearGradient id="cr-${finish}" x1=".2" y1="0" x2=".7" y2="1">${
+        stops([0, `var(--cr-${finish}-1)`], [.36, `var(--cr-${finish}-2)`], [.72, `var(--cr-${finish}-3)`], [1, `var(--cr-${finish}-4)`])
+      }</linearGradient>`).join("")}
+      <radialGradient id="cr-form" cx=".34" cy=".26" r=".78">${
+        stops([0, "#fff", .16], [.45, "#fff", 0], [1, "#172e24", .18])
       }</radialGradient>
-      <radialGradient id="cr-glow-${i}" cx=".6" cy=".67" r=".42">${
-        stops([0, mix(v, 40, "white"), .95], [.55, `var(${v})`, .4], [1, `var(${v})`, 0])
-      }</radialGradient>`).join("")}
-      <radialGradient id="cr-rimlight" cx=".5" cy=".5" r=".5" fx=".5" fy=".5" gradientTransform="translate(.07 .09)">
-        <stop offset=".8" stop-color="#fff" stop-opacity="0"/><stop offset=".96" stop-color="#fff" stop-opacity=".45"/>
-        <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="cr-spec"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-      <filter id="cr-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4.5"/></filter>
+      <radialGradient id="cr-spec">${
+        stops([0, "#fff", .45], [.5, "#fff", .16], [1, "#fff", 0])
+      }</radialGradient>
+      <filter id="cr-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
     </defs>
     <g class="cr-shadows"><g class="cr-string-shadows"></g><g class="cr-ball-shadows" filter="url(#cr-soft)"></g></g>
     <g class="cr-strings"></g><g class="cr-balls"></g>`;
@@ -57,23 +51,20 @@
   };
   const parts = [..."PLUMB"].map((ch, i) => {
     const shadows = svg.querySelector(".cr-ball-shadows");
-    const shadow = make("circle", { class: "cr-ball-shadow", r: .94 * R, style: `fill: var(${TINT[i]})` }, shadows);
-    const caustic = make("circle", { class: "cr-caustic", r: .3 * R, style: `fill: ${mix(TINT[i], 35, "white")}` }, shadows);
+    const shadow = make("circle", { class: "cr-ball-shadow", r: .94 * R }, shadows);
     const shade = make("line", { class: "cr-string-shadow", x1: ax(i) + DROP[0] }, svg.querySelector(".cr-string-shadows"));
     const string = make("line", { class: "cr-string", x1: ax(i) }, svg.querySelector(".cr-strings"));
-    const ball = make("g", { class: "cr-ball", "data-i": i }, svg.querySelector(".cr-balls"));
+    const ball = make("g", { class: `cr-ball${i === 0 ? " cr-ball-accent" : ""}`, "data-i": i }, svg.querySelector(".cr-balls"));
     const cap = make("g", {}, ball);   // the screw eye and the letter turn with the string; the shading does not
     make("rect", { class: "cr-eye", x: -1.6, y: -R - 3, width: 3.2, height: 4 }, cap);
     make("circle", { class: "cr-eye-ring", cy: -R - 5.5, r: 3 }, cap);
-    make("circle", { r: R, fill: `url(#cr-ball-${i})` }, ball);
-    make("circle", { r: R, fill: `url(#cr-glow-${i})` }, ball);
+    make("circle", { r: R, fill: `url(#cr-${i === 0 ? "accent" : "steel"})` }, ball);
+    make("circle", { r: R, fill: "url(#cr-form)" }, ball);
+    make("ellipse", { cx: -10, cy: -19, rx: 20, ry: 10, transform: "rotate(-28 -10 -19)", fill: "url(#cr-spec)" }, ball);
     const glyph = make("g", {}, ball);
-    make("text", { class: "cr-letter", y: 12, style: `stroke: ${mix(TINT[i], 45, "black")}` }, glyph).textContent = ch;
-    make("circle", { r: R, fill: "url(#cr-rimlight)" }, ball);
-    make("ellipse", { cx: -12, cy: -17, rx: 10, ry: 5, transform: "rotate(-38 -12 -17)", fill: "url(#cr-spec)" }, ball);
-    make("circle", { cx: -14, cy: -18, r: 2.2, fill: "#fff", "fill-opacity": .9 }, ball);
+    make("text", { class: "cr-letter", y: 12 }, glyph).textContent = ch;
     make("circle", { class: "cr-rim", r: R - .4 }, ball);
-    return { shadow, caustic, shade, string, ball, cap, glyph };
+    return { shadow, shade, string, ball, cap, glyph };
   });
 
   // The strings reach the top of the document: the pivot height follows from where the svg sits and how it is scaled.
@@ -104,8 +95,6 @@
       p.glyph.setAttribute("transform", rot);
       p.shadow.setAttribute("cx", (x + DROP[0]).toFixed(2));
       p.shadow.setAttribute("cy", (y + DROP[1]).toFixed(2));
-      p.caustic.setAttribute("cx", (x + 1.3 * DROP[0]).toFixed(2));
-      p.caustic.setAttribute("cy", (y + 1.3 * DROP[1]).toFixed(2));
       p.shade.setAttribute("x2", (x - R * s + DROP[0]).toFixed(2));
       p.shade.setAttribute("y2", (y - R * c + DROP[1]).toFixed(2));
     }
