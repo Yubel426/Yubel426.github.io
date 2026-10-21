@@ -4,11 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Plumb</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="description" content="Plumb combines a coding agent, visual geometry models and simulation feedback to reconstruct dynamic scenes from video in MuJoCo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=2">
+<link rel="stylesheet" href="assets/site.css?v=27">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -21,38 +24,18 @@
 <div class="page">
 
 <div class="layout">
-<nav class="toc" aria-label="Contents">
-  <p class="toc-label">Contents</p>
-  <a href="#top">Overview</a>
-  <a href="#motivation">Motivation</a>
-  <a href="#method">Method</a>
-  <a href="#results">Results</a>
-  <a class="sub" href="#vs-codex">Comparison with Codex</a>
-  <!-- <a class="sub" href="#more-rounds">More rounds</a> -->
-  <!-- Tools is hidden for now.
-  <div class="toc-row"><a href="#tools">Tools</a><button type="button" class="toc-toggle" aria-expanded="false" aria-controls="toc-tools" aria-label="Show the tools"></button></div>
-  <div class="toc-group" id="toc-tools" hidden>
-    <a class="sub" href="#t-models">Foundation models</a>
-    <a class="sub" href="#t-measure">Measurements</a>
-    <a class="sub" href="#t-check">Simulation checks</a>
-    <a class="sub" href="#t-deliver">Delivery</a>
-  </div>
-  -->
-  <a href="#whats-next">What's next</a>
-  <!-- <a href="#related-work">Related work</a> -->
-  <a href="#citation">Citation</a>
-</nav>
-
 <main class="article" id="article">
 
 <!-- ============================== HERO ============================== -->
 <header class="hero" id="top">
   <div class="hero-text">
-    <h1><span class="name">Plumb:</span> An Agent Harness for Inverse Physics of Dynamic Scenes</h1>
+    <svg class="cradle" id="cradle" viewBox="0 0 340 216" aria-hidden="true"></svg>
+    <h1><span class="visually-hidden">Plumb: </span>Coding Agents with 3D Perception Rebuild Physical Scenes from Video</h1>
     <p class="authors"><span>Xiaoqian Liang<sup>1</sup></span><span><a href="https://hyuanchen.github.io/" target="_blank" rel="noopener">Hongyuan Chen</a><sup>1</sup></span><span><a href="https://hbb1.github.io/" target="_blank" rel="noopener">Binbin Huang</a><sup>2</sup></span><span><a href="https://apchenstu.github.io/" target="_blank" rel="noopener">Anpei Chen</a><sup>1</sup></span></p>
     <p class="affil"><span><sup>1</sup>Westlake University</span><span><sup>2</sup>The University of Hong Kong</span></p>
     <p class="links">
-      <a class="btn" href="#" aria-disabled="true" title="Repository link to be added"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code <span class="ph" style="color:inherit">[link]</span></a>
+      <a class="btn" href="https://github.com/Inception3D/Plumb" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Code</a>
+      <a class="btn" aria-disabled="true" title="The arXiv link will be added when the paper is out"><!-- arXiv icon: Academicons (SIL OFL 1.1) --><svg viewBox="0 0 448 512" aria-hidden="true"><path transform="matrix(1.5499998,0,0,-1.5499998,-123.19936,553.59966)" d="m 119.65,351.996 c -5.84961,0.13477 -11.1943,-3.29883 -13.502,-8.67578 -2.19629,-5.27051 -0.61914,-8.9668 4.19727,-15.8652 7.05469,-10.3799 78.8242,-96.5625 78.8242,-96.5625 l -15.8828,-14.8633 c -13.3809,-13.3779 -13.9561,-31.333 -1.50977,-43.7754 l 18.4922,-17.6133 -51.5977,-63.377 c -4.00586,-4.26758 -6.48535,-11.7559 -4.24805,-17.1309 2.27832,-5.53613 7.69727,-9.12891 13.6836,-9.07031 3.83398,0.0957 7.43262,1.87402 9.83789,4.86133 l 61.3691,57.0566 94.5762,-90.0703 c 3.19434,-3.08398 7.44336,-4.83984 11.8828,-4.91016 1.60449,0.0039 3.19824,0.245117 4.73242,0.714844 5.7793,1.80566 10.249,6.41797 11.8711,12.252 1.2998,5.47363 -0.27637,11.2334 -4.18164,15.2832 l -83.0859,100.011996 14.8789,13.834 c 11.0957,10.0029 11.1543,27.3906 0.12695,37.4688 l -16.2949,15.6309 56.2559,66.4434 0.0742,0.0859 0.0664,0.0899 c 5.02734,6.53125 7.43164,11.5615 4.83984,17.9395 -3.13379,5.96875 -8.69727,10.29 -15.2559,11.8516 -0.67676,0.0908 -1.35938,0.13574 -2.04297,0.13671 l -0.004,-0.0117 c -4.42871,-0.27051 -8.61035,-2.13086 -11.7754,-5.24023 l -0.13086,-0.10743 -0.12304,-0.11132 -65.207,-59.127 -89.8965,86.2402 c 0,0 -5.33398,6.47754 -10.9707,6.61133 z m 178.104,-33.041 c 0.47852,-0.002 0.95703,-0.0332 1.43164,-0.0957 4.84277,-1.33301 8.95605,-4.54004 11.4316,-8.91016 1.44922,-3.5625 1.00293,-6.45703 -4.19727,-13.2148 l -56.0586,-66.2188 -26.375,25.3027 64.9551,58.9062 c 2.33887,2.41504 5.46484,3.91113 8.8125,4.2168 v 0.0137 z M 192.436,227.402 334.446,57.244 c 2.78711,-3.48926 4.5293,-6.97949 3.3418,-10.9121 -1.16113,-4.30273 -4.43457,-7.71777 -8.68555,-9.05664 -1.08105,-0.333984 -2.20508,-0.503906 -3.33594,-0.505859 -3.20801,0.07617 -6.26953,1.35645 -8.57617,3.58789 l -142.033,135.284999 c -11.1719,11.1719 -9.48242,26.0195 1.39258,36.8945 z"/></svg>arXiv <span class="soon">coming soon</span></a>
     </p>
     <ol class="tldr">
       <li>Frontier large language models already understand rigid-body motion fairly well.</li>
@@ -117,11 +100,11 @@
 <section class="block" id="motivation">
   <div class="col">
     <h2>Motivation</h2>
-    <p>Can a coding agent reconstruct a physical event from video as a simulation? This requires choosing objects, geometry, physical parameters and an initial state whose simulated motion agrees with the observations. We gave <a href="https://github.com/openai/codex" target="_blank" rel="noopener">Codex</a> a <a href="https://mujoco.org/" target="_blank" rel="noopener">MuJoCo</a> environment and asked it to reconstruct synthetic and real-world videos. Inspecting the resulting scenes and fitting scripts revealed errors in object counts, camera motion and the 3D layout of the scene.</p>
+    <p>Can a coding agent reconstruct a physical event from video as a simulation? This requires choosing objects, geometry, physical parameters and an initial state whose simulated motion agrees with the observations. We gave <a href="https://github.com/openai/codex" target="_blank" rel="noopener">Codex</a> a <a href="https://mujoco.org/" target="_blank" rel="noopener">MuJoCo</a> environment and asked it to reconstruct synthetic and real-world videos. Inspecting the resulting scenes and fitting scripts revealed errors in <strong>object counts</strong>, <strong>camera motion</strong> and <strong>the 3D layout</strong> of the scene.</p>
   </div>
 
   <div class="col" id="geometry">
-    <p style="margin-top:28px"><span class="prob-n">01</span><strong>Object counts and geometry.</strong> In this real-world marble run, one ramp contains 14 dominoes. Codex reconstructed 21; Plumb reconstructed 14. The discrepancy changes both the scene geometry and the possible sequence of contacts.</p>
+    <p style="margin-top:28px"><span class="prob-n">01</span><strong>Object counts and geometry.</strong> In this real-world marble run, one ramp contains 14 dominoes. <span class="sys-codex">Codex</span> reconstructed 21; <span class="sys-plumb">Plumb</span> reconstructed 14. The discrepancy changes both the scene geometry and the possible sequence of contacts.</p>
   </div>
   <div class="wide">
     <figure class="countfig" aria-label="The same ramp in the video, in Codex's scene and in Plumb's scene">
@@ -130,7 +113,7 @@
   </div>
 
   <div class="col" id="camera-fit">
-    <p style="margin-top:28px"><span class="prob-n">02</span><strong>Camera motion.</strong> In this billiards video, the handheld camera moves slightly near the end of the clip. Codex does not capture such small camera motion and renders the whole video from one fixed camera. Plumb estimates a camera pose for each frame and follows the motion.</p>
+    <p style="margin-top:28px"><span class="prob-n">02</span><strong>Camera motion.</strong> In this billiards video, the handheld camera moves slightly near the end of the clip. <span class="sys-codex">Codex</span> does not capture such small camera motion and renders the whole video from one fixed camera. <span class="sys-plumb">Plumb</span> estimates a camera pose for each frame and follows the motion.</p>
   </div>
   <div class="wide">
     <div class="pair" id="camera-pair" data-n="3" aria-label="The end of a billiards video, Codex's simulation and Plumb's simulation, played in sync">
@@ -150,36 +133,39 @@
   </div>
 
   <div class="col" id="perception-3d">
-    <p style="margin-top:28px"><span class="prob-n">03</span><strong>Perceiving the scene in 3D.</strong> Codex has no 3D perception of the scene: it only adjusts its reconstruction until the rendered RGB image matches the input view. In this double pendulum, Codex's scene lines up with the input view, but its field of view is far too narrow, its scale is off, and the lanterns and the room sit at the wrong depths. From a held-out camera to the side, the reconstruction falls apart. Plumb takes its camera and depth from Pi3X, so its scene stays much closer to the ground truth from the side as well.</p>
+    <p style="margin-top:28px"><span class="prob-n">03</span><strong>Perceiving the scene in 3D.</strong> <span class="sys-codex">Codex</span> has no 3D perception of the scene: it only adjusts its reconstruction until the rendered RGB image matches the input view. In this double pendulum, <span class="sys-codex">Codex</span>'s scene lines up with the input view, but its field of view is far too narrow, its scale is off, and the lanterns and the room sit at the wrong depths. From a held-out camera to the side, the reconstruction falls apart. <span class="sys-plumb">Plumb</span> takes its camera and depth from Pi3X, so its scene stays much closer to the ground truth from the side as well.</p>
   </div>
   <div class="wide">
-    <div class="pair" id="views-pair" data-n="3" style="--aspect: 1" aria-label="A PhysInOne double pendulum seen from the input camera and from a held-out camera to the side: ground truth, Codex's reconstruction and Plumb's reconstruction, played in sync">
-      <figure>
-        <span class="label src">Input view · video</span>
-        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/source.jpg"><source src="media/bench50/010-pendulum/source.mp4" type="video/mp4"></video>
-      </figure>
-      <figure>
-        <span class="label bad">Input view · Codex</span>
-        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/codex.jpg"><source src="media/bench50/010-pendulum/codex.mp4" type="video/mp4"></video>
-      </figure>
-      <figure>
-        <span class="label sim">Input view · Plumb</span>
-        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sim.jpg?v=2"><source src="media/bench50/010-pendulum/sim.mp4?v=2" type="video/mp4"></video>
-      </figure>
-      <figure>
-        <span class="label src">Held-out camera · ground truth</span>
-        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_gt.jpg"><source src="media/bench50/010-pendulum/sv_gt.mp4" type="video/mp4"></video>
-      </figure>
-      <figure>
-        <span class="label bad">Held-out camera · Codex</span>
-        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_codex.jpg"><source src="media/bench50/010-pendulum/sv_codex.mp4" type="video/mp4"></video>
-      </figure>
-      <figure>
-        <span class="label sim">Held-out camera · Plumb</span>
-        <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_plumb.jpg?v=2"><source src="media/bench50/010-pendulum/sv_plumb.mp4?v=2" type="video/mp4"></video>
-      </figure>
+    <div class="views-figure">
+      <div class="view-cones-panel" aria-hidden="true"></div>
+      <svg class="view-cones" id="view-cones" aria-hidden="true"></svg>
+      <div class="pair" id="views-pair" data-n="3" style="--aspect: 1" aria-label="A PhysInOne double pendulum seen from the input camera and from a held-out camera to the side: ground truth, Codex's reconstruction and Plumb's reconstruction, played in sync">
+        <figure>
+          <span class="label src">Input view · video</span>
+          <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/source.jpg"><source src="media/bench50/010-pendulum/source.mp4" type="video/mp4"></video>
+        </figure>
+        <figure>
+          <span class="label bad">Input view · Codex</span>
+          <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/codex.jpg"><source src="media/bench50/010-pendulum/codex.mp4" type="video/mp4"></video>
+        </figure>
+        <figure>
+          <span class="label sim">Input view · Plumb</span>
+          <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sim.jpg?v=2"><source src="media/bench50/010-pendulum/sim.mp4?v=2" type="video/mp4"></video>
+        </figure>
+        <figure>
+          <span class="label src">Held-out camera · ground truth</span>
+          <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_gt.jpg"><source src="media/bench50/010-pendulum/sv_gt.mp4" type="video/mp4"></video>
+        </figure>
+        <figure>
+          <span class="label bad">Held-out camera · Codex</span>
+          <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_codex.jpg"><source src="media/bench50/010-pendulum/sv_codex.mp4" type="video/mp4"></video>
+        </figure>
+        <figure>
+          <span class="label sim">Held-out camera · Plumb</span>
+          <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_plumb.jpg?v=2"><source src="media/bench50/010-pendulum/sv_plumb.mp4?v=2" type="video/mp4"></video>
+        </figure>
+      </div>
     </div>
-    <p class="sv-readout">Outlines in the bottom row mark where the two lanterns are in the ground truth. Codex's back wall, which stands between this camera and its scene, is not drawn.</p>
   </div>
 
 </section>
@@ -188,7 +174,7 @@
 <section class="block" id="method">
   <div class="col">
     <h2>Method</h2>
-    <p>In Plumb, the coding agent receives the video, a MuJoCo sandbox and the task requirements, and writes everything that defines the reconstruction: the MJCF scene, its initial state, the physical parameters and the fitting code.</p>
+    <p>In Plumb, the coding agent receives the video, a MuJoCo sandbox and the task requirements, and writes everything that defines the reconstruction: the MJCF scene, its initial state, the physical parameters and the fitting code. <strong>We find that frontier models do not need a complex harness</strong>; an overly complex harness can even hurt.</p>
     <ul>
       <li><strong>Foundation models.</strong> <a href="https://arxiv.org/abs/2511.16719" target="_blank" rel="noopener">SAM3</a> segments and tracks objects from text prompts or example boxes. <a href="https://github.com/yyfz/Pi3#introducing-pi3x-engineering-update" target="_blank" rel="noopener">Pi3X</a> estimates per-frame depth, camera intrinsics and camera poses at an approximately metric scale.</li>
       <li><strong>Measurements.</strong> From these outputs, helper commands derive a camera on a fitted support plane, the slope of ramps and tables, the size and 3D path of each tracked object, the motion of a moving camera, and 2D object tracks.</li>
@@ -223,8 +209,8 @@
 <section class="block" id="results">
   <div class="col">
     <h2>Results</h2>
-    <p>We evaluate on 50 videos: 25 from <a href="https://arxiv.org/abs/2604.09415" target="_blank" rel="noopener">PhysInOne</a>, covering five categories, and 25 from <a href="https://arxiv.org/abs/2106.08261" target="_blank" rel="noopener">Physion v1.5</a>, covering all seven categories. The set was curated before either system ran. We removed videos whose ground truth conflicts with physical common sense and videos that lack the annotations needed for evaluation. The results therefore describe reconstruction on this curated set. We adjusted the videos' playback rates to match their simulation timing.</p>
-    <p>All agent calls in this comparison use GPT-6.1 Sol at high reasoning effort. The two systems receive the same input videos.</p>
+    <p>We evaluate on 50 videos, 25 from <a href="https://arxiv.org/abs/2604.09415" target="_blank" rel="noopener">PhysInOne</a> and 25 from <a href="https://arxiv.org/abs/2106.08261" target="_blank" rel="noopener">Physion v1.5</a>, selected by category. We removed videos whose ground truth conflicts with physical common sense and videos that lack the annotations needed for evaluation. We adjusted the videos' playback rates to match their simulation timing.</p>
+    <p>All agent calls in this comparison use <strong>GPT-6.1 Sol at high reasoning effort</strong>.</p>
   </div>
 
   <div class="col" id="vs-codex">
@@ -234,8 +220,7 @@
   <div class="wide">
     <div class="table-wrap">
       <table class="data results-table" id="results-table">
-        <caption>Codex and Plumb on the 50 curated videos · one run per video and system</caption>
-        <thead><tr><th>Metric</th><th class="num">Codex</th><th class="num">Plumb</th></tr></thead>
+        <thead><tr><th>Metric</th><th class="num sys-codex">Codex</th><th class="num sys-plumb">Plumb</th></tr></thead>
         <tbody>
           <tr><td>Input view · 3D ADE, m ↓</td><td class="num">0.169</td><td class="num best">0.120</td></tr>
           <tr><td>Input view · 2D ADE, px ↓</td><td class="num">31.3</td><td class="num best">27.1</td></tr>
@@ -273,7 +258,7 @@
 
   <div class="wide">
     <h3 style="margin-top:28px">Gallery</h3>
-    <p>All 50 benchmark videos with Codex's and Plumb's reconstructions, grouped by dataset and category. In the first row, each simulation is the preview that the agent rendered of its delivered scene, from its own estimated camera. The second row shows the same scenes from the second view used by the second-view metrics, which neither agent saw.</p>
+    <p>All 50 benchmark videos with <span class="sys-codex">Codex</span>'s and <span class="sys-plumb">Plumb</span>'s reconstructions, grouped by dataset and category. In the first row, each simulation is the preview that the agent rendered of its delivered scene, from its own estimated camera. The second row shows the same scenes from the <strong>second view</strong>, a held-out camera that neither agent saw.</p>
     <div class="gallery-viewer" id="gallery" aria-label="Benchmark videos with Codex's and Plumb's reconstructions, from the input camera and from a second view">
       <div class="case-tabs" id="gal-tabs" role="group" aria-label="Choose a video"></div>
       <div class="pair" id="gal-pair" data-n="3">
@@ -304,7 +289,6 @@
           <video id="gal-sv-plumb" data-sync="gallery" muted playsinline loop autoplay preload="metadata"></video>
         </figure>
       </div>
-      <p class="sv-readout" id="gal-sv-readout" aria-live="polite"></p>
     </div>
   </div>
 </section>
@@ -369,9 +353,9 @@
   <div class="col">
     <h2>What's next</h2>
     <ul>
-      <li><strong>Compare 3D foundation models.</strong> Plumb currently takes its camera and depth from Pi3X. Ablations with other 3D models, such as <a href="https://arxiv.org/abs/2503.11651" target="_blank" rel="noopener">VGGT</a> and <a href="https://arxiv.org/abs/2511.10647" target="_blank" rel="noopener">Depth Anything 3</a>, would show how much the reconstruction depends on the choice of 3D model.</li>
-      <li><strong>Predict physical parameters better.</strong> Physical parameters are not yet predicted well: even with Plumb, only about a third of the physical quantities, such as restitution, deceleration and mass ratios, fall within a factor of 1.25 of the ground truth.</li>
-      <li><strong>Extend the scene models.</strong> The current system models rigid-body dynamics. Deformable objects, cloth and fluids would require additional representations, simulation tools and evaluation criteria.</li>
+      <li><strong>Use more foundation models.</strong> Plumb currently uses only the camera and depth from Pi3X. Other foundation models, such as <a href="https://arxiv.org/abs/2312.08344" target="_blank" rel="noopener">FoundationPose</a> for object pose, could also be added.</li>
+      <li><strong>Predict physical parameters better.</strong> Physical parameters are not yet predicted well: even with Plumb, only about <strong>a third of</strong> the physical quantities, such as restitution, deceleration and mass ratios, fall within a factor of 1.25 of the ground truth.</li>
+      <li><strong>Extend the scene models.</strong> The current system models rigid-body dynamics. <strong>Deformable objects, cloth and fluids</strong> would require additional representations, simulation tools and evaluation criteria.</li>
     </ul>
   </div>
 </section>
@@ -401,11 +385,11 @@
     <div class="bib">
       <button class="icon-btn copy" type="button" id="copy-bib">Copy</button>
 <pre id="bibtex"><code>@misc{liang2026plumb,
-  title        = {Plumb: An Agent Harness for Inverse Physics of Dynamic Scenes},
+  title        = {Plumb: Coding Agents with 3D Perception Rebuild Physical Scenes from Video},
   author       = {Liang, Xiaoqian and Chen, Hongyuan and Huang, Binbin and Chen, Anpei},
   year         = {2026},
   howpublished = {Blog post},
-  url          = {[URL]}
+  url          = {https://yubel426.github.io/Plumb/}
 }</code></pre>
     </div>
   </div>
@@ -419,7 +403,9 @@
 </div>
 </div>
 
-<script src="assets/site.js?v=2"></script>
+<script src="assets/cradle.js?v=14"></script>
+<script src="assets/site.js?v=3"></script>
+<script src="assets/viewcones.js?v=3"></script>
 <script type="module" src="assets/replay.js"></script>
 </body>
 </html>

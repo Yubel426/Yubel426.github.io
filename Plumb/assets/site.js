@@ -143,7 +143,7 @@
   const gSrc = document.getElementById('gal-src'), gSim = document.getElementById('gal-sim'), gCodex = document.getElementById('gal-codex');
   const gPair = document.getElementById('gal-pair');
   // second view: the camera the second-view metric scores, ground truth and both reconstructions
-  const svPair = document.getElementById('gal-sv-pair'), svReadout = document.getElementById('gal-sv-readout');
+  const svPair = document.getElementById('gal-sv-pair');
   const svVids = { gt: document.getElementById('gal-sv-gt'), codex: document.getElementById('gal-sv-codex'), plumb: document.getElementById('gal-sv-plumb') };
   if (gTabs && gSrc && gSim) {
     const setSrc = (v, url, posterUrl) => { v.poster = posterUrl; v.src = url; v.load(); };
@@ -158,10 +158,7 @@
       if (svPair) svPair.hidden = !sv;
       if (sv) {
         Object.entries(svVids).forEach(([k, v]) => { if (v) { setSrc(v, c.media[`sv_${k}`], c.media[`sv_${k}_poster`]); vids.push(v); } });
-        const view = sv.synthetic ? `Virtual camera, ${Math.round(sv.angle_deg)}° from the input view, ground truth rebuilt in MuJoCo`
-          : `Held-out dataset camera, ${Math.round(sv.angle_deg)}° from the input view`;
-        if (svReadout) svReadout.textContent = `${c.dataset} · ${c.category} · ${view} · 2D ADE ${sv.codex.ade2d_px.toFixed(1)} px (Codex) vs ${sv.plumb.ade2d_px.toFixed(1)} px (Plumb) · IoU ${sv.codex.iou.toFixed(2)} vs ${sv.plumb.iou.toFixed(2)}`;
-      } else if (svReadout) svReadout.textContent = '';
+      }
       let ready = 0;
       const go = () => { if (++ready === vids.length) syncGroup.gallery?.restart(); };
       vids.forEach(v => v.addEventListener('loadeddata', go, { once: true }));
