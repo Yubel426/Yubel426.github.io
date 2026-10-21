@@ -1,12 +1,12 @@
 // Motivation 03: a schematic to the left of the grid of views. Two cameras look at one scene (the double pendulum)
 // from different sides; their view cones cross at the scene and run on until each one's base is the first video of
-// its row: the input camera's cone ends on the top row, the held-out camera's on the bottom row. Drawn into
+// its row: the input camera's cone ends on the top row, the unseen view's on the bottom row. Drawn into
 // svg#view-cones (which spans the panel and the gap up to the grid) from the live layout, again on every resize.
 (() => {
   const fig = document.querySelector(".views-figure"), svg = document.getElementById("view-cones");
   if (!fig || !svg) return;
   const videos = [...document.querySelectorAll("#views-pair video")];
-  const cams = [{ id: "input", name: "Input camera", video: videos[0] }, { id: "second", name: "Held-out camera", video: videos[3] }];
+  const cams = [{ id: "input", name: "Input view", video: videos[0] }, { id: "second", name: "Unseen view", video: videos[3] }];
   const f = v => v.toFixed(1);
 
   function draw() {

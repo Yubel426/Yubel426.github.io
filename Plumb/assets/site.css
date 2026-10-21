@@ -16,7 +16,7 @@
   --bad: #b03636;
   --warn: #946712;
   --placeholder: #7a5aa8;
-  --cam2: #7d55c7;   /* the held-out camera (Motivation 03) */
+  --cam2: #7d55c7;   /* the unseen view (Motivation 03) */
   --s-codex: #eb6834;
   --s-r90: #2a78d6;
   --s-r96: #2a78d6;
@@ -135,6 +135,8 @@ section.block:not(#citation) > .col > h2::before {
 .hero { padding-block: 48px 8px; }
 /* The title stays on one line from ~650px viewports up (it is ~29.3em wide); narrower screens wrap. */
 h1 { margin: 0; font: 400 clamp(22px, 3.2vw, 36px)/1.15 var(--display); letter-spacing: -.015em; }
+/* the P of Physics in the title, green like the P ball above it (in the page accent: the ball's own sage is too faint as text) */
+h1 .h1-p { color: var(--accent); }
 .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* Wordmark: the five letters of Plumb on the balls of a Newton's cradle (assets/cradle.js), hanging on strings from
    the top of the page (they and the swings draw outside the svg box); the title follows. On a phone the row is

@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=28">
+<link rel="stylesheet" href="assets/site.css?v=29">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -30,7 +30,7 @@
 <header class="hero" id="top">
   <div class="hero-text">
     <svg class="cradle" id="cradle" viewBox="0 0 340 216" aria-hidden="true"></svg>
-    <h1><span class="visually-hidden">Plumb: </span>An Agent Harness for Inverse Physics of Dynamic Scenes</h1>
+    <h1><span class="visually-hidden">Plumb: </span>An Agent Harness for Inverse <span class="h1-p">P</span>hysics of Dynamic Scenes</h1>
     <p class="authors"><span>Xiaoqian Liang<sup>1</sup></span><span><a href="https://hyuanchen.github.io/" target="_blank" rel="noopener">Hongyuan Chen</a><sup>1</sup></span><span><a href="https://hbb1.github.io/" target="_blank" rel="noopener">Binbin Huang</a><sup>2</sup></span><span><a href="https://apchenstu.github.io/" target="_blank" rel="noopener">Anpei Chen</a><sup>1</sup></span></p>
     <p class="affil"><span><sup>1</sup>Westlake University</span><span><sup>2</sup>The University of Hong Kong</span></p>
     <p class="links">
@@ -46,7 +46,7 @@
 
   <figure class="demo-video wide" id="demo">
     <div class="demo-frame">
-      <video id="demo-video" src="media/demo/discovery_to_physics.mp4?v=11" poster="media/demo/discovery_to_physics.jpg?v=4" muted playsinline preload="none"
+      <video id="demo-video" src="media/demo/discovery_to_physics.mp4?v=11" poster="media/demo/discovery_to_physics.jpg?v=4" muted playsinline preload="auto"
         aria-label="Overview: reconstructing a Newton's cradle from video, a ball striking a stack of cups, and a basketball shot">
         <track kind="captions" src="media/demo/discovery_to_physics.en.vtt?v=2" srclang="en" label="English"></video>
       <button type="button" class="demo-play" id="demo-play" aria-label="Watch the overview video with narration, 1 minute 31 seconds">
@@ -133,13 +133,13 @@
   </div>
 
   <div class="col" id="perception-3d">
-    <p style="margin-top:28px"><span class="prob-n">03</span><strong>Perceiving the scene in 3D.</strong> <span class="sys-codex">Codex</span> has no 3D perception of the scene: it only adjusts its reconstruction until the rendered RGB image matches the input view. In this double pendulum, <span class="sys-codex">Codex</span>'s scene lines up with the input view, but its field of view is far too narrow, its scale is off, and the lanterns and the room sit at the wrong depths. From a held-out camera to the side, the reconstruction falls apart. <span class="sys-plumb">Plumb</span> takes its camera and depth from Pi3X, so its scene stays much closer to the ground truth from the side as well.</p>
+    <p style="margin-top:28px"><span class="prob-n">03</span><strong>Perceiving the scene in 3D.</strong> <span class="sys-codex">Codex</span> has no 3D perception of the scene: it only adjusts its reconstruction until the rendered RGB image matches the input view. In this double pendulum, <span class="sys-codex">Codex</span>'s scene lines up with the input view, but its field of view is far too narrow, its scale is off, and the lanterns and the room sit at the wrong depths. From an unseen view to the side, the reconstruction falls apart. <span class="sys-plumb">Plumb</span> takes its camera and depth from Pi3X, so its scene stays much closer to the ground truth from the side as well.</p>
   </div>
   <div class="wide">
     <div class="views-figure">
       <div class="view-cones-panel" aria-hidden="true"></div>
       <svg class="view-cones" id="view-cones" aria-hidden="true"></svg>
-      <div class="pair" id="views-pair" data-n="3" style="--aspect: 1" aria-label="A PhysInOne double pendulum seen from the input camera and from a held-out camera to the side: ground truth, Codex's reconstruction and Plumb's reconstruction, played in sync">
+      <div class="pair" id="views-pair" data-n="3" style="--aspect: 1" aria-label="A PhysInOne double pendulum seen from the input camera and from an unseen view to the side: ground truth, Codex's reconstruction and Plumb's reconstruction, played in sync">
         <figure>
           <span class="label src">Input view · video</span>
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/source.jpg"><source src="media/bench50/010-pendulum/source.mp4" type="video/mp4"></video>
@@ -153,15 +153,15 @@
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sim.jpg?v=2"><source src="media/bench50/010-pendulum/sim.mp4?v=2" type="video/mp4"></video>
         </figure>
         <figure>
-          <span class="label src">Held-out camera · ground truth</span>
+          <span class="label src">Unseen view · ground truth</span>
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_gt.jpg"><source src="media/bench50/010-pendulum/sv_gt.mp4" type="video/mp4"></video>
         </figure>
         <figure>
-          <span class="label bad">Held-out camera · Codex</span>
+          <span class="label bad">Unseen view · Codex</span>
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_codex.jpg"><source src="media/bench50/010-pendulum/sv_codex.mp4" type="video/mp4"></video>
         </figure>
         <figure>
-          <span class="label sim">Held-out camera · Plumb</span>
+          <span class="label sim">Unseen view · Plumb</span>
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_plumb.jpg?v=2"><source src="media/bench50/010-pendulum/sv_plumb.mp4?v=2" type="video/mp4"></video>
         </figure>
       </div>
@@ -215,7 +215,7 @@
 
   <div class="col" id="vs-codex">
     <h3 style="margin-top:28px">Comparison with Codex</h3>
-    <p>We report <strong>mask intersection over union (IoU)</strong> and the <strong>average displacement error (ADE)</strong> of the moving objects, in 2D (pixels) and in 3D (metres), against dataset annotations. The second-view metrics render each reconstruction from a held-out camera that the agent never saw. <strong>Physics accuracy</strong> is the fraction of 279 physical quantities, such as launch speed, restitution and swing period, that a reconstruction recovers within a factor of 1.25 of the ground truth.</p>
+    <p>We report <strong>mask intersection over union (IoU)</strong> and the <strong>average displacement error (ADE)</strong> of the moving objects, in 2D (pixels) and in 3D (metres), against dataset annotations. The second-view metrics render each reconstruction from an unseen view, a camera the agent never saw. <strong>Physics accuracy</strong> is the fraction of 279 physical quantities, such as launch speed, restitution and swing period, that a reconstruction recovers within a factor of 1.25 of the ground truth.</p>
   </div>
   <div class="wide">
     <div class="table-wrap">
@@ -258,7 +258,7 @@
 
   <div class="wide">
     <h3 style="margin-top:28px">Gallery</h3>
-    <p>All 50 benchmark videos with <span class="sys-codex">Codex</span>'s and <span class="sys-plumb">Plumb</span>'s reconstructions, grouped by dataset and category. In the first row, each simulation is the preview that the agent rendered of its delivered scene, from its own estimated camera. The second row shows the same scenes from the <strong>second view</strong>, a held-out camera that neither agent saw.</p>
+    <p>All 50 benchmark videos with <span class="sys-codex">Codex</span>'s and <span class="sys-plumb">Plumb</span>'s reconstructions, grouped by dataset and category. In the first row, each simulation is the preview that the agent rendered of its delivered scene, from its own estimated camera. The second row shows the same scenes from an <strong>unseen view</strong>, a camera neither agent saw.</p>
     <div class="gallery-viewer" id="gallery" aria-label="Benchmark videos with Codex's and Plumb's reconstructions, from the input camera and from a second view">
       <div class="case-tabs" id="gal-tabs" role="group" aria-label="Choose a video"></div>
       <div class="pair" id="gal-pair" data-n="3">
@@ -405,7 +405,7 @@
 
 <script src="assets/cradle.js?v=15"></script>
 <script src="assets/site.js?v=3"></script>
-<script src="assets/viewcones.js?v=3"></script>
+<script src="assets/viewcones.js?v=4"></script>
 <script type="module" src="assets/replay.js"></script>
 </body>
 </html>
