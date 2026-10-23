@@ -133,13 +133,13 @@
   </div>
 
   <div class="col" id="perception-3d">
-    <p style="margin-top:28px"><span class="prob-n">03</span><strong>Perceiving the scene in 3D.</strong> <span class="sys-codex">Codex</span> has no 3D perception of the scene: it only adjusts its reconstruction until the rendered RGB image matches the input view. In this double pendulum, <span class="sys-codex">Codex</span>'s scene lines up with the input view, but its field of view is far too narrow, its scale is off, and the lanterns and the room sit at the wrong depths. From an unseen view to the side, the reconstruction falls apart. <span class="sys-plumb">Plumb</span> takes its camera and depth from Pi3X, so its scene stays much closer to the ground truth from the side as well.</p>
+    <p style="margin-top:28px"><span class="prob-n">03</span><strong>Perceiving the scene in 3D.</strong> <span class="sys-codex">Codex</span> has no 3D perception of the scene: it only adjusts its reconstruction until the rendered RGB image matches the input view. In this double pendulum, <span class="sys-codex">Codex</span>'s scene lines up with the input view, but its field of view is far too narrow, its scale is off, and the lanterns and the room sit at the wrong depths. From a third viewpoint to the side, the reconstruction falls apart. <span class="sys-plumb">Plumb</span> takes its camera and depth from Pi3X, so its scene stays much closer to the ground truth from the side as well.</p>
   </div>
   <div class="wide">
     <div class="views-figure">
       <div class="view-cones-panel" aria-hidden="true"></div>
       <svg class="view-cones" id="view-cones" aria-hidden="true"></svg>
-      <div class="pair" id="views-pair" data-n="3" style="--aspect: 1" aria-label="A PhysInOne double pendulum seen from the input camera and from an unseen view to the side: ground truth, Codex's reconstruction and Plumb's reconstruction, played in sync">
+      <div class="pair" id="views-pair" data-n="3" style="--aspect: 1" aria-label="A PhysInOne double pendulum seen from the input camera and from a third viewpoint to the side: ground truth, Codex's reconstruction and Plumb's reconstruction, played in sync">
         <figure>
           <span class="label src">Input view · video</span>
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/source.jpg"><source src="media/bench50/010-pendulum/source.mp4" type="video/mp4"></video>
@@ -153,15 +153,15 @@
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sim.jpg?v=2"><source src="media/bench50/010-pendulum/sim.mp4?v=2" type="video/mp4"></video>
         </figure>
         <figure>
-          <span class="label src">Unseen view · ground truth</span>
+          <span class="label src">Third viewpoint · ground truth</span>
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_gt.jpg"><source src="media/bench50/010-pendulum/sv_gt.mp4" type="video/mp4"></video>
         </figure>
         <figure>
-          <span class="label bad">Unseen view · Codex</span>
+          <span class="label bad">Third viewpoint · Codex</span>
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_codex.jpg"><source src="media/bench50/010-pendulum/sv_codex.mp4" type="video/mp4"></video>
         </figure>
         <figure>
-          <span class="label sim">Unseen view · Plumb</span>
+          <span class="label sim">Third viewpoint · Plumb</span>
           <video data-sync="views" muted playsinline loop autoplay preload="metadata" poster="media/bench50/010-pendulum/sv_plumb.jpg?v=2"><source src="media/bench50/010-pendulum/sv_plumb.mp4?v=2" type="video/mp4"></video>
         </figure>
       </div>
@@ -215,7 +215,7 @@
 
   <div class="col" id="vs-codex">
     <h3 style="margin-top:28px">Comparison with Codex</h3>
-    <p>We report <strong>mask intersection over union (IoU)</strong> and the <strong>average displacement error (ADE)</strong> of the moving objects, in 2D (pixels) and in 3D (metres), against dataset annotations. The second-view metrics render each reconstruction from an unseen view, a camera the agent never saw. <strong>Physics accuracy</strong> is the fraction of 279 physical quantities, such as launch speed, restitution and swing period, that a reconstruction recovers within a factor of 1.25 of the ground truth.</p>
+    <p>We report <strong>mask intersection over union (IoU)</strong> and the <strong>average displacement error (ADE)</strong> of the moving objects, in 2D (pixels) and in 3D (metres), against dataset annotations. The second-view metrics render each reconstruction from a third viewpoint, a camera the agent never saw. <strong>Physics accuracy</strong> is the fraction of 279 physical quantities, such as launch speed, restitution and swing period, that a reconstruction recovers within a factor of 1.25 of the ground truth.</p>
   </div>
   <div class="wide">
     <div class="table-wrap">
@@ -258,7 +258,7 @@
 
   <div class="wide">
     <h3 style="margin-top:28px">Gallery</h3>
-    <p>All 50 benchmark videos with <span class="sys-codex">Codex</span>'s and <span class="sys-plumb">Plumb</span>'s reconstructions, grouped by dataset and category. In the first row, each simulation is the preview that the agent rendered of its delivered scene, from its own estimated camera. The second row shows the same scenes from an <strong>unseen view</strong>, a camera neither agent saw.</p>
+    <p>All 50 benchmark videos with <span class="sys-codex">Codex</span>'s and <span class="sys-plumb">Plumb</span>'s reconstructions, grouped by dataset and category. In the first row, each simulation is the preview that the agent rendered of its delivered scene, from its own estimated camera. The second row shows the same scenes from a <strong>third viewpoint</strong>, a camera neither agent saw.</p>
     <div class="gallery-viewer" id="gallery" aria-label="Benchmark videos with Codex's and Plumb's reconstructions, from the input camera and from a second view">
       <div class="case-tabs" id="gal-tabs" role="group" aria-label="Choose a video"></div>
       <div class="pair" id="gal-pair" data-n="3">
@@ -405,7 +405,7 @@
 
 <script src="assets/cradle.js?v=15"></script>
 <script src="assets/site.js?v=3"></script>
-<script src="assets/viewcones.js?v=4"></script>
+<script src="assets/viewcones.js?v=5"></script>
 <script type="module" src="assets/replay.js"></script>
 </body>
 </html>
