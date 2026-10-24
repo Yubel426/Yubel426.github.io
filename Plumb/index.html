@@ -215,7 +215,7 @@
 
   <div class="col" id="vs-codex">
     <h3 style="margin-top:28px">Comparison with Codex</h3>
-    <p>We report <strong>mask intersection over union (IoU)</strong> and the <strong>average displacement error (ADE)</strong> of the moving objects, in 2D (pixels) and in 3D (metres), against dataset annotations. The second-view metrics render each reconstruction from a third viewpoint, a camera the agent never saw. <strong>Physics accuracy</strong> is the fraction of 279 physical quantities, such as launch speed, restitution and swing period, that a reconstruction recovers within a factor of 1.25 of the ground truth.</p>
+    <p>We report <strong>mask intersection over union (IoU)</strong> and the <strong>average displacement error (ADE)</strong> of the moving objects, in 2D (pixels) and in 3D (metres), against dataset annotations. The third-view metrics render each reconstruction from a camera the agent never saw. <strong>Physics accuracy</strong> is the fraction of 279 physical quantities, such as launch speed, restitution and swing period, that a reconstruction recovers within a factor of 1.25 of the ground truth.</p>
   </div>
   <div class="wide">
     <div class="table-wrap">
@@ -225,8 +225,8 @@
           <tr><td>Input view · 3D ADE, m ↓</td><td class="num">0.169</td><td class="num best">0.120</td></tr>
           <tr><td>Input view · 2D ADE, px ↓</td><td class="num">31.3</td><td class="num best">27.1</td></tr>
           <tr><td>Input view · Mask IoU ↑</td><td class="num">0.578</td><td class="num best">0.603</td></tr>
-          <tr><td>Second view · 2D ADE, px ↓</td><td class="num">75.8</td><td class="num best">53.2</td></tr>
-          <tr><td>Second view · Mask IoU ↑</td><td class="num">0.298</td><td class="num best">0.382</td></tr>
+          <tr><td>Third view · 2D ADE, px ↓</td><td class="num">75.8</td><td class="num best">53.2</td></tr>
+          <tr><td>Third view · Mask IoU ↑</td><td class="num">0.298</td><td class="num best">0.382</td></tr>
           <tr><td>Physics accuracy, 279 items ↑</td><td class="num">0.308</td><td class="num best">0.348</td></tr>
           <tr class="tokens"><td>API cost per video, USD, mean</td><td class="num">$0.82</td><td class="num">$0.93</td></tr>
         </tbody>
@@ -259,7 +259,7 @@
   <div class="wide">
     <h3 style="margin-top:28px">Gallery</h3>
     <p>All 50 benchmark videos with <span class="sys-codex">Codex</span>'s and <span class="sys-plumb">Plumb</span>'s reconstructions, grouped by dataset and category. In the first row, each simulation is the preview that the agent rendered of its delivered scene, from its own estimated camera. The second row shows the same scenes from a <strong>third viewpoint</strong>, a camera neither agent saw.</p>
-    <div class="gallery-viewer" id="gallery" aria-label="Benchmark videos with Codex's and Plumb's reconstructions, from the input camera and from a second view">
+    <div class="gallery-viewer" id="gallery" aria-label="Benchmark videos with Codex's and Plumb's reconstructions, from the input camera and from a third view">
       <div class="case-tabs" id="gal-tabs" role="group" aria-label="Choose a video"></div>
       <div class="pair" id="gal-pair" data-n="3">
         <figure>
@@ -277,15 +277,15 @@
       </div>
       <div class="pair" id="gal-sv-pair" data-n="3">
         <figure>
-          <span class="label src">Second view · ground truth</span>
+          <span class="label src">Third view · ground truth</span>
           <video id="gal-sv-gt" data-sync="gallery" muted playsinline loop autoplay preload="metadata"></video>
         </figure>
         <figure>
-          <span class="label bad">Codex · second view</span>
+          <span class="label bad">Codex · third view</span>
           <video id="gal-sv-codex" data-sync="gallery" muted playsinline loop autoplay preload="metadata"></video>
         </figure>
         <figure>
-          <span class="label sim">Plumb · second view</span>
+          <span class="label sim">Plumb · third view</span>
           <video id="gal-sv-plumb" data-sync="gallery" muted playsinline loop autoplay preload="metadata"></video>
         </figure>
       </div>

@@ -142,7 +142,7 @@
   const gTabs = document.getElementById('gal-tabs');
   const gSrc = document.getElementById('gal-src'), gSim = document.getElementById('gal-sim'), gCodex = document.getElementById('gal-codex');
   const gPair = document.getElementById('gal-pair');
-  // second view: the camera the second-view metric scores, ground truth and both reconstructions
+  // third view: the camera the third-view metric scores, ground truth and both reconstructions
   const svPair = document.getElementById('gal-sv-pair');
   const svVids = { gt: document.getElementById('gal-sv-gt'), codex: document.getElementById('gal-sv-codex'), plumb: document.getElementById('gal-sv-plumb') };
   if (gTabs && gSrc && gSim) {

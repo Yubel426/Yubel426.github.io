@@ -499,7 +499,7 @@ table.data tfoot td { color: var(--muted); font-size: 12.5px; border-bottom: 0; 
 
 /* ---------- gallery ---------- */
 .gallery-viewer { margin: 14px 0 8px; }
-#gal-sv-pair { --aspect: 1; margin-top: 14px; }   /* the second-view renders are square */
+#gal-sv-pair { --aspect: 1; margin-top: 14px; }   /* the third-view renders are square */
 #gal-sv-pair[hidden] { display: none; }
 /* Motivation 03: a schematic to the left of the grid of views, which keeps its place and size (assets/viewcones.js):
    two cameras' view cones cross at the scene and end on the first video of each row. It needs the margin left of the
